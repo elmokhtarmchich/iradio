@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html>
+<meta name="theme-color" content="#258f9c">
+<meta 
+     name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+/>
+<head>
+<title>iRadio.ma : Radio Maroc :: la plus adaptée pour vous</title>
+<link href="https://ia601501.us.archive.org/13/items/favicon_20200220/favicon.ico" rel="icon" type="image/x-icon"/>
+<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+<meta charset = "utf-8" />
+<link rel="canonical" href="https://iradio.ma" />
+<link rel="next" href="https://iradio.ma/" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Radio Maroc en direct Ecouter Player en ligne live" />
+<meta property="og:url" content="https://laradio.ma" />
+<meta property="og:site_name" content="Radio Maroc en direct Ecouter Player en ligne live" />
+<meta property="article:publisher" content="https://fb.me/iradio.01.maroc" />
+<meta property="article:publisher" content="https://m.me/iradio.01.maroc" />
+<meta property="article:publisher" content="https://www.khadamat.narsa.gov.ma/frontend" />
+
+
+
+<style>
+body {
+background-color: #111;
+	margin: 0;
+	text-align: center;
+	overscroll-behavior: contain;
+}
+a {
+  font-family: "OpenSymbol";
+  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  line-height: 2;
+}
+
+  
+:root {
+    --oui-thumbnail-radius: 20px;
+}
+
+.oui-image-cover {
+    border-radius: var(--oui-thumbnail-radius);
+	border: 0px solid;
+    object-fit: cover;
+    width: 96px;
+	margin-top: 10px;
+}
+
+.oui-image-caption {
+    margin: auto;
+    font-size: .8em;
+    color: var(--on-surface);
+}
+	@font-face {
+  font-family: "OpenSymbol";
+  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+}
+
+#playlist {
+	list-style: none;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 8px;
+    padding-bottom: 120px;
+        }
+#playlist li{
+    display: inline-block;
+	margin: 2px;
+	margin-top: 10px;
+    border: 1px solid #444;
+	background-color: #444;
+	border-radius: var(--oui-thumbnail-radius);
+	padding: 4px;
+    width: 120px;
+    height: 120px;
+    }
+#playlist .current-song{
+border: 1px solid #fff;
+            -webkit-animation: pulsate 3s linear infinite;
+    -moz-animation: pulsate 3s linear infinite;
+    animation: pulsate 3s linear infinite;
+}
+
+@-webkit-keyframes pulsate {
+    0% {background: #ffc60a}
+    50% {background: rgb(0, 230, 150)}
+	100% {background: #ffc60a}
+}
+@-moz-keyframes pulsate {
+    0% {background: #ffc60a}
+    50% {background: rgb(0, 230, 150)}
+	100% {background: #ffc60a}
+}
+@keyframes pulsate {
+    0% {background: #ffc60a}
+    50% {background: rgb(0, 230, 150)}
+	100% {background: #ffc60a}
+}
+
+audio{
+display: none;
+}
+  
+  * {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+  cursor: pointer;
+  height: 100%;
+  border-radius: 999px;
+  transition: 0.6s;
+  border: 0px solid #1e5469;
+}
+.column:hover {
+  opacity: 0.9;
+  background-color: #A0A0A0	;
+}
+.row {
+z-index: 1;
+width: 96%;
+height: 5%;
+min-height: 50px;
+max-height: 70px;
+position: fixed;
+left: 50%; 
+transform: translateX(-50%);
+bottom: 10px;
+border-radius: 999px;
+border: 2px solid #1e5469;
+background: rgb(235,81,141);
+background: -moz-linear-gradient(142deg, rgba(235,81,141,1) 22%, rgba(28,58,142,1) 85%);
+background: -webkit-linear-gradient(142deg, rgba(235,81,141,1) 22%, rgba(28,58,142,1) 85%);
+background: linear-gradient(142deg, rgba(235,81,141,1) 22%, rgba(28,58,142,1) 85%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eb518d",endColorstr="#1c3a8e",GradientType=1);
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+content: "";
+clear: both;
+display: table;
+}
+ p {
+  font-family: "OpenSymbol";
+  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+  font-size: 14px;
+  font-weight: bold;
+  height: 100%;
+  color: #111;
+  text-decoration: none;
+  line-height: 1;
+  border: 3px solid #ffcc00;
+  border-radius: 999px;
+  background-color: #ffcc00;
+  margin: auto;
+  }
+</style>
+
+</head>
+<body>
+<audio src="http://medradio-maroc.ice.infomaniak.ch/medradio-maroc-64.mp3" controls id="audioPlayer"></audio>
+
+<div class="row">
+  <div class="column">
+<p id="demo" style="">Playing..</p>
+  </div>
+  <div class="column">
+<img href="#" onclick="playlist.prevTrack();" src="https://static.thenounproject.com/png/1196955-200.png" style=" height: 100%; width: auto; filter: invert(1); display: block;  margin: auto; transform: scaleX(-1);"> 
+  </div> 
+  <div class="column">
+<img id="play-pause-button" onclick='playlist.playpause();' src="https://ia601402.us.archive.org/21/items/play_20200512/play.png" style="height: 100%; width: auto; filter: invert(1);  display: block;  margin: auto; ">
+  </div>  
+  <div class="column">
+<img href="#" onclick="playlist.nextTrack();" src="https://static.thenounproject.com/png/1196955-200.png"  style="height: 100%; width: auto; filter: invert(1); display: block; margin: auto;">
+  </div>
+
+</div>
+
+<ul id="playlist">
+<li class="current-song"><a href="http://medradio-maroc.ice.infomaniak.ch/medradio-maroc-64.mp3"                                                                                 ><img class="oui-image-cover" title="Med Radio             " src="https://cdn.webrad.io/images/logos/radio-co-ma/med.png"                                  ><br>Med Radio             </a></li>  
+<li><a href="http://92.222.103.13:8005/stream/1/"                                                                                                                             ><img class="oui-image-cover" title="Radio Coran           " src="https://cdn.webrad.io/images/logos/radio-co-ma/coran.png"                                ><br>Coran                 </a></li>  
+<li><a href="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3"><img class="oui-image-cover" title="Medina FM " src="https://cdn.webrad.io/images/logos/radio-co-ma/medina.png" ><br>Medina FM </a></li>  
+<li><a href="http://broadcast.infomaniak.net/chadafm-high.mp3"                                                                                                                   ><img class="oui-image-cover" title="Chada FM              " src="https://cdn.webrad.io/images/logos/radio-co-ma/chada.png"                                ><br>Chada FM              </a></li>  
+<li><a href="http://streaming08.mit.ovea.com/medi1"                                                                                                                              ><img class="oui-image-cover" title="Medi 1                " src="https://cdn.webrad.io/images/logos/radio-co-ma/medi.png"                                 ><br>Medi 1 Radio          </a></li>  
+<li><a href="http://radiomars.ice.infomaniak.ch/radiomars-128.mp3"                                                                                                               ><img class="oui-image-cover" title="Radio Mars            " src="https://cdn.webrad.io/images/logos/radio-co-ma/mars.png"                                 ><br>Radio Mars            </a></li>  
+<li><a href="http://broadcast.ice.infomaniak.ch/aswat-high.mp3"                                                                                                                  ><img class="oui-image-cover" title="Aswat                 " src="https://cdn.webrad.io/images/logos/radio-co-ma/aswat.png"                                ><br>Aswat                 </a></li>  
+<li><a href="https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3"                                                                                                    ><img class="oui-image-cover" title="Hit Radio             " src="https://cdn.webrad.io/images/logos/radio-co-ma/hit.png"                                  ><br>Hit Radio             </a></li>  
+<li><a href="http://mgharba.ice.infomaniak.ch/mgharba-128.mp3"                                                                                                                   ><img class="oui-image-cover" title="Hit Radio Mgharba     " src="https://cdn.webrad.io/images/logos/radio-co-ma/hit-mgharba.png"                          ><br>Hit Radio Mgharba     </a></li>  
+<li><a href="https://french.ice.infomaniak.ch/french-128.mp3"><img class="oui-image-cover" title="Hit Radio French   " src="https://cdn.webrad.io/images/logos/radio-co-ma/french.png" ><br>Hit Radio French   </a></li>  
+<li><a href="http://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3"                                                                                                     ><img class="oui-image-cover" title="Hit Radio Buzz        " src="https://cdn.webrad.io/images/logos/radio-co-ma/hit-buzz.png"                             ><br>Hit Radio Buzz        </a></li>  
+<li><a href="https://gold.ice.infomaniak.ch/gold-128.mp3"                                                                                                                        ><img class="oui-image-cover" title="Hit Radio Gold        " src="https://cdn.webrad.io/images/logos/radio-co-ma/hit-radio-gold.png"                       ><br>Hit Radio Gold        </a></li>  
+<li><a href="https://cover2.ice.infomaniak.ch/cover2-128.mp3"                                                                                                                    ><img class="oui-image-cover" title="Hit Radio Cover       " src="https://cdn.webrad.io/images/logos/radio-co-ma/cover.png"                                ><br>Hit Radio Cover        </a></li>  
+<li><a href="http://dancefloor.ice.infomaniak.ch/dancefloor-128.mp3"                                                                                                             ><img class="oui-image-cover" title="Hit Radio Dancefloor  " src="https://cdn.webrad.io/images/logos/radio-co-ma/hit-radio-dancefloor.png"                 ><br>Hit Radio Dancefloor  </a></li>  
+<li><a href="https://streamingv2.shoutcast.com/RadioStarMaroc"><img class="oui-image-cover" title="Radio Star" src="https://cdn.webrad.io/images/logos/radio-co-ma/star-maroc.png" ><br>Radio Star</a></li>  
+<li><a href="https://stream.mixfeever.com/"><img class="oui-image-cover" title="Ohayo music" src="https://cdn.webrad.io/images/logos/radio-co-ma/ohayo.png" ><br>Ohayo music </a></li>  
+<li><a href="https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"                                                                                                   ><img class="oui-image-cover" title="Monte Carlo           " src="https://cdn.webrad.io/images/logos/radio-co-ma/monte-calro-doualiya.png"                 ><br>Monte Carlo           </a></li>  
+<li><a href="https://radio2m-i.akamaihd.net/hls/live/624355/radio2m/playlist-128000.m3u8"                                                                                        ><img class="oui-image-cover" title="Radio 2M              " src="https://cdn.webrad.io/images/logos/radio-co-ma/2m.png"                                   ><br>Radio 2M              </a></li>  
+<li><a href="http://68.168.117.130:8000/stream/1.mp3/"                                                                                                                           ><img class="oui-image-cover" title="Atlantic Radio        " src="https://cdn.webrad.io/images/logos/radio-co-ma/atlantic.png"                             ><br>Atlantic Radio        </a></li>  
+<li><a href="http://radiosoleil.ice.infomaniak.ch/radiosoleil-96.mp3"                                                                                                            ><img class="oui-image-cover" title="Radio Soleil          " src="https://cdn.webrad.io/images/logos/radio-co-ma/soleil.png"                               ><br>Radio Soleil          </a></li>  
+<li><a href="http://broadcast.infomaniak.net/onlyrai-high.mp3"                                                                                                                   ><img class="oui-image-cover" title="Radio Only Raï        " src="https://cdn.webrad.io/images/logos/radio-co-ma/only-rai.png"                             ><br>Radio Only Ray        </a></li>  
+<li><a href="http://185.52.127.157/ma/55820/mp3_128.mp3"                                                                                                                         ><img class="oui-image-cover" title="NRJ Maroc             " src="https://cdn.webrad.io/images/logos/radio-co-ma/nrj-maroc.png"                            ><br>NRJ Maroc             </a></li>  
+<li><a href="http://newpub-stream01.itols.com:9001/casa.ogg"                                                                                                                     ><img class="oui-image-cover" title="Casa FM               " src="https://cdn.webrad.io/images/logos/radio-co-ma/ness.png"                                 ><br>Casa FM               </a></li>  
+<li><a href="https://mbn-channel-04.akacast.akamaistream.net/7/26/233453/v1/ibb.akacast.akamaistream.net/mbn_channel_04"                                                         ><img class="oui-image-cover" title="Radio Sawa            " src="https://cdn.webrad.io/images/logos/radio-co-ma/sawa.png"                                 ><br>Radio Sawa            </a></li>  
+<li><a href="http://newpub-stream01.itols.com:9001/casa.ogg"                                                                                                                     ><img class="oui-image-cover" title="MFM Radio             " src="https://cdn.webrad.io/images/logos/radio-co-ma/mfm.png"                                  ><br>MFM Radio             </a></li>  
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-video=100000-audio_AACL_qad_130400_110=130400.m3u8"                       ><img class="oui-image-cover" title="Idaa Al Watania Fes   " src="https://cdn.webrad.io/images/logos/radio-co-ma/moroccan.png"                             ><br>Idaa Al Watania Fes   </a></li>  
+<li><a href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/radio_chaine_inter-mp4a_130400_qad=1.m3u8"    ><img class="oui-image-cover" title="Radio Chaine Inter    " src="https://cdn.webrad.io/images/logos/radio-co-ma/chaine.png"                               ><br>Radio Chaine Inter    </a></li>  
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/radio_idaa_watanya-mp4a_130400_qad=1.m3u8"    ><img class="oui-image-cover" title="Idaa Al Watania       " src="https://cdn.webrad.io/images/logos/radio-co-ma/watania.png"                              ><br>Idaa Al Watania       </a></li>  
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/radio_mohammed_6-mp4a_130400_qad=1.m3u8"        ><img class="oui-image-cover" title="Radio Assadisa FM     " src="https://cdn.webrad.io/images/logos/radio-co-ma/assadissa.png"                            ><br>Radio Assadisa FM     </a></li>  
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/radio_amazigh-mp4a_130400_qad=1.m3u8"        ><img class="oui-image-cover" title="Radio Amazighia FM" src="https://cdn.webrad.io/images/logos/radio-co-ma/amazighia.png"                            ><br>Radio Amazighia FM</a></li> 
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;" class="oui-image-cover" title="إذاعة مكناس" src="https://ia801504.us.archive.org/16/items/casa_20200918/meknes.png" ><br>إذاعة مكناس</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="إذاعة فاس" src="https://ia801504.us.archive.org/16/items/casa_20200918/fes.png" ><br>إذاعة فاس</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة تطوان" src="https://ia801504.us.archive.org/16/items/casa_20200918/tetouan.png" ><br>إذاعة تطوان</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="إذاعة طنجة" src="https://ia801504.us.archive.org/16/items/casa_20200918/tanger.png" ><br>إذاعة طنجة</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة مراكش" src="https://ia801504.us.archive.org/16/items/casa_20200918/marrakech.png" ><br>إذاعة مراكش</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة الدار البيضاء" src="https://ia801504.us.archive.org/16/items/casa_20200918/casa.png" ><br>إذاعة الدار البيضاء</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة وجدة" src="https://ia801504.us.archive.org/16/items/casa_20200918/oujda.png" ><br>إذاعة وجدة</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة داخلة" src="https://ia801504.us.archive.org/16/items/casa_20200918/dakhla.png" ><br>إذاعة داخلة</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة اغادير" src="https://ia801504.us.archive.org/16/items/casa_20200918/agadir.png" ><br>إذاعة اغادير</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعةالحسيمة" src="https://ia801504.us.archive.org/16/items/casa_20200918/hociema.png" ><br>اذاعة الحسيمة</a></li>
+<li><a href="http://channel0.moroccanvoice.com:8000/;stream/1"                                                                                                                   ><img class="oui-image-cover" title="Moroccan Voice Radio  " src="https://cdn.webrad.io/images/logos/radio-co-ma/morrocan.png"                             ><br>Moroccan Voice </a></li>  
+<li><a href="http://stream1.coran.tk:8005/stream/1/"                                                                                                                             ><img class="oui-image-cover" title="Radio Chabab Maroc    " src="https://cdn.webrad.io/images/logos/radio-co-ma/chabab-maroc.png"                         ><br>Radio Chabab Maroc    </a></li>  
+<li><a href="http://radio.nessradio.net:8000/nessradio.mp3"                                                                                                                      ><img class="oui-image-cover" title="Nass Radio            " src="https://cdn.webrad.io/images/logos/radio-co-ma/ness.png"                                 ><br>Nass Radio            </a></li>  
+<li><a href="http://rpc.ice.infomaniak.ch/rpc-casa.mp3"                                                                                                                          ><img class="oui-image-cover" title="Radio Plus Casablanca " src="https://cdn.webrad.io/images/logos/radio-co-ma/casablanca.png"                           ><br>Plus Casablanca </a></li>
+<li><a href="http://rpc.ice.infomaniak.ch/rpc-kesh.mp3"                                                                                                                          ><img class="oui-image-cover" title="Radio Plus Marrakech  " src="https://cdn.webrad.io/images/logos/radio-co-ma/plus-marrakech.png"                       ><br>Plus Marrakech  </a></li> 
+<li><a href="http://rpc.ice.infomaniak.ch/rpc-agadir.mp3"                                                                                                                        ><img class="oui-image-cover" title="Radio Plus Agadir     " src="https://cdn.webrad.io/images/logos/radio-co-ma/agadir.png"                               ><br>Plus Agadir     </a></li> 
+<li><a href="http://37.187.146.76:8000/stream/1/"                                                                                                                                ><img class="oui-image-cover" title="Radio Yabiladi        " src="https://cdn.webrad.io/images/logos/radio-co-ma/yabiladi.png"                             ><br>Radio Yabiladi        </a></li>  
+<li><a href="http://176.31.240.204:8000/stream/1/"                                                                                                                               ><img class="oui-image-cover" title="Izlanzik Radio        " src="https://cdn.webrad.io/images/logos/radio-co-ma/izlanzik.png"                             ><br>Izlanzik Radio        </a></li>  
+<li><a href="http://51.255.235.165:5548/stream/1/"                                                                                                                               ><img class="oui-image-cover" title="Cap Radio             " src="https://cdn.webrad.io/images/logos/radio-co-ma/cap.png"                                  ><br>Cap Radio             </a></li>  
+<li><a href="http://162.210.196.145:20016/stream.mp3"><img class="oui-image-cover" title=" Sawt Ouarzazate" src="https://cdn.webrad.io/images/logos/radio-co-ma/sawt-ouarzazate.png" ><br>Sawt Ouarzazate </a></li> 
+<li><a href="http://stream3.broadcast-associes.com:8405/Radio-Orient"                                                                                                            ><img class="oui-image-cover" title="Orient FM             " src="https://cdn.webrad.io/images/logos/radio-co-ma/orient-fm.png"                            ><br>Orient FM             </a></li>  
+<li><a href="https://streaming.radionomy.com/MarocMusic"                                                                                                                         ><img class="oui-image-cover" title="Radio Maroc Music     " src="https://cdn.webrad.io/images/logos/radio-co-ma/music.png"                                ><br>Maroc Music           </a></li>  
+<li><a href="http://51.15.191.112:8181/stream.aac"><img class="oui-image-cover" title="Izlan music" src="https://cdn.webrad.io/images/logos/radio-co-ma/izlan.png" ><br>Izlan music</a></li> 
+<li><a href="http://stream.zenolive.com/bqdbb6hd0neuv"><img class="oui-image-cover" title="راديو أتبير " src="https://cdn.webrad.io/images/logos/radio-co-ma/atbir.png" ><br>راديو أتبير </a></li>  
+</ul>
+
+   <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+   <!-- <script src="C:\Users\acer\Desktop\BetterAudio\audioPlayer.js"></script> -->
+   <script src="https://archive.org/download/audioplayer_202005/audioPlayer.js"></script>
+
+
+<script>
+       var config = {
+autoplay: true, 
+loop: true,
+shuffle: true
+       };
+var playlist = new AudioPlaylist();
+</script>
+
+<script>
+var toggle = false;
+function togglePlayPause() {
+	   mediaPlayer = document.getElementById('audioPlayer');
+   if (! mediaPlayer.paused) {
+document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.org/21/items/play_20200512/play.png';
+   }
+   else {
+document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.org/21/items/play_20200512/pause.png';
+   }
+}
+</script>
+</body>
+</html>
