@@ -4,7 +4,41 @@ background-color: #111;
 	text-align: center;
 	overscroll-behavior: contain;
 }
+  .navbar {
+  z-index: 1;
+  overflow: hidden;
+  background-color: #737373;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  padding: 4px;
+border-bottom: 3px solid #1e5469;
+}
 
+.navbar a {
+  float: right;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 0px 10px 0px 10px;
+  font-size: 14px;
+  border-radius: 999px;
+	  background: #6a9477;
+
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+.navbar img {
+float: left;
+height: 100%;
+  border-radius: 999px;
+  background-color: #ffd664;
+ padding: 3px 15px 3px 3px;
+}
 
 a {
 font-family: "OpenSymbol";
@@ -135,38 +169,4 @@ display: table;
   margin: auto;
   }
   
-  .navbar {
-  z-index: 1;
-  overflow: hidden;
-  background-color: #737373;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 56px;
-  padding: 4px;
-border-bottom: 3px solid #1e5469;
-}
 
-.navbar a {
-  float: right;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  padding: 0px 10px 0px 10px;
-  font-size: 14px;
-  border-radius: 999px;
-	  background: #6a9477;
-
-}
-
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
-.navbar img {
-float: left;
-height: 100%;
-  border-radius: 999px;
-  background-color: #ffd664;
-  padding: 3px;
-}
