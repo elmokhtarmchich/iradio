@@ -24,7 +24,7 @@ font-weight: bold;
 .oui-image-cover {
     border-radius: var(--oui-thumbnail-radius);
 	border: 0px solid;
-    object-fit: cover;
+    object-fit: contain;
     width: auto;
 	height: 66px;
 	margin-top: 10px;
