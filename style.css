@@ -11,7 +11,7 @@ background-color: #111;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 56px;
+  height: 52px;
   padding: 4px;
 border-bottom: 3px solid #1e5469;
 }
@@ -35,9 +35,9 @@ border-bottom: 3px solid #1e5469;
 .navbar img {
 float: left;
 height: 100%;
-  border-radius: 999px;
-  background-color: #ffd664;
- padding: 3px 15px 3px 3px;
+border-radius: 999px;
+background-color: #ffd664;
+padding: 3px 25px 3px 3px;
 }
 
 a {
