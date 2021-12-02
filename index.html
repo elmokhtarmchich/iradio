@@ -9,7 +9,7 @@
 <meta name="googlebot" content="noindex,nofollow">
 <meta name="google" content="notranslate" />	
 <meta name="theme-color" content="#44BEC7">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <meta property="fb:app_id" content="105132261724927">
 <meta property="og:locale" content="fr_FR">
@@ -58,7 +58,7 @@ a {
 
   
 :root {
-    --oui-thumbnail-radius: 20px;
+    --oui-thumbnail-radius: 16px;
 }
 
 .oui-image-cover {
@@ -88,46 +88,30 @@ a {
     transform: translateX(-50%);
     margin-left: auto;
     margin-right: auto;
+	margin-top: 70px;
     width: 100%;
     border-radius: 4px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 8px;
+    padding-top: 8;
     padding-bottom: 120px;
         }
 #playlist li{
     display: inline-block;
 	margin: 2px;
 	margin-top: 10px;
-    border: 1px solid #444;
-	background-color: #444;
+    border: 2px solid #383d40;
+	background-color: #474139;
 	border-radius: var(--oui-thumbnail-radius);
 	padding: 4px;
     width: 120px;
     height: 120px;
     }
 #playlist .current-song{
-border: 1px solid #fff;
-            -webkit-animation: pulsate 3s linear infinite;
-    -moz-animation: pulsate 3s linear infinite;
-    animation: pulsate 3s linear infinite;
+background-color: #ffcc00;
 }
 
-@-webkit-keyframes pulsate {
-    0% {background: #ffc60a}
-    50% {background: rgb(0, 230, 150)}
-	100% {background: #ffc60a}
-}
-@-moz-keyframes pulsate {
-    0% {background: #ffc60a}
-    50% {background: rgb(0, 230, 150)}
-	100% {background: #ffc60a}
-}
-@keyframes pulsate {
-    0% {background: #ffc60a}
-    50% {background: rgb(0, 230, 150)}
-	100% {background: #ffc60a}
-}
+
 
 audio{
 display: none;
@@ -185,14 +169,52 @@ display: table;
   color: #111;
   text-decoration: none;
   line-height: 1;
-  border: 3px solid #ffcc00;
+  border: 3px solid #ffd664;
   border-radius: 999px;
-  background-color: #ffcc00;
+  background-color: #ffd664;
   margin: auto;
   }
+  
+  .navbar {
+  z-index: 1;
+  overflow: hidden;
+  background-color: #737373;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  padding: 4px;
+border-bottom: 3px solid #1e5469;
+}
+
+.navbar a {
+  float: right;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 0px 10px 0px 10px;
+  font-size: 14px;
+  border-radius: 999px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+.navbar img {
+  float: left;
+height: 100%;
+}
 </style>
 
 <body>
+<div class="navbar">
+<img href="#home" onclick="window.location.reload(true);" class="logo" src="./image/logo.png" >
+  <a href="#home">Home</a>
+  <a href="#contact">Contact</a>
+</div>
+
+
 <!-- Messenger Plug-in Discussion Code -->
     <div id="fb-root"></div>
       <script>
@@ -277,16 +299,16 @@ display: table;
 <li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/radio_idaa_watanya-mp4a_130400_qad=1.m3u8"    ><img class="oui-image-cover" title="Idaa Al Watania       " src="https://cdn.webrad.io/images/logos/radio-co-ma/watania.png"                              ><br>Idaa Al Watania       </a></li>  
 <li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/radio_mohammed_6-mp4a_130400_qad=1.m3u8"        ><img class="oui-image-cover" title="Radio Assadisa FM     " src="https://cdn.webrad.io/images/logos/radio-co-ma/assadissa.png"                            ><br>Radio Assadisa FM     </a></li>  
 <li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/radio_amazigh-mp4a_130400_qad=1.m3u8"        ><img class="oui-image-cover" title="Radio Amazighia FM" src="https://cdn.webrad.io/images/logos/radio-co-ma/amazighia.png"                            ><br>Radio Amazighia FM</a></li> 
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;" class="oui-image-cover" title="إذاعة مكناس" src="https://ia801504.us.archive.org/16/items/casa_20200918/meknes.png" ><br>إذاعة مكناس</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="إذاعة فاس" src="https://ia801504.us.archive.org/16/items/casa_20200918/fes.png" ><br>إذاعة فاس</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة تطوان" src="https://ia801504.us.archive.org/16/items/casa_20200918/tetouan.png" ><br>إذاعة تطوان</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="إذاعة طنجة" src="https://ia801504.us.archive.org/16/items/casa_20200918/tanger.png" ><br>إذاعة طنجة</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة مراكش" src="https://ia801504.us.archive.org/16/items/casa_20200918/marrakech.png" ><br>إذاعة مراكش</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة الدار البيضاء" src="https://ia801504.us.archive.org/16/items/casa_20200918/casa.png" ><br>إذاعة الدار البيضاء</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة وجدة" src="https://ia801504.us.archive.org/16/items/casa_20200918/oujda.png" ><br>إذاعة وجدة</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة داخلة" src="https://ia801504.us.archive.org/16/items/casa_20200918/dakhla.png" ><br>إذاعة داخلة</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعة اغادير" src="https://ia801504.us.archive.org/16/items/casa_20200918/agadir.png" ><br>إذاعة اغادير</a></li>
-<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="إذاعةالحسيمة" src="https://ia801504.us.archive.org/16/items/casa_20200918/hociema.png" ><br>اذاعة الحسيمة</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;" class="oui-image-cover" title="????? ?????" src="https://ia801504.us.archive.org/16/items/casa_20200918/meknes.png" ><br>????? ?????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="????? ???" src="https://ia801504.us.archive.org/16/items/casa_20200918/fes.png" ><br>????? ???</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ?????" src="https://ia801504.us.archive.org/16/items/casa_20200918/tetouan.png" ><br>????? ?????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8"><img style="height: 66px;  width: auto;"  class="oui-image-cover" title="????? ????" src="https://ia801504.us.archive.org/16/items/casa_20200918/tanger.png" ><br>????? ????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ?????" src="https://ia801504.us.archive.org/16/items/casa_20200918/marrakech.png" ><br>????? ?????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ????? ???????" src="https://ia801504.us.archive.org/16/items/casa_20200918/casa.png" ><br>????? ????? ???????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ????" src="https://ia801504.us.archive.org/16/items/casa_20200918/oujda.png" ><br>????? ????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ?????" src="https://ia801504.us.archive.org/16/items/casa_20200918/dakhla.png" ><br>????? ?????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????? ??????" src="https://ia801504.us.archive.org/16/items/casa_20200918/agadir.png" ><br>????? ??????</a></li>
+<li><a href="http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8"><img style="height: 66px; width: auto;"  class="oui-image-cover" title="????????????" src="https://ia801504.us.archive.org/16/items/casa_20200918/hociema.png" ><br>????? ???????</a></li>
 <li><a href="http://channel0.moroccanvoice.com:8000/;stream/1"                                                                                                                   ><img class="oui-image-cover" title="Moroccan Voice Radio  " src="https://cdn.webrad.io/images/logos/radio-co-ma/morrocan.png"                             ><br>Moroccan Voice </a></li>  
 <li><a href="http://stream1.coran.tk:8005/stream/1/"                                                                                                                             ><img class="oui-image-cover" title="Radio Chabab Maroc    " src="https://cdn.webrad.io/images/logos/radio-co-ma/chabab-maroc.png"                         ><br>Radio Chabab Maroc    </a></li>  
 <li><a href="http://radio.nessradio.net:8000/nessradio.mp3"                                                                                                                      ><img class="oui-image-cover" title="Nass Radio            " src="https://cdn.webrad.io/images/logos/radio-co-ma/ness.png"                                 ><br>Nass Radio            </a></li>  
@@ -300,7 +322,7 @@ display: table;
 <li><a href="http://stream3.broadcast-associes.com:8405/Radio-Orient"                                                                                                            ><img class="oui-image-cover" title="Orient FM             " src="https://cdn.webrad.io/images/logos/radio-co-ma/orient-fm.png"                            ><br>Orient FM             </a></li>  
 <li><a href="https://streaming.radionomy.com/MarocMusic"                                                                                                                         ><img class="oui-image-cover" title="Radio Maroc Music     " src="https://cdn.webrad.io/images/logos/radio-co-ma/music.png"                                ><br>Maroc Music           </a></li>  
 <li><a href="http://51.15.191.112:8181/stream.aac"><img class="oui-image-cover" title="Izlan music" src="https://cdn.webrad.io/images/logos/radio-co-ma/izlan.png" ><br>Izlan music</a></li> 
-<li><a href="http://stream.zenolive.com/bqdbb6hd0neuv"><img class="oui-image-cover" title="راديو أتبير " src="https://cdn.webrad.io/images/logos/radio-co-ma/atbir.png" ><br>راديو أتبير </a></li>  
+<li><a href="http://stream.zenolive.com/bqdbb6hd0neuv"><img class="oui-image-cover" title="????? ????? " src="https://cdn.webrad.io/images/logos/radio-co-ma/atbir.png" ><br>????? ????? </a></li>  
 </ul>
 
    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
