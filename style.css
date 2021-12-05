@@ -56,16 +56,14 @@ font-weight: bold;
 }
 
 .oui-image-cover {
-    border-radius: var(--oui-thumbnail-radius);
-	border: 0px solid;
-    object-fit: contain;
-    width: auto;
-	    max-width: 96;
-
-	height: auto;
-	    max-height: 66px;
-
-	margin-top: 10px;
+border-radius: var(--oui-thumbnail-radius);
+border: 0px solid;
+object-fit: contain;
+width: auto;
+max-width: 96px;
+height: auto;
+max-height: 66px;
+margin-top: 10px;
 }
 
 .oui-image-caption {
