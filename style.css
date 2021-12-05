@@ -95,6 +95,7 @@ padding-bottom: 120px;
         }
 #playlist li{
 display: inline-block;
+  object-fit: contain;
 margin: 2px;
 margin-top: 10px;
 border: 2px solid #383d40;
