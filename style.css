@@ -13,7 +13,7 @@ top: 0;
 width: 100%;
 height: 52px;
 padding: 2px;
-border-width: 10px;
+border-width: 0px 0px 0px 3px;
   border-style: solid;
   border-image-slice: 1;
   border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
