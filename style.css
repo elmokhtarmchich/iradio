@@ -55,8 +55,8 @@ font-weight: bold;
     --oui-thumbnail-radius: 16px;
 }
 
-.oui-image-cover {
-border-radius: var(--oui-thumbnail-radius);
+li .oui-image-cover {
+border-radius: 8px;
 border: 0px solid;
 object-fit: contain;
 width: auto;
