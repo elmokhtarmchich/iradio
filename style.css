@@ -16,7 +16,7 @@ padding: 2px;
 border-width: 0px 0px 3px 0px;
   border-style: solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0));
     
 }
 
