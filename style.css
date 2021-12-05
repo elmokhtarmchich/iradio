@@ -15,7 +15,7 @@ height: 52px;
 padding: 2px;
     border-width: 3px;
   border-style: solid;
-  border-image: linear-gradient(#5af7dc, #9198e5);
+  border-image: linear-gradient(to left, #5af7dc, #9198e5);
 }
 
 .navbar a {
