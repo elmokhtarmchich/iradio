@@ -60,7 +60,11 @@ font-weight: bold;
 	border: 0px solid;
     object-fit: contain;
     width: auto;
-	height: 66px;
+	    max-width: 96;
+
+	height: auto;
+	    max-height: 66px;
+
 	margin-top: 10px;
 }
 
