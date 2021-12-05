@@ -1,37 +1,38 @@
 body {
 background-color: #111;
-	margin: 0;
-	text-align: center;
-	overscroll-behavior: contain;
+margin: 0;
+text-align: center;
+overscroll-behavior: contain;
 }
-  .navbar {
-  z-index: 1;
-  overflow: hidden;
-  background-color: #474139;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 52px;
-  padding: 2px;
+.navbar {
+z-index: 1;
+overflow: hidden;
+background-color: #474139;
+position: fixed;
+top: 0;
+width: 100%;
+height: 52px;
+padding: 2px;
 border-bottom: 3px solid #1e5469;
 }
 
 .navbar a {
-  float: right;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  padding: 0px 10px 0px 10px;
-  font-size: 14px;
-  border-radius: 999px;
-	  background: #6a9477;
+float: right;
+display: block;
+text-align: center;
+text-decoration: none;
+padding: 0px 10px 0px 10px;
+font-size: 14px;
+border-radius: 999px;
+background: #6a9477;
 
 }
 
 .navbar a:hover {
-  background: #ddd;
-  color: black;
+background: #ddd;
+color: black;
 }
+
 .navbar img {
 float: left;
 height: 100%;
@@ -52,7 +53,7 @@ font-weight: bold;
 
   
 :root {
-    --oui-thumbnail-radius: 16px;
+--oui-thumbnail-radius: 16px;
 }
 
 li .oui-image-cover {
@@ -67,70 +68,69 @@ margin-top: 10px;
 }
 
 .oui-image-caption {
-    margin: auto;
-    font-size: .8em;
-    color: var(--on-surface);
+margin: auto;
+font-size: .8em;
+color: var(--on-surface);
 }
-	@font-face {
-  font-family: "OpenSymbol";
-  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+@font-face {
+font-family: "OpenSymbol";
+src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
 }
 
 #playlist {
-	list-style: none;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    margin-left: auto;
-    margin-right: auto;
-	margin-top: 70px;
-    width: 100%;
-    border-radius: 4px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 8;
-    padding-bottom: 120px;
+list-style: none;
+position: absolute;
+left: 50%;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
+margin-left: auto;
+margin-right: auto;
+margin-top: 70px;
+width: 100%;
+border-radius: 4px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 8;
+padding-bottom: 120px;
         }
 #playlist li{
-    display: inline-block;
-	margin: 2px;
-	margin-top: 10px;
-    border: 2px solid #383d40;
-	background-color: #474139;
-	border-radius: var(--oui-thumbnail-radius);
-	padding: 4px;
-    width: 120px;
-    height: 120px;
-    }
+display: inline-block;
+margin: 2px;
+margin-top: 10px;
+border: 2px solid #383d40;
+background-color: #474139;
+border-radius: var(--oui-thumbnail-radius);
+padding: 4px;
+width: 120px;
+height: 120px;
+}
 #playlist .current-song{
 background-color: #ffcc00;
 }
-
-
 
 audio{
 display: none;
 }
   
-  * {
-  box-sizing: border-box;
+* {
+box-sizing: border-box;
 }
 
 .column {
-  float: left;
-  width: 25%;
-  padding: 5px;
-  cursor: pointer;
-  height: 100%;
-  border-radius: 999px;
-  transition: 0.6s;
-  border: 0px solid #1e5469;
+float: left;
+width: 25%;
+padding: 5px;
+cursor: pointer;
+height: 100%;
+border-radius: 999px;
+transition: 0.6s;
+border: 0px solid #1e5469;
 }
 .column:hover {
-  opacity: 0.9;
-  background-color: #A0A0A0	;
+opacity: 0.9;
+background-color: #A0A0A0	;
 }
+
 .row {
 z-index: 1;
 width: 96%;
@@ -156,19 +156,19 @@ content: "";
 clear: both;
 display: table;
 }
- p {
-  font-family: "OpenSymbol";
-  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
-  font-size: 14px;
-  font-weight: bold;
-  height: 100%;
-  color: #111;
-  text-decoration: none;
-  line-height: 1;
-  border: 3px solid #ffd664;
-  border-radius: 999px;
-  background-color: #ffd664;
-  margin: auto;
-  }
+p {
+font-family: "OpenSymbol";
+src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+font-size: 14px;
+font-weight: bold;
+height: 100%;
+color: #111;
+text-decoration: none;
+line-height: 1;
+border: 3px solid #ffd664;
+border-radius: 999px;
+background-color: #ffd664;
+margin: auto;
+}
   
 
