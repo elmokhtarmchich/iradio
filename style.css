@@ -16,11 +16,7 @@ padding: 2px;
     border-width: 3px;
   border-style: solid;
   border-image: 
-    linear-gradient(
-      to right, 
-      #5af7dc, 
-      rgba(0, 0, 0, 0)
-    ) 1 100%;
+    linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0) ) 1 100%;
 }
 
 .navbar a {
