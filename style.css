@@ -13,12 +13,13 @@ top: 0;
 width: 100%;
 height: 52px;
 padding: 2px;
-border-bottom: 3px solid #1e5469;
+    border-width: 3px;
+  border-style: solid;
   border-image: 
     linear-gradient(
-      to right, 
+      to bottom, 
       #5af7dc, 
-      #474139
+      rgba(0, 0, 0, 0)
     ) 1 100%;
 }
 
