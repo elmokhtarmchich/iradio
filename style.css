@@ -19,7 +19,13 @@ border-width: 0px 0px 3px 0px;
   border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0));
     
 }
-
+img { 
+  -webkit-user-drag: none; 
+  -khtml-user-drag: none; 
+  -moz-user-drag: none; 
+  -o-user-drag: none; 
+  user-drag: none; 
+}
 .navbar a {
 float: right;
 display: block;
