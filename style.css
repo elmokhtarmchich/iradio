@@ -110,10 +110,10 @@ height: 120px;
 }
 #playlist li:hover {
 background: rgb(63,251,246);
-background: -moz-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,70,107,1) 100%);
-background: -webkit-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,70,107,1) 100%);
-background: radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,70,107,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3ffbf6",endColorstr="#fc466b",GradientType=1);
+background: -moz-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 100%);
+background: radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3ffbf6",endColorstr="#fc9246",GradientType=1);
 }
 
 #playlist .current-song{
