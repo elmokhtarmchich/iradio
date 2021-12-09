@@ -252,14 +252,16 @@ setInterval(function(){
       document.getElementById("checkOnline").style.color = "red";
     }
  }, 3000);
-        </script>
-	    <script>
-	var ifConnected = window.navigator.onLine;
+</script>
+	
+<script>
+var ifConnected = window.navigator.onLine;
 if (ifConnected) {
-  alert('Connection available');
+nothing;
 } else {
-  alert('Connection not available');
+setTimeout( function ( ) {   alert('Connection not available'); }, 1000 );
 }
-		        </script>
+ </script>
+	
 </body>
 </html>
