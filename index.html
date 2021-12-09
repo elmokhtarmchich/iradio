@@ -103,26 +103,7 @@
 
         </script>
 </head>
-	        <script>
-var ifConnected = window.navigator.onLine;
-    if (ifConnected) {
-      document.getElementById("checkOnline").innerHTML = "Online";
-      document.getElementById("checkOnline").style.color = "green";
-    } else {
-      document.getElementById("checkOnline").innerHTML = "Offline";
-      document.getElementById("checkOnline").style.color = "red";
-    }
-setInterval(function(){ 
-  var ifConnected = window.navigator.onLine;
-    if (ifConnected) {
-      document.getElementById("checkOnline").innerHTML = "Online";
-      document.getElementById("checkOnline").style.color = "green";
-    } else {
-      document.getElementById("checkOnline").innerHTML = "Offline";
-      document.getElementById("checkOnline").style.color = "red";
-    }
- }, 3000);
-        </script>
+
 
 <style>
 	.wp-playlist-prev{
@@ -252,5 +233,25 @@ document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.
    }
 }
 </script>
+<script>
+var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+      document.getElementById("checkOnline").innerHTML = "Online";
+      document.getElementById("checkOnline").style.color = "green";
+    } else {
+      document.getElementById("checkOnline").innerHTML = "Offline";
+      document.getElementById("checkOnline").style.color = "red";
+    }
+setInterval(function(){ 
+  var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+      document.getElementById("checkOnline").innerHTML = "Online";
+      document.getElementById("checkOnline").style.color = "green";
+    } else {
+      document.getElementById("checkOnline").innerHTML = "Offline";
+      document.getElementById("checkOnline").style.color = "red";
+    }
+ }, 3000);
+        </script>
 </body>
 </html>
