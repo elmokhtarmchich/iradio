@@ -103,7 +103,26 @@
 
         </script>
 </head>
-
+	        <script>
+var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+      document.getElementById("checkOnline").innerHTML = "Online";
+      document.getElementById("checkOnline").style.color = "green";
+    } else {
+      document.getElementById("checkOnline").innerHTML = "Offline";
+      document.getElementById("checkOnline").style.color = "red";
+    }
+setInterval(function(){ 
+  var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+      document.getElementById("checkOnline").innerHTML = "Online";
+      document.getElementById("checkOnline").style.color = "green";
+    } else {
+      document.getElementById("checkOnline").innerHTML = "Offline";
+      document.getElementById("checkOnline").style.color = "red";
+    }
+ }, 3000);
+        </script>
 
 <style>
 	.wp-playlist-prev{
@@ -118,6 +137,7 @@
 	
 <div class="navbar">
 <img href="https://www.iradio.ma" class="logo" src="./image/logo.png" >
+	<p id="checkOnline"></p>
   <a href="#home" onclick="window.location.reload(true);">Home</a>
   <a href="#contact">Contact</a>
 </div>
