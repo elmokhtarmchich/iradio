@@ -179,7 +179,7 @@ content: "";
 clear: both;
 display: table;
 }
-p {
+#demo {
 font-family: "OpenSymbol";
 src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
 font-size: 14px;
