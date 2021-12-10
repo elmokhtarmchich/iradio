@@ -256,9 +256,7 @@ setInterval(function(){
 </script>
 	<script>
 var ifConnected = window.navigator.onLine;
-    if (ifConnected) {
-	    return;
-	    } else { 
+    if (!ifConnected) {
 	setTimeout( function ( ) { alert('Connection not available'); }, 2000 );
     }
 	</script>
