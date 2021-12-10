@@ -241,7 +241,7 @@ var ifConnected = window.navigator.onLine;
     } else {
       document.getElementById("checkOnline").innerHTML = "⬤";
       document.getElementById("checkOnline").style.color = "red";
-	    alert('Connection not available');
+
     }
 setInterval(function(){ 
   var ifConnected = window.navigator.onLine;
@@ -251,11 +251,15 @@ setInterval(function(){
     } else {
       document.getElementById("checkOnline").innerHTML = "⬤";
       document.getElementById("checkOnline").style.color = "red";
-	    alert('Connection not available');
     }
  }, 3000);
 </script>
-	
-	
+	<script>
+var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+	setTimeout( function ( ) { alert('Connection not available'); }, 2000 );
+    }
+	</script>
+
 </body>
 </html>
