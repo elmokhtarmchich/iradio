@@ -106,15 +106,14 @@
 
 
 <style>
-	.wp-playlist-prev{
-   width:20px;
-   height:20px;
-   background-image: url("./theme_images_folder/something_icon.png");
+.wp-playlist-prev{
+width:20px;
+height:20px;
+background-image: url("./image/logo.png");
 }
 </style>
 
 <body>
-
 	
 <div class="navbar">
 <img href="https://www.iradio.ma" class="logo" src="./image/logo.png" >
@@ -233,35 +232,7 @@ document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.
    }
 }
 </script>
-<script>
-var ifConnected = window.navigator.onLine;
-    if (ifConnected) {
-      document.getElementById("checkOnline").innerHTML = "⬤";
-      document.getElementById("checkOnline").style.color = "green";
-    } else {
-      document.getElementById("checkOnline").innerHTML = "⬤";
-      document.getElementById("checkOnline").style.color = "red";
 
-    }
-setInterval(function(){ 
-  var ifConnected = window.navigator.onLine;
-    if (ifConnected) {
-      document.getElementById("checkOnline").innerHTML = "⬤";
-      document.getElementById("checkOnline").style.color = "green";
-    } else {
-      document.getElementById("checkOnline").innerHTML = "⬤";
-      document.getElementById("checkOnline").style.color = "red";
-    }
- }, 3000);
-</script>
-	<script>
-var ifConnected = window.navigator.onLine;
-		setInterval(function(){ 
-    if (!ifConnected) {
-	setTimeout( function ( ) { alert('Connection not available'); }, 2000 );
-    }
-			 }, 3000);
-	</script>
 
 </body>
 </html>
