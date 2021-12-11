@@ -49,7 +49,7 @@
   <a href="#contact">Contact</a>
 </div>
 
-<audio src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" controls id="audioPlayer">
+<audio src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" controls id="audioPlayer" onabort="myFunction()">
 	<source src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" type="audio/mpeg">
 	</audio>
 
@@ -163,6 +163,13 @@ mediaPlayer = document.getElementById('audioPlayer');
 mediaPlayer.onabort = function() {
     alert("Video load aborted");
 };
+</script>
+	
+
+<script>
+function myFunction() {
+    console.log("abort");
+}
 </script>
 
 
