@@ -157,6 +157,7 @@ background-color: #A0A0A0	;
 .row {
 z-index: 1;
 width: 96%;
+  max-width: 400px;
 height: 5%;
 min-height: 50px;
 max-height: 70px;
@@ -164,7 +165,7 @@ position: fixed;
 left: 50%; 
 transform: translateX(-50%);
 bottom: 10px;
-border-radius: 999px;
+border-radius: 15px;
 border: 2px solid #1e5469;
 background: rgb(235,81,141);
 background: -moz-linear-gradient(142deg, rgba(235,81,141,1) 22%, rgba(28,58,142,1) 85%);
