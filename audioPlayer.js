@@ -132,7 +132,7 @@ playpause(){
 
 
     }
-	
+/*	
   setLoop(val){
         if(val === true)
             this.loop = true;
@@ -140,6 +140,8 @@ playpause(){
             this.loop = false;
         return this.loop;
     }
+	
+	*/
     setShuffle(val){
         if(val == this.shuffle) // if no change
             return val;
