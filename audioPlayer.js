@@ -21,7 +21,11 @@
 /*------------------------------------------------*/
 // Press spacebar to Play/Pause.
 var x = document.getElementsByClassName("oui-image-cover");
+
+
+
 var audio = document.getElementById('audioPlayer');
+
 
 if (audio) {
   window.addEventListener('keydown', function (event) {
@@ -46,7 +50,6 @@ btn.toggleClass("paused");
   });
 });
 */
-player.addEventListener("ended", playNext);
 
 function togglePlayPause() {
 	   mediaPlayer = document.getElementById('audioPlayer');
@@ -132,18 +135,13 @@ playpause(){
 
 
     }
-/*	
-  setLoop(val){
+/*    setLoop(val){
         if(val === true)
             this.loop = true;
         else
             this.loop = false;
         return this.loop;
     }
-	
-	*/
-	
-/*	
     setShuffle(val){
         if(val == this.shuffle) // if no change
             return val;
@@ -188,7 +186,6 @@ playpause(){
         *       setting defaults, and initialzing player 
         *
         */
-	    /*
 		var x = document.getElementsByClassName("oui-image-cover");
 		var btn = $(".button");
 		var btn = document.getElementById('play-pause-button');
@@ -206,17 +203,15 @@ playpause(){
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
-	
-	    */
-/*	    
+/*        
         if(this.shuffle)
             this.randomizeOrder();
         
         this.setTrack(this.trackPos);
         if(this.autoplay)
-        this.player.play();
-         btn.className = 'pause';
-	 document.title = x[this.trackPos].title;
+            this.player.play();
+              btn.className = 'pause';
+		  		   document.title = x[this.trackPos].title;
 */
 
          /***
@@ -249,8 +244,6 @@ playpause(){
                 classObj.player.play();
 				      btn.className = 'pause';
 		  		   document.title = x[this.trackPos].title;
-
-
             }
             else{
                 if(classObj.loop){
@@ -260,11 +253,9 @@ playpause(){
                     classObj.player.play();
 					      btn.className = 'pause';
 		  		   document.title = x[this.trackPos].title;
-
                 }
             }
         });*/
         
     }
 }
-
