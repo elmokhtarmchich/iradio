@@ -95,3 +95,7 @@ preloadImages(["./image/orient-fm.png"                          ], true);
 preloadImages(["./image/music.png"                              ], true);
 preloadImages(["./image/izlan.png"                              ], true);
 preloadImages(["./image/atbir.png"                              ], true);
+preloadImages(["./image/next.png"                               ], true);
+preloadImages(["./image/pause.png"                              ], true);
+preloadImages(["./image/play.png"                               ], true);
+preloadImages(["./image/logo.png"                               ], true);
