@@ -21,11 +21,7 @@
 /*------------------------------------------------*/
 // Press spacebar to Play/Pause.
 var x = document.getElementsByClassName("oui-image-cover");
-
-
-
 var audio = document.getElementById('audioPlayer');
-
 
 if (audio) {
   window.addEventListener('keydown', function (event) {
@@ -50,6 +46,7 @@ btn.toggleClass("paused");
   });
 });
 */
+player.addEventListener("ended", playNext);
 
 function togglePlayPause() {
 	   mediaPlayer = document.getElementById('audioPlayer');
@@ -135,7 +132,8 @@ playpause(){
 
 
     }
-/*    setLoop(val){
+	
+  setLoop(val){
         if(val === true)
             this.loop = true;
         else
@@ -178,7 +176,7 @@ playpause(){
             this.setLoop(true);
         return this.loop;
     }
-*/
+
     constructor(config = {} ){
         
         /***
@@ -203,16 +201,17 @@ playpause(){
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
-/*        
+	    
+	    
         if(this.shuffle)
             this.randomizeOrder();
         
         this.setTrack(this.trackPos);
         if(this.autoplay)
-            this.player.play();
-              btn.className = 'pause';
-		  		   document.title = x[this.trackPos].title;
-*/
+        this.player.play();
+         btn.className = 'pause';
+	 document.title = x[this.trackPos].title;
+
 
          /***
         *
