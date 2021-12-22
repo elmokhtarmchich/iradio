@@ -188,6 +188,7 @@ playpause(){
         *       setting defaults, and initialzing player 
         *
         */
+	    /*
 		var x = document.getElementsByClassName("oui-image-cover");
 		var btn = $(".button");
 		var btn = document.getElementById('play-pause-button');
@@ -205,7 +206,8 @@ playpause(){
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
-	    
+	
+	    */
 /*	    
         if(this.shuffle)
             this.randomizeOrder();
