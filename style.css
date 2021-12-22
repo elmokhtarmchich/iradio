@@ -79,6 +79,8 @@ max-width: 96px;
 height: auto;
 max-height: 66px;
 margin-top: 10px;
+   overflow: hidden;
+
 }
 
 .oui-image-caption {
