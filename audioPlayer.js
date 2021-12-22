@@ -142,6 +142,8 @@ playpause(){
     }
 	
 	*/
+	
+/*	
     setShuffle(val){
         if(val == this.shuffle) // if no change
             return val;
@@ -178,7 +180,7 @@ playpause(){
             this.setLoop(true);
         return this.loop;
     }
-
+*/
     constructor(config = {} ){
         
         /***
