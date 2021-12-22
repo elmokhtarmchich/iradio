@@ -202,7 +202,7 @@ playpause(){
             this.trackOrder.push(i);
         }
 	    
-	    
+/*	    
         if(this.shuffle)
             this.randomizeOrder();
         
@@ -211,7 +211,7 @@ playpause(){
         this.player.play();
          btn.className = 'pause';
 	 document.title = x[this.trackPos].title;
-
+*/
 
          /***
         *
