@@ -60,13 +60,13 @@
 <p id="demo" style="">Playing..</p>
   </div>
   <div class="column">
-<img href="#" onclick="playlist.prevTrack();" src="https://static.thenounproject.com/png/1196955-200.png" style=" height: 100%; width: auto; filter: invert(1); display: block;  margin: auto; transform: scaleX(-1);"> 
+<img href="#" onclick="playlist.prevTrack();" src="./image/next.png" style=" height: 100%; width: auto; filter: invert(1); display: block;  margin: auto; transform: scaleX(-1);"> 
   </div> 
   <div class="column">
-<img id="play-pause-button" onclick='playlist.playpause();' src="https://ia601402.us.archive.org/21/items/play_20200512/play.png" style="height: 100%; width: auto; filter: invert(1);  display: block;  margin: auto; ">
+<img id="play-pause-button" onclick='playlist.playpause();' src="./image/play.png" style="height: 100%; width: auto; filter: invert(1);  display: block;  margin: auto; ">
   </div>  
   <div class="column">
-<img href="#" onclick="playlist.nextTrack();" src="https://static.thenounproject.com/png/1196955-200.png"  style="height: 100%; width: auto; filter: invert(1); display: block; margin: auto;">
+<img href="#" onclick="playlist.nextTrack();" src="./image/next.png"  style="height: 100%; width: auto; filter: invert(1); display: block; margin: auto;">
   </div>
 
 </div>
@@ -175,10 +175,10 @@ var toggle = false;
 function togglePlayPause() {
 	   mediaPlayer = document.getElementById('audioPlayer');
    if (! mediaPlayer.paused) {
-document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.org/21/items/play_20200512/play.png';
+document.getElementById('play-pause-button').src = './image/play.png';
    }
    else {
-document.getElementById('play-pause-button').src = 'https://ia601402.us.archive.org/21/items/play_20200512/pause.png';
+document.getElementById('play-pause-button').src = './image/pause.png';
    }
 }
 </script>
