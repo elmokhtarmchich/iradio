@@ -1,3 +1,15 @@
+li .oui-image-cover {
+border-radius: 8px;
+border: 0px solid;
+object-fit: contain;
+width: auto;
+max-width: 96px;
+height: auto;
+max-height: 66px;
+margin-top: 10px;
+ display: block;
+}
+
 body {
 background-color: #111;
 margin: 0;
@@ -70,18 +82,7 @@ font-weight: bold;
 --oui-thumbnail-radius: 16px;
 }
 
-li .oui-image-cover {
-border-radius: 8px;
-border: 0px solid;
-object-fit: contain;
-width: auto;
-max-width: 96px;
-height: auto;
-max-height: 66px;
-margin-top: 10px;
-   overflow: hidden;
 
-}
 
 .oui-image-caption {
 margin: auto;
