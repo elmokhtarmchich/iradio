@@ -49,6 +49,7 @@
 	<a id="checkOnline"></a>
   <a href="#home" onclick="window.location.reload(true);">Home</a>
   <a href="#contact">Contact</a>
+	<a onclick="notifyMe()">Notify me!</a>
 </div>
 
 <audio src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" controls id="audioPlayer" onabort="myFunction()" onstalled="myFunction()"  >
@@ -192,6 +193,33 @@ mediaPlayer = document.getElementById('audioPlayer');
 }
 </script>
 
+<script>
+function notifyMe() {
+  // Let's check if the browser supports notifications
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
 
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    var notification = new Notification("Hi there!");
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification("Hi there!");
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them any more.
+}
+</script>
+	
 </body>
 </html>
