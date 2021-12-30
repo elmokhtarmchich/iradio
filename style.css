@@ -8,6 +8,12 @@ height: 100%;
 max-height: 66px;
 margin-top: 10px;
 
+  .add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+  
 }
 
 body {
