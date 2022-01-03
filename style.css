@@ -69,7 +69,6 @@ color: black;
 float: left;
 height: 100%;
 padding: 3px;
-  filter: invert(1);
 }
 
 a {
