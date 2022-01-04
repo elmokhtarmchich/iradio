@@ -1,6 +1,6 @@
 #playlist {
 list-style: none;
-display: inline-block;
+display: flex;
 position: absolute;
 left: 50%;
 -webkit-transform: translateX(-50%);
@@ -13,7 +13,7 @@ padding-left: 20px;
 padding-right: 20px;
 padding-top: 20;
 padding-bottom: 120px;
-background-color: red;
+background-color: #161616;
 border-radius: 70% 70% 70% 70% / 20% 20% 30% 30%;
 
         }
