@@ -43,7 +43,8 @@ margin-top: 10px;
 body {
 background-color: #111;
 background-image: url("./image/products-color-halo.png");
-background-repeat:no-repeat;
+background-repeat:repeat-y;
+  background-size: 100%; /* Resize the background image to cover the entire container */
 margin: 0;
 text-align: center;
 overscroll-behavior: contain;
