@@ -95,6 +95,8 @@ src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fo
 
 #playlist {
 list-style: none;
+    display: block;
+
     object-fit: contain;
 position: absolute;
 left: 50%;
