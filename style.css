@@ -103,11 +103,14 @@ margin-left: auto;
 margin-right: auto;
 margin-top: 70px;
 width: 100%;
-border-radius: 4px;
 padding-left: 0px;
 padding-right: 0px;
 padding-top: 8;
 padding-bottom: 120px;
+        background-color: red;
+
+border-radius: 40% 40% 30% 30% / 50% 50% 50% 50%;
+
         }
 #playlist li{
 display: inline-block;
