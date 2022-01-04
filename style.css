@@ -1,3 +1,35 @@
+#playlist {
+list-style: none;
+display: inline-block;
+position: absolute;
+left: 50%;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
+margin-left: auto;
+margin-right: auto;
+margin-top: 70px;
+width: 90%;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 20;
+padding-bottom: 120px;
+background-color: red;
+border-radius: 70% 70% 70% 70% / 20% 20% 30% 30%;
+
+        }
+#playlist li{
+display: inline-block;
+  object-fit: contain;
+margin: 2px;
+margin-top: 10px;
+border: 2px solid #383d40;
+background-color: #474139;
+border-radius: var(--oui-thumbnail-radius);
+padding: 4px;
+width: 120px;
+height: 120px;
+}
+
 li .oui-image-cover {
 border-radius: 8px;
 border: 0px solid;
@@ -93,40 +125,7 @@ font-family: "OpenSymbol";
 src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
 }
 
-#playlist {
-list-style: none;
-    display: inline-block;
 
-    object-fit: contain;
-position: absolute;
-left: 50%;
--webkit-transform: translateX(-50%);
-transform: translateX(-50%);
-margin-left: auto;
-margin-right: auto;
-margin-top: 70px;
-width: 90%;
-padding-left: 20px;
-padding-right: 20px;
-padding-top: 20;
-padding-bottom: 120px;
-        background-color: red;
-
-border-radius: 40% 40% 30% 30% / 50% 50% 50% 50%;
-
-        }
-#playlist li{
-display: inline-block;
-  object-fit: contain;
-margin: 2px;
-margin-top: 10px;
-border: 2px solid #383d40;
-background-color: #474139;
-border-radius: var(--oui-thumbnail-radius);
-padding: 4px;
-width: 120px;
-height: 120px;
-}
 #playlist li:hover {
 background: rgb(63,251,246);
 background: -moz-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 100%);
