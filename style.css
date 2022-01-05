@@ -33,17 +33,15 @@ border-radius: 5px;
 
 .logo {
 height: 100%;
-padding: 2px;
 }
 
 .topnav a:hover {
-  background-color: #424242;
+  background-color: #073a67;
   color: black;
 
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
   color: white;
   float: left;
   width: 100px;
