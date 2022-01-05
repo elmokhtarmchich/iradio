@@ -39,15 +39,28 @@
 <body>
 
 	
-<div class="navbar">
+<div class="topnav" id="myTopnav">
 <img href="https://www.iradio.ma" class="logo" src="./image/logo.png" >
-<a href="#home" onclick="window.location.reload(true);">Home</a>
+<a class="active" href="#home" onclick="window.location.reload(true);">Home</a>
 <a href="#contact">Contact</a>
 <a onclick="notifyMe()">Notify me!</a>
-<a class="add-button" onclick="addToHomescreen()" >A2HS</a>
-
+<a onclick="addToHomescreen()" >A2HS</a>
+<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
 
+	<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+	
 <audio src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" controls id="audioPlayer" onabort="myFunction()" onstalled="myFunction()"  >
 	<source src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" type="audio/mpeg">
 	</audio>
