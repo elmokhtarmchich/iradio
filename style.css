@@ -23,11 +23,12 @@ float: right;
 display: block;
 text-align: center;
 text-decoration: none;
-padding: auto;
+padding: 10px;
 font-size: 14px;
 border-radius: 5px;
 background-color: #6a9477;
-  
+height:100%;
+width: 30px;
 }
 
 .topnav a:hover {
