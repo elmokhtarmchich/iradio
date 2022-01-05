@@ -8,7 +8,6 @@ background-color: #474139;
 position: fixed;
 top: 0;
 width: 100%;
-height: 52px;
 padding: 2px;
 border-width: 0px 0px 3px 0px;
 border-style: solid;
@@ -19,7 +18,7 @@ border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0));
 
 .topnav a {
 
-float: left;
+float: right;
 display: block;
 text-align: center;
 text-decoration: none;
