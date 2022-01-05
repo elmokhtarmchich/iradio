@@ -24,7 +24,7 @@ text-align: center;
 text-decoration: none;
 font-size: 14px;
 padding: 10px;
-height:100%;
+height:40px;
 width: 90px;
 border-radius: 5px;
 }
@@ -42,6 +42,7 @@ height: 100%;
   color: white;
   width: 100px;
   padding: 0px;
+  float: left;
 }
 
 .topnav .icon {
