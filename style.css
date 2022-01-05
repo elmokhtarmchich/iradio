@@ -19,7 +19,7 @@ border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0));
 
 .topnav a {
 
-float: right;
+float: left;
 display: block;
 text-align: center;
 text-decoration: none;
@@ -28,7 +28,6 @@ padding: 10px;
 height:100%;
 width: 90px;
 border-radius: 5px;
-
 }
 
 .logo {
@@ -38,12 +37,10 @@ height: 100%;
 .topnav a:hover {
   background-color: #073a67;
   color: black;
-
 }
 
 .topnav a.active {
   color: white;
-  float: left;
   width: 100px;
   padding: 0px;
 }
