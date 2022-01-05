@@ -31,6 +31,11 @@ height:100%;
 width: 80px;
 }
 
+.logo {
+height: 100%;
+padding: 3px;
+}
+
 .topnav a:hover {
   background-color: #ddd;
   color: black;
