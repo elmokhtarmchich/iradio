@@ -65,7 +65,7 @@ height: 100%;
     top: 0;
   }
   .topnav.responsive a {
-    float: right;
+    float: none;
     display: block;
     text-align: left;
   }
