@@ -115,10 +115,11 @@ margin-top: 10px;
 }
 
 body {
-background-color: #111;
-background-image: url("./image/products-color-halo.png");
-background-repeat:repeat-y;
-background-size: 100% 1000px; /* Resize the background image to cover the entire container */
+background: rgb(11,37,37);
+background: -moz-linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
+background: linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0b2525",endColorstr="#373a3e",GradientType=1);
 margin: 0;
 text-align: center;
 overscroll-behavior: contain;
