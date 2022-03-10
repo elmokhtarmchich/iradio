@@ -115,11 +115,7 @@ margin-top: 10px;
 }
 
 body {
-background: rgb(11,37,37);
-background: -moz-linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
-background: -webkit-linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
-background: linear-gradient(90deg, rgba(11,37,37,1) 0%, rgba(55,58,62,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0b2525",endColorstr="#373a3e",GradientType=1);
+background-color: #0d1117;
 margin: 0;
 text-align: center;
 overscroll-behavior: contain;
