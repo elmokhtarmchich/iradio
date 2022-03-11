@@ -7,8 +7,9 @@ min-height: 60px;
 max-height: 70px;
 position: fixed;
 left: 50%; 
-bottom: -1px
 transform: translateX(-50%);
+  bottom: 0px
+
 border-radius: 20px 20px 0px 0px;
   border-color: #1e5469;
   border-style: solid;
