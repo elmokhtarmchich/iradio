@@ -1,3 +1,21 @@
+.row {
+z-index: 1;
+width: 96%;
+max-width: 400px;
+height: 7%;
+min-height: 60px;
+max-height: 70px;
+position: fixed;
+left: 50%; 
+bottom: -1px
+transform: translateX(-50%);
+border-radius: 20px 20px 0px 0px;
+  border-color: #1e5469;
+  border-style: solid;
+  border-width: 2px 2px 0px 2px;
+background-color: #3B3B3B;
+}
+
 /* ============================================================ TOPNAV */
 
 
@@ -195,23 +213,7 @@ opacity: 0.9;
 background-color: #A0A0A0	;
 }
 
-.row {
-z-index: 1;
-width: 96%;
-max-width: 400px;
-height: 5%;
-min-height: 50px;
-max-height: 70px;
-position: fixed;
-left: 50%; 
-transform: translateX(-50%);
-border-radius: 20px 20px 0px 0px;
-  border-color: #1e5469;
-  border-style: solid;
-  border-width: 2px 2px 0px 2px;
-  
-background-color: gray;
-}
+
 
 /* Clearfix (clear floats) */
 .row::after {
