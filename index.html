@@ -1,80 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Radio Maroc FM/AM. Écouter la WebRadio sur iRadio.ma</title>
-<meta name="application-name" content="iRadio.ma">
-<meta name="description" content="Écoutez les stations de radio Marocaine. Rediffusion de vos émissions préférées. Actualité de vos animateurs. Atlantic Radio, Med Radio, Radio Mars, Radio plus, Rabat Chaîne Inter, MFM, Chada FM, Medi1 Radio, Radio Mohammed VI du Saint Coran, Luxe Radio, Hit Radio, Radio Aswat, Radio 2M, Cap Radio" />
-<meta name="google-site-verification" content="4a5ZBaBGYF-a_7wcIDuGURb2xvlN5Mp0KCLMEWmh3-0"/>
-<meta name="robots" content="noindex,nofollow">
-<meta name="googlebot" content="noindex,nofollow">
-<meta name="google" content="notranslate" />	
-<meta name="theme-color" content="#474139">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <!-- Include Howler.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.3.2/howler.min.js"></script>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="/a2hs/addtohomescreen.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta property="fb:app_id" content="105132261724927">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:url" content="https://www.iradio.ma/">
-<meta property="og:title" content="Radio Maroc FM/AM. Écouter radio Marocaine en ligne">
-<meta property="og:site_name" content="iRadio.ma">
-<meta property="og:description" content="Écoutez les stations de radio Marocaine à iRadio.ma. Facile à utiliser et 100% gratuit.">
-<meta property="og:image" content="https://cdn.webrad.io/images/brand/logo_1200x630.png">
-<meta property="og:type" content="website">
-	
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-<link rel="manifest" href="/favicon_io/site.webmanifest">
-<link rel="manifest" href="manifest.webmanifest">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <title>Radio Maroc FM/AM. Écouter la WebRadio sur iRadio.ma</title>
 
-	
-<meta charset = "utf-8" />
-<link rel="stylesheet" href="/style.css">
-<script src="script.js"></script>
-<link rel="stylesheet" type="text/css" href="/a2hs/addtohomescreen.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Your other meta tags and links go here -->
 
 </head>
 <body>
-
-	
-<div class="topnav" id="myTopnav">
-<a class="active" ><img href="https://www.iradio.ma" class="logo" src="./image/logo.png" ></a>
-<a href="#home" onclick="window.location.reload(true);">Home</a>
-<a href="#contact">Contact</a>
-<a onclick="notifyMe()">Notify me!</a>
-<a onclick="addToHomescreen()" >A2HS</a>
-<a href="javascript:void(0);" class="icon" onclick="ResponsNav()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-
-	
-<audio src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" controls id="audioPlayer" onabort="myFunction()" onstalled="myFunction()"  >
-	<source src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" type="audio/mpeg">
-	</audio>
-
-<div class="row">
-  <div class="column">
-<p id="demo" style="">Playing..</p>
-  </div>
-  <div class="column">
-<img href="#" onclick="playlist.prevTrack();" src="./image/next.png" style=" height: 45px; width: auto; filter: invert(1); display: table-cell;  margin: auto; transform: scaleX(-1);"> 
-  </div> 
-  <div class="column">
-<img id="play-pause-button" onclick='playlist.playpause();' src="./image/play.png" style="height: 45px; width: auto; filter: invert(1);  display: table-cell;  margin: auto; ">
-  </div>  
-  <div class="column">
-<img href="#" onclick="playlist.nextTrack();" src="./image/next.png"  style="height: 45px; width: auto; filter: invert(1); display: table-cell; margin: auto;">
+  <div class="topnav" id="myTopnav">
+    <!-- Your navigation bar goes here -->
   </div>
 
-</div>
+  <audio id="audioPlayer" controls>
+    <!-- The audio source will be dynamically set with Howler.js -->
+  </audio>
 
-<ul id="playlist">
-<li ><a id=" 01 " href="https://streamer.eagrpservices.com/audio/medradio.mp3" ><img class="oui-image-cover" title= "Med Radio " src="./image/med.png" ><br> Med Radio </a></li>
-<li class="current-song"><a id=" 02 " href="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" ><img class="oui-image-cover" title= "Radio Coran " src="./image/coran.png" ><br> Coran </a></li>
+  <div class="row">
+    <!-- Your player control buttons go here -->
+  </div>
+
+  <ul id="playlist">
+    <li><a id="01" href="https://streamer.eagrpservices.com/audio/medradio.mp3">Med Radio</a></li>
+    <li class="current-song"><a id="02" href="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8">Coran</a></li>
 <li ><a id=" 03 " href="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3" ><img class="oui-image-cover" title= "Medina FM " src="./image/medina.png" ><br> Medina FM </a></li>
 <li ><a id=" 04 " href="https://streamer.eagrpservices.com/audio/chadafm.mp3" ><img class="oui-image-cover" title= "Chada FM " src="./image/chada.png" ><br> Chada FM </a></li>
-<li ><a id=" 05 " href="https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8" ><img class="oui-image-cover" title= "Medi 1 " src="./image/medi.png" ><br> Medi 1 Radio </a></li>
+<li ><a id=" 05 " href="https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8" type="audio/aac"><img class="oui-image-cover" title= "Medi 1 " src="./image/medi.png" ><br> Medi 1 Radio </a></li>
 <li ><a id=" 06 " href="http://radiomars.ice.infomaniak.ch/radiomars-128.mp3" ><img class="oui-image-cover" title= "Radio Mars " src="./image/mars.png" ><br> Radio Mars </a></li>
 <li ><a id=" 07 " href="http://broadcast.ice.infomaniak.ch/aswat-high.mp3" ><img class="oui-image-cover" title= "Aswat " src="./image/aswat.png" ><br> Aswat </a></li>
 <li ><a id=" 08 " href="https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3" ><img class="oui-image-cover" title= "Hit Radio " src="./image/hit.png" ><br> Hit Radio </a></li>
@@ -105,16 +63,16 @@
 <li ><a id=" 33 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/radio_idaa_watanya-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= "Idaa Al Watania " src="./image/watania.png" ><br> Idaa Al Watania </a></li>
 <li ><a id=" 34 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/radio_mohammed_6-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= "Radio Assadisa FM " src="./image/assadissa.png" ><br> Radio Assadisa FM </a></li>
 <li ><a id=" 35 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/radio_amazigh-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= "Radio Amazighia FM" " src="./image/amazighia.png" ><br> Radio Amazighia FM </a></li>
-<li ><a id=" 36 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة مكناس " src="./image/meknes.png" ><br> Meknes snrt </a></li>
-<li ><a id=" 37 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة فاس " src="./image/fes.png" ><br> Fes snrt </a></li>
-<li ><a id=" 38 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة تطوان " src="./image/tetouan.png" ><br> Tetouan snrt </a></li>
-<li ><a id=" 39 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة طنجة " src="./image/tanger.png" ><br> Tanger snrt </a></li>
-<li ><a id=" 40 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ش􁜧 إذاعة مرا " src="./image/marrakech.png" ><br> Marrakech snrt </a></li>
-<li ><a id=" 41 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8" ><img class="oui-image-cover" title= " ضاء 􁘭 إذاعة الدار الب " src="./image/casa.png" ><br> Casablanca snrt </a></li>
-<li ><a id=" 42 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة وجدة " src="./image/oujda.png" ><br> Oujda snrt </a></li>
-<li ><a id=" 43 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة داخلة " src="./image/dakhla.png" ><br> Dakhla snrt </a></li>
-<li ><a id=" 44 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " إذاعة اغادير " src="./image/agadir.png" ><br> Agadir snrt </a></li>
-<li ><a id=" 45 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " مة 􁘭 إذاعةالحس " src="./image/hoceima.png" ><br> Hoceima snrt </a></li>
+<li ><a id=" 36 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ????? " src="./image/meknes.png" ><br> Meknes snrt </a></li>
+<li ><a id=" 37 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ??? " src="./image/fes.png" ><br> Fes snrt </a></li>
+<li ><a id=" 38 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ????? " src="./image/tetouan.png" ><br> Tetouan snrt </a></li>
+<li ><a id=" 39 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ???? " src="./image/tanger.png" ><br> Tanger snrt </a></li>
+<li ><a id=" 40 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ??? ????? ??? " src="./image/marrakech.png" ><br> Marrakech snrt </a></li>
+<li ><a id=" 41 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8" ><img class="oui-image-cover" title= " ??? ?? ????? ????? ??? " src="./image/casa.png" ><br> Casablanca snrt </a></li>
+<li ><a id=" 42 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ???? " src="./image/oujda.png" ><br> Oujda snrt </a></li>
+<li ><a id=" 43 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ????? " src="./image/dakhla.png" ><br> Dakhla snrt </a></li>
+<li ><a id=" 44 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ????? ?????? " src="./image/agadir.png" ><br> Agadir snrt </a></li>
+<li ><a id=" 45 " href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8" ><img class="oui-image-cover" title= " ?? ?? ????????? " src="./image/hoceima.png" ><br> Hoceima snrt </a></li>
 <li ><a id=" 46 " href="http://channel0.moroccanvoice.com:8000/;stream/1" ><img class="oui-image-cover" title= "Moroccan Voice Radio " src="./image/morrocan.png" ><br> Moroccan Voice </a></li>
 <li ><a id=" 47 " href="http://stream1.coran.tk:8005/stream/1/" ><img class="oui-image-cover" title= "Radio Chabab Maroc " src="./image/chabab-maroc.png" ><br> Chabab Maroc </a></li>
 <li ><a id=" 48 " href="http://radio.nessradio.net:8000/nessradio.mp3" ><img class="oui-image-cover" title= "Nass Radio " src="./image/ness.png" ><br> Nass Radio </a></li>
@@ -129,106 +87,49 @@
 <li ><a id=" 57 " href="https://streaming.radionomy.com/MarocMusic" ><img class="oui-image-cover" title= "Radio Maroc Music " src="./image/music.png" ><br> Maroc Music </a></li>
 <li ><a id=" 58 " href="http://51.15.191.112:8181/stream.aac" ><img class="oui-image-cover" title= "Izlan music " src="./image/izlan.png" ><br> Izlan music </a></li>
 <li ><a id=" 59 " href="http://stream.zenolive.com/bqdbb6hd0neuv" ><img class="oui-image-cover" title= "Radio Atbir " src="./image/atbir.png" ><br> Radio Atbir </a></li>
-	</ul>
+  </ul>
 
+  <script>
+    var playlist = document.getElementById('playlist');
+    var audioPlayer = null;
 
-   <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
-   <!-- <script src="C:\Users\acer\Desktop\BetterAudio\audioPlayer.js"></script> -->
-   <script src="/audioPlayer.js"></script>
-
-	<script>
-function ResponsNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-</script>
-
-	<script>
-       var config = {
-autoplay: true, 
-loop: true,
-shuffle: true,
-	                           activeItem:0,
-                    volume:0.5,
-                    autoPlay:false,
-                    preload:"auto",
-                    randomPlay:false,
-                    loopingOn:true,
-                    mediaEndAction:"next",
-                    usePlaylistScroll:true,
-                    playlistScrollOrientation:"vertical",
-                    playlistScrollTheme:"light-thin",
-                    useKeyboardNavigationForPlayback:true,
-                    createDownloadIconsInPlaylist:true,
-                    createLinkIconsInPlaylist:true,
-                    facebookAppId:"",
-                    useNumbersInPlaylist: false,
-                    numberTitleSeparator: ".  ",
-                    artistTitleSeparator: " - ",
-                    sortableTracks: false,
-                    playlistItemContent:"title",
-                    useMediaSession:true,
-                    useStatistics:false,
-                    autoOpenPopup:false
-       };
-var playlist = new AudioPlaylist();
-	</script>
-
-<script>
-var toggle = false;
-function togglePlayPause() {
-	   mediaPlayer = document.getElementById('audioPlayer');
-   if (! mediaPlayer.paused) {
-document.getElementById('play-pause-button').src = './image/play.png';
-   }
-   else {
-document.getElementById('play-pause-button').src = './image/pause.png';
-   }
-}
-</script>
-	
-
-<script>
-function myFunction() {
-mediaPlayer = document.getElementById('audioPlayer');
-  mediaPlayer.load();
-  mediaPlayer.play();
-}
-</script>
-
-<script>
-function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
-
-  // Let's check whether notification permissions have already been granted
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    var notification = new Notification("Hi there!");
-  }
-
-  // Otherwise, we need to ask the user for permission
-  else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(function (permission) {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
-        var notification = new Notification("Hi there!");
+    // Function to play the selected track
+    function playTrack(trackUrl) {
+      if (audioPlayer) {
+        audioPlayer.unload();
       }
-    });
-  }
 
-  // At last, if the user has denied notifications, and you
-  // want to be respectful there is no need to bother them any more.
-}
-</script>
+      audioPlayer = new Howl({
+        src: [trackUrl],
+        html5: true, // Use HTML5 audio playback
+        volume: 0.5, // Initial volume (0.0 to 1.0)
+        loop: true // Set to true for looping, false for no looping
+      });
 
-	
-	
+      audioPlayer.play();
+    }
+
+    // Attach click event listeners to playlist items
+    var playlistItems = playlist.getElementsByTagName('a');
+    for (var i = 0; i < playlistItems.length; i++) {
+      playlistItems[i].addEventListener('click', function (event) {
+        event.preventDefault();
+        var trackUrl = this.getAttribute('href');
+        playTrack(trackUrl);
+        setCurrentSong(this); // Function to set the current song style
+      });
+    }
+
+    // Function to set the current song style
+    function setCurrentSong(element) {
+      for (var i = 0; i < playlistItems.length; i++) {
+        playlistItems[i].classList.remove('current-song');
+      }
+      element.classList.add('current-song');
+    }
+  </script>
+
+  <!-- Your other scripts and stylesheets go here -->
+
 </body>
 </html>
