@@ -28,6 +28,7 @@
 
 	
 <meta charset = "utf-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.3.2/howler.min.js"></script>
 <link rel="stylesheet" href="/style.css">
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="/a2hs/addtohomescreen.css">
@@ -132,9 +133,9 @@
 	</ul>
 
 
-    <!-- <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+   <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
    <!-- <script src="C:\Users\acer\Desktop\BetterAudio\audioPlayer.js"></script> -->
-   <!--  <script src="/audioPlayer.js"></script> -->
+   <script src="/audioPlayer.js"></script>
 
 	<script>
 function ResponsNav() {
@@ -147,54 +148,7 @@ function ResponsNav() {
 }
 </script>
 
-
-
-
- <script>
-    var playlist = document.getElementById('playlist');
-    var audioPlayer = null;
-
-    // Function to play the selected track
-    function playTrack(trackUrl) {
-      if (audioPlayer) {
-        audioPlayer.unload();
-      }
-
-      audioPlayer = new Howl({
-        src: [trackUrl],
-        html5: true, // Use HTML5 audio playback
-        volume: 0.5, // Initial volume (0.0 to 1.0)
-        loop: true // Set to true for looping, false for no looping
-      });
-
-      audioPlayer.play();
-    }
-
-    // Attach click event listeners to playlist items
-    var playlistItems = playlist.getElementsByTagName('a');
-    for (var i = 0; i < playlistItems.length; i++) {
-      playlistItems[i].addEventListener('click', function (event) {
-        event.preventDefault();
-        var trackUrl = this.getAttribute('href');
-        playTrack(trackUrl);
-        setCurrentSong(this); // Function to set the current song style
-      });
-    }
-
-    // Function to set the current song style
-    function setCurrentSong(element) {
-      for (var i = 0; i < playlistItems.length; i++) {
-        playlistItems[i].classList.remove('current-song');
-      }
-      element.classList.add('current-song');
-    }
-  </script>
-
-
-
-
-
-	   <!-- //<script>
+	<script>
        var config = {
 autoplay: true, 
 loop: true,
@@ -223,7 +177,7 @@ shuffle: true,
                     autoOpenPopup:false
        };
 var playlist = new AudioPlaylist();
-	</script> -->
+	</script>
 
 <script>
 var toggle = false;
