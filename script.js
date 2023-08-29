@@ -16,6 +16,7 @@ function preloadImages(array, waitForOtherResources, timeout) {
     }
 
     function loadNow() {
+              var  list = preloadImages.list;
         if (!loaded) {
             loaded = true;
             for (var i = 0; i < imgs.length; i++) {
