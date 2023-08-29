@@ -1,15 +1,19 @@
 {
   "background_color": "#19273c",
-  "description": "Start WhatsApp GO Chat",
+  "description": "Radio Maroc",
   "display": "fullscreen",
   "icons": [
     {
-      "src": "/icon/app-icon_192x192.png",
-	  "sizes": "192x192"
+      "src": "favicon_io/android-chrome-192x192.png",
+	  "sizes": "192x192",
+	  "type": "image/png"
+    },
+      "src": "favicon_io/android-chrome-512x512.png",
+	  "sizes": "512x512",
 	  "type": "image/png"
     }
   ],
-  "name": "WhatsApp GO",
-  "short_name": "WhatsApp GO",
+  "name": "iRadio",
+  "short_name": "iRadio",
   "start_url": "/index.html"
 }
