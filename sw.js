@@ -1,11 +1,12 @@
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('app-store').then((cache) => cache.addAll([
-      '/images/WhatsApp.png',
-      '/images/logohead.png',
-      '/images/icons-192.png',
-      '/images/icons-512.png',
-      '/icon/app-icon_192x192.png',
+    caches.open('radio-store').then((cache) => cache.addAll([
+      '/index.html',
+      '/index.js',
+      '/style.css',
+      '/sw.js',
+      '/script.js',
+	    '/audioPlayer.js',
     ])),
   );
 });
