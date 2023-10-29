@@ -1,9 +1,14 @@
 {
   "background_color": "#19273c",
   "description": "Radio Maroc",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
-    {
+         {
+      "src": "favicon_io/favicon-32x32.png",
+ "sizes": "32x32",
+      "type": "image/png"
+    },
+{
       "src": "favicon_io/android-chrome-192x192.png",
 	  "sizes": "192x192",
 	  "type": "image/png"
