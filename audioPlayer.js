@@ -259,3 +259,30 @@ playpause(){
         
     }
 }
+
+
+function updateNotification() {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: tracks[currentTrack].innerText,
+          artist: 'Your Artist Name',
+          artwork: [
+            { src: 'path/to/cover-art.jpg', sizes: '96x96', type: 'image/jpeg' },
+            // Add more artwork sizes as needed
+          ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', function() {
+          audioPlayer.play();
+        });
+
+        navigator.mediaSession.setActionHandler('pause', function() {
+          audioPlayer.pause();
+        });
+
+   navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
+        navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
+      }
+    }
+
+    audioPlayer.addEventListener('ended', nextTrack);
