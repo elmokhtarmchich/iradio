@@ -260,6 +260,7 @@ playpause(){
     }
 }
 
+/*--------------------------android notifications pev and next----------------------*/
 
 function updateNotification() {
       if ('mediaSession' in navigator) {
