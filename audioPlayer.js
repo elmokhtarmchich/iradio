@@ -1,48 +1,105 @@
+/*
+    Default constructor configuration:
+        autoplay: false,
+        shuffle: false,
+        loop: false,
+        playerId: "audioPlayer",
+        playlistId: "playlist",
+        currentClass: "current-song"
+        
+    Methods:
+        setLoop
+        setShuffle
+        toggleShuffle
+        toggleLoop
+        prevTrack
+        nextTrack
+    
+    Can access player by .player variable
+    example playlist.player.pause();
+*/
+/*------------------------------------------------*/
+// Press spacebar to Play/Pause.
 var x = document.getElementsByClassName("oui-image-cover");
+
+
+
 var audio = document.getElementById('audioPlayer');
+
 
 if (audio) {
   window.addEventListener('keydown', function (event) {
     var key = event.which || event.keyCode;
-    var btn = $(".button");
+	var btn = $(".button");
 
     if (key === 32) { // spacebar
       // eat the spacebar, so it does not scroll the page
-      togglePlayPause();
-      event.preventDefault();
+	       togglePlayPause();
+	   event.preventDefault();
       audio.paused ? audio.play() : audio.pause();
-    }
+	      }
   });
 }
 
+/*
+$(document).ready(function() {
+var btn = $(".button");
+btn.click(function() {
+btn.toggleClass("paused");
+    return false;
+  });
+});
+*/
+
 function togglePlayPause() {
-  mediaPlayer = document.getElementById('audioPlayer');
-  var btn = document.getElementById('play-pause-button');
-  if (!mediaPlayer.paused) {
-    btn.title = 'play';
-    btn.className = 'play';
-  } else {
-    btn.title = 'pause';
-    btn.className = 'pause';
-  }
-  updateNotification(); // Call the updateNotification function
+	   mediaPlayer = document.getElementById('audioPlayer');
+   var btn = document.getElementById('play-pause-button');
+   if (! mediaPlayer.paused) {
+      btn.title = 'play';
+      btn.className = 'play';
+   }
+   else {
+      btn.title = 'pause';
+      btn.className = 'pause';
+   }
 }
 
-/*------------------------------------------------------------*/
+	/*------------------------------------------------------------*/
 
-class AudioPlaylist {
-  // ... (your existing code)
+class AudioPlaylist{
 
-  playpause() {
-    togglePlayPause();
-    event.preventDefault();
-    audio.paused ? audio.play() : audio.pause();
-    document.title = x[this.trackPos].title;
-    updateNotification(); // Call the updateNotification function
-  }
+    randomizeOrder(){
+        for (var i = this.trackOrder.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = this.trackOrder[i];
+            this.trackOrder[i] = this.trackOrder[j];
+            this.trackOrder[j] = temp;
+        }
+        return this.trackOrder;
+    }
+    setTrack(arrayPos){
+
+        var liPos = this.trackOrder[arrayPos]; // convert array index to html index
+        this.player.src = $("#"+this.playlistId+ " li a").eq(liPos).attr("href");
+        $("."+this.currentClass).removeClass(this.currentClass);
+        $("#"+this.playlistId+ " li").eq(liPos).addClass(this.currentClass);
+        this.trackPos = arrayPos; // update based on array index position
+				  		   document.title = x[this.trackPos].title;
+						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
+
+						   	  togglePlayPause();
+    }
+	
+playpause(){
+	   togglePlayPause();
+	   event.preventDefault();
+      audio.paused ? audio.play() : audio.pause();
+	  document.title = x[this.trackPos].title;
 
 
-  prevTrack(){
+}
+
+    prevTrack(){
 		var btn = document.getElementById('play-pause-button');
 		    var btn = $(".button");
 
@@ -78,10 +135,57 @@ class AudioPlaylist {
 
 
     }
-
-
+/*    setLoop(val){
+        if(val === true)
+            this.loop = true;
+        else
+            this.loop = false;
+        return this.loop;
+    }
+    setShuffle(val){
+        if(val == this.shuffle) // if no change
+            return val;
+        else{
+            if(val === true){
+                this.randomizeOrder();
+                this.shuffle = true;
+            }
+            else{
+                this.shuffle = false;
+                // empty track array, fill array with indexs in order
+                this.trackOrder = [];
+                for(var i = 0; i < this.length; i++){
+                    this.trackOrder.push(i);
+                }
+                
+                // jump array to track position of currently playing track
+                this.trackPos =  this.trackOrder.indexOf($("."+this.currentClass).index());
+            }
+            return this.shuffle;
+        }
+    }
+    toggleShuffle(){
+        if(this.shuffle === true)
+            this.setShuffle(false);
+        else
+            this.setShuffle(true);
+        return this.shuffle;
+    }
+    toggleLoop(){
+        if(this.loop === true)
+            this.setLoop(false);
+        else
+            this.setLoop(true);
+        return this.loop;
+    }
+*/
     constructor(config = {} ){
-
+        
+        /***
+        *
+        *       setting defaults, and initialzing player 
+        *
+        */
 		var x = document.getElementsByClassName("oui-image-cover");
 		var btn = $(".button");
 		var btn = document.getElementById('play-pause-button');
@@ -99,8 +203,21 @@ class AudioPlaylist {
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
-/*   
-________________________
+/*        
+        if(this.shuffle)
+            this.randomizeOrder();
+        
+        this.setTrack(this.trackPos);
+        if(this.autoplay)
+            this.player.play();
+              btn.className = 'pause';
+		  		   document.title = x[this.trackPos].title;
+*/
+
+         /***
+        *
+        *       handle link clicks
+        *
         */
         $("#"+this.playlistId+" li a ").click(function(e){
             e.preventDefault();
@@ -110,36 +227,35 @@ ________________________
 		  		   document.title = x[this.trackPos].title;
 				   						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
 
-  updateNotification() {
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: x[this.trackPos].title,
-        artist: 'Your Artist Name',
-        artwork: [
-          { src: 'path/to/cover-art.jpg', sizes: '96x96', type: 'image/jpeg' },
-          // Add more artwork sizes as needed
-        ]
-      });
 
-      navigator.mediaSession.setActionHandler('play', function () {
-        audio.play();
-        updateNotification();
-      });
-
-      navigator.mediaSession.setActionHandler('pause', function () {
-        audio.pause();
-        updateNotification();
-      });
-
-      navigator.mediaSession.setActionHandler('previoustrack', function () {
-        this.prevTrack();
-        updateNotification();
-      });
-
-      navigator.mediaSession.setActionHandler('nexttrack', function () {
-        this.nextTrack();
-        updateNotification();
-      });
+      //btn.className = 'play';
+        });
+        
+         /***
+        *
+        *       handle end of track
+        *
+        */
+        
+ /*       this.player.addEventListener("ended", function(){
+            // if last track ended
+            if(classObj.trackPos < classObj.length - 1){
+                classObj.setTrack(classObj.trackPos+1);
+                classObj.player.play();
+				      btn.className = 'pause';
+		  		   document.title = x[this.trackPos].title;
+            }
+            else{
+                if(classObj.loop){
+                    if(classObj.shuffle)
+                        classObj.randomizeOrder();
+                    classObj.setTrack(0);
+                    classObj.player.play();
+					      btn.className = 'pause';
+		  		   document.title = x[this.trackPos].title;
+                }
+            }
+        });*/
+        
     }
-  }
 }
