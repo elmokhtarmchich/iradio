@@ -141,7 +141,17 @@
 	-->
    <script src="./audioPlayer.js"></script>
 	
+	<script>
+navigator.mediaSession.setActionHandler('previoustrack', () => {
+    // Whatever you need to do to play the previous track.
+	playlist.prevTrack();
 
+});
+navigator.mediaSession.setActionHandler('nexttrack', () => {
+    // Whatever you need to do to play the next track.
+playlist.nextTrack();
+});
+	</script>
 
 	<script>
 function ResponsNav() {
