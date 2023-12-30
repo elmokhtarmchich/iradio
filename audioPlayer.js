@@ -67,7 +67,16 @@ function togglePlayPause() {
 	/*------------------------------------------------------------*/
 
 class AudioPlaylist{
-
+    randomizeOrder(){
+        for (var i = this.trackOrder.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = this.trackOrder[i];
+            this.trackOrder[i] = this.trackOrder[j];
+            this.trackOrder[j] = temp;
+        }
+        return this.trackOrder;
+    }
+	
     setTrack(arrayPos){
 
         var liPos = this.trackOrder[arrayPos]; // convert array index to html index
@@ -115,7 +124,7 @@ if(this.trackPos < this.length - 1)
 this.setTrack(this.trackPos+1);
 else{
 if(this.shuffle)
-/*   this.randomizeOrder(); */
+this.randomizeOrder();
 this.setTrack(0);
 }
 this.player.play();			
