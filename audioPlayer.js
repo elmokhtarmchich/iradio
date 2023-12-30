@@ -136,6 +136,14 @@ playpause(){
 
     }
 
+// Assuming this.player is your audio element
+this.player.addEventListener('error', function() {
+    // Handle the error here, for example, log it or display an error message
+    console.error('Error loading audio stream.');
+
+    // Play the next track
+    nextTrack();
+});
 
 /*    setLoop(val){
         if(val === true)
