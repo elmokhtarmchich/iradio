@@ -1,20 +1,5 @@
 .install-app-btn-container {
-  display: none;
-float: right;
-		background: transparent;
-font-family: inherit;
-    font-weight: 500;
-    font-size: 0.9rem;
-	font-weight: inherit;
-    cursor: pointer;
-    appearance: none;
-    height: 40px;
-    color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border: 1px solid gray;
-    text-decoration: none;
-    padding: 10px;
-	
+  display: none;	
 }
 
 body {
