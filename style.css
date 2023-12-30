@@ -1,6 +1,6 @@
 .install-app-btn-container {
   display: none;
-
+float: right;
 		background: transparent;
 font-family: inherit;
     font-weight: 500;
