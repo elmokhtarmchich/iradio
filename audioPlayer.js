@@ -124,7 +124,7 @@ playpause(){
             this.setTrack(this.trackPos+1);
         else{
             if(this.shuffle)
-                this.randomizeOrder();
+             /*   this.randomizeOrder(); */
             this.setTrack(0);
         }
         this.player.play();			
