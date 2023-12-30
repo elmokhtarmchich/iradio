@@ -68,7 +68,7 @@ function togglePlayPause() {
 
 class AudioPlaylist{
 
-    randomizeOrder(){
+   /* randomizeOrder(){
         for (var i = this.trackOrder.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
             var temp = this.trackOrder[i];
@@ -76,7 +76,7 @@ class AudioPlaylist{
             this.trackOrder[j] = temp;
         }
         return this.trackOrder;
-    }
+    } */
     setTrack(arrayPos){
 
         var liPos = this.trackOrder[arrayPos]; // convert array index to html index
