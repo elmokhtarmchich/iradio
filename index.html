@@ -27,7 +27,7 @@
 
 	
 <meta charset = "utf-8" />
-<link rel="stylesheet" href="https://iradio.ma/style.css">
+<link rel="stylesheet" href="./style.css">
 <script src="https://iradio.ma/script.js"></script>
 	<script src="https://iradio.ma/index.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,22 +49,22 @@
 </div>
 
 	
-<audio src="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3" controls id="audioPlayer" onabort="myFunction()" onstalled="myFunction()"  >
-	<source src="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3">
+<audio controls id="audioPlayer" onabort="abort-fct()" onstalled="stalled-fct()"  >
+	<source src="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8">
 	</audio>
 
 <div class="row">
   <div class="column">
-<p id="demo" style="">Playing..</p>
+<p id="demo">Playing..</p>
   </div>
   <div class="column">
-<img href="#" onclick="playlist.prevTrack();" src="./image/next.png" style=" height: 45px; width: auto; filter: invert(1); display: table-cell;  margin: auto; transform: scaleX(-1);"> 
+<img href="#" onclick="playlist.prevTrack();" src="./image/prev.png"> 
   </div> 
   <div class="column">
-<img id="play-pause-button" onclick='playlist.playpause();' src="./image/play.png" style="height: 45px; width: auto; filter: invert(1);  display: table-cell;  margin: auto; ">
+<img id="play-pause-button" onclick='playlist.playpause();' src="./image/play.png">
   </div>  
   <div class="column">
-<img href="#" onclick="playlist.nextTrack();" src="./image/next.png"  style="height: 45px; width: auto; filter: invert(1); display: table-cell; margin: auto;">
+<img href="#" onclick="playlist.nextTrack();" src="./image/next.png">
   </div>
 
 	
@@ -73,7 +73,7 @@
 <ul id="playlist">
 <li ><a id=" 01 " href="https://streamer.eagrpservices.com/audio/medradio.mp3" ><img class="oui-image-cover" title= "Med Radio " src="./image/med.png" ><br> Med Radio </a></li>
 <li class="current-song"><a id=" 02 " href="https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8" ><img class="oui-image-cover" title= "Radio Coran " src="./image/coran.png" ><br> Coran </a></li>
-<li><a id="61" href="https://asmaki.ma:8000/radio.mp3" ><img class="oui-image-cover" title= "" src="./image/zinbladi.png" ><br>Zin B'ladi</a></li>
+<li><a id="61" href="https://asmaki.ma:8000/radio.mp3" ><img class="oui-image-cover" title= "Radio Zin B'ladi" src="./image/zinbladi.png" ><br>Zin B'ladi</a></li>
 <li ><a id=" 03 " href="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3" ><img class="oui-image-cover" title= "Medina FM " src="./image/medina.png" ><br> Medina FM </a></li>
 <li ><a id=" 04 " href="https://streamer.eagrpservices.com/audio/chadafm.mp3" ><img class="oui-image-cover" title= "Chada FM " src="./image/chada.png" ><br> Chada FM </a></li>
 <li ><a id=" 05 " href="https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8" ><img class="oui-image-cover" title= "Medi 1 " src="./image/medi.png" ><br> Medi 1 Radio </a></li>
@@ -214,10 +214,15 @@ document.getElementById('play-pause-button').src = './image/pause.png';
 	
 
 <script>
-function myFunction() {
+function abord-fct() {
 mediaPlayer = document.getElementById('audioPlayer');
   mediaPlayer.load();
   mediaPlayer.play();
+}
+
+function stalled-fct() {
+mediaPlayer = document.getElementById('audioPlayer');
+playlist.nextTrack();
 }
 </script>
 
