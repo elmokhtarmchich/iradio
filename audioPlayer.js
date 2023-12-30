@@ -137,59 +137,19 @@ playpause(){
     }
 
 // Assuming this.player is your audio element
-this.player.addEventListener('error', function() {
-    // Handle the error here, for example, log it or display an error message
-    console.error('Error loading audio stream.');
+this.player.addEventListener('error', function(event) {
+    // Check if the error is due to a media error (including expired stream)
+    if (event.target.error.code === MediaError.MEDIA_ERR_NETWORK ||
+        event.target.error.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+        // Handle the expired stream here, for example, log it or display an error message
 
-    // Play the next track
-    nextTrack();
+        // Play the next track
+        nextTrack();
+    }
 });
 
-/*    setLoop(val){
-        if(val === true)
-            this.loop = true;
-        else
-            this.loop = false;
-        return this.loop;
-    }
-    setShuffle(val){
-        if(val == this.shuffle) // if no change
-            return val;
-        else{
-            if(val === true){
-                this.randomizeOrder();
-                this.shuffle = true;
-            }
-            else{
-                this.shuffle = false;
-                // empty track array, fill array with indexs in order
-                this.trackOrder = [];
-                for(var i = 0; i < this.length; i++){
-                    this.trackOrder.push(i);
-                }
-                
-                // jump array to track position of currently playing track
-                this.trackPos =  this.trackOrder.indexOf($("."+this.currentClass).index());
-            }
-            return this.shuffle;
-        }
-    }
-    toggleShuffle(){
-        if(this.shuffle === true)
-            this.setShuffle(false);
-        else
-            this.setShuffle(true);
-        return this.shuffle;
-    }
-    toggleLoop(){
-        if(this.loop === true)
-            this.setLoop(false);
-        else
-            this.setLoop(true);
-        return this.loop;
-    }
-*/
-    constructor(config = {} ){
+
+constructor(config = {} ){
         
         /***
         *
