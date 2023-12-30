@@ -68,15 +68,6 @@ function togglePlayPause() {
 
 class AudioPlaylist{
 
-   /* randomizeOrder(){
-        for (var i = this.trackOrder.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = this.trackOrder[i];
-            this.trackOrder[i] = this.trackOrder[j];
-            this.trackOrder[j] = temp;
-        }
-        return this.trackOrder;
-    } */
     setTrack(arrayPos){
 
         var liPos = this.trackOrder[arrayPos]; // convert array index to html index
@@ -86,10 +77,10 @@ class AudioPlaylist{
         this.trackPos = arrayPos; // update based on array index position
 				  		   document.title = x[this.trackPos].title;
 						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
-
 						   	  togglePlayPause();
     }
 	
+
 playpause(){
 	   togglePlayPause();
 	   event.preventDefault();
@@ -116,36 +107,29 @@ playpause(){
 
     }
 	
-    nextTrack(){
-				   var btn = document.getElementById('play-pause-button');
-		    var btn = $(".button");
-        // if track isn't the last track in array of tracks, go to next track
-        if(this.trackPos < this.length - 1)
-            this.setTrack(this.trackPos+1);
-        else{
-            if(this.shuffle)
-             /*   this.randomizeOrder(); */
-            this.setTrack(0);
-        }
-        this.player.play();			
-	      btn.className = 'pause';
-		 	  	    //togglePlayPause();
-		  		   document.title = x[this.trackPos].title;
-						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
+nextTrack(){
+var btn = document.getElementById('play-pause-button');
+var btn = $(".button");
+// if track isn't the last track in array of tracks, go to next track
+if(this.trackPos < this.length - 1)
+this.setTrack(this.trackPos+1);
+else{
+if(this.shuffle)
+/*   this.randomizeOrder(); */
+this.setTrack(0);
+}
+this.player.play();			
+btn.className = 'pause';
+//togglePlayPause();
+document.title = x[this.trackPos].title;
+document.getElementById("demo").innerHTML = x[this.trackPos].title;
+}
 
-
-    }
-
+	
 // Assuming this.player is your audio element
-this.player.addEventListener('error', function(event) {
-    // Check if the error is due to a media error (including expired stream)
-    if (event.target.error.code === MediaError.MEDIA_ERR_NETWORK ||
-        event.target.error.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {
-        // Handle the expired stream here, for example, log it or display an error message
-
+this.player.addEventListener('stalled', function(event) {
         // Play the next track
         nextTrack();
-    }
 });
 
 
@@ -173,59 +157,20 @@ constructor(config = {} ){
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
-/*        
-        if(this.shuffle)
-            this.randomizeOrder();
-        
-        this.setTrack(this.trackPos);
-        if(this.autoplay)
-            this.player.play();
-              btn.className = 'pause';
-		  		   document.title = x[this.trackPos].title;
-*/
 
-         /***
-        *
-        *       handle link clicks
-        *
-        */
+	
+        /*       handle link click   */
+	
         $("#"+this.playlistId+" li a ").click(function(e){
             e.preventDefault();
             // set track based on index of 
             classObj.setTrack(classObj.trackOrder.indexOf($(this).parent().index()));
             classObj.player.play();
-		  		   document.title = x[this.trackPos].title;
-				   						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
+document.title = x[this.trackPos].title;
+document.getElementById("demo").innerHTML = x[this.trackPos].title;
 
 
-      //btn.className = 'play';
         });
-        
-         /***
-        *
-        *       handle end of track
-        *
-        */
-        
- /*       this.player.addEventListener("ended", function(){
-            // if last track ended
-            if(classObj.trackPos < classObj.length - 1){
-                classObj.setTrack(classObj.trackPos+1);
-                classObj.player.play();
-				      btn.className = 'pause';
-		  		   document.title = x[this.trackPos].title;
-            }
-            else{
-                if(classObj.loop){
-                    if(classObj.shuffle)
-                        classObj.randomizeOrder();
-                    classObj.setTrack(0);
-                    classObj.player.play();
-					      btn.className = 'pause';
-		  		   document.title = x[this.trackPos].title;
-                }
-            }
-        });*/
-        
+  
     }
 }
