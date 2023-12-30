@@ -135,6 +135,20 @@ playpause(){
 
 
     }
+
+	          let currentIndex = 0;
+
+    audioPlayer.addEventListener('ended', function () {
+      nextTrack();
+    });
+
+    audioPlayer.addEventListener('error', function () {
+      console.error('Error loading audio. Moving to the next track.');
+      nextTrack();
+    });
+
+
+
 /*    setLoop(val){
         if(val === true)
             this.loop = true;
