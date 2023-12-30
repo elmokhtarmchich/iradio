@@ -170,10 +170,6 @@ document.getElementById("demo").innerHTML = x[this.trackPos].title;
   
     }
 	// stalled
-this.player.addEventListener('stalled', function(event) {
-        // Play the next track
-        nextTrack();
-});
 	// stalled
 	
 }
