@@ -126,11 +126,7 @@ document.getElementById("demo").innerHTML = x[this.trackPos].title;
 }
 
 	
-// Assuming this.player is your audio element
-this.player.addEventListener('stalled', function(event) {
-        // Play the next track
-        nextTrack();
-});
+
 
 
 constructor(config = {} ){
@@ -173,4 +169,11 @@ document.getElementById("demo").innerHTML = x[this.trackPos].title;
         });
   
     }
+	// stalled
+this.player.addEventListener('stalled', function(event) {
+        // Play the next track
+        nextTrack();
+});
+	// stalled
+	
 }
