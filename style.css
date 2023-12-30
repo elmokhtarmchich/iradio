@@ -16,21 +16,18 @@ font-family: inherit;
 
 .row {
 z-index: 1;
-width: 96%;
-max-width: 400px;
-height: 7%;
+width: 100%;
 min-height: 60px;
 max-height: 70px;
 position: fixed;
 left: 50%; 
 transform: translateX(-50%);
-  bottom: 0px;
-
-border-radius: 20px 20px 0px 0px;
-  border-color: #5af7dc;
-  border-style: solid;
-  border-width: 2px 2px 0px 2px;
+bottom: 0px;
+border-color: #5af7dc;
+border-style: solid;
+border-width: 2px 0px 0px 0px;
 background-color: #3B3B3B;
+background-image: url("https://assets.msn.com/staticsb/statics/latest/community/img/leadgen/full-leadgen-light.png");
 }
 
 /* ============================================================ TOPNAV */
@@ -220,6 +217,7 @@ box-sizing: border-box;
 object-fit: contain;
 float: left;
 width: 25%;
+max-width: 100px;
 padding: 5px;
 cursor: pointer;
 height: 70px;
