@@ -1,3 +1,7 @@
+.install-app-btn-container {
+  display: none;
+}
+
 body {
   background: url("./image/full-leadgen-light.png") no-repeat ;
   background-color: #161b22;
