@@ -31,7 +31,6 @@
 <script src="https://iradio.ma/script.js"></script>
 	<script src="https://iradio.ma/index.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
 
@@ -167,13 +166,21 @@ function ResponsNav() {
 }
 </script>
 
-	<script>
+<script type="text/javascript">
 
-       var config = {
-autoplay: true, 
-loop: true,
-shuffle: true,
-	                           activeItem:0,
+    function settime(){
+      var mediaPlayer= document.getElementById("audioPlayer");
+      mediaPlayer.currentTime=0;
+      mediaPlayer.play();
+    }
+</script>
+
+<script>
+var config = {
+                    autoplay: true, 
+                    loop: true,
+                    shuffle: true,
+                    activeItem:0,
                     volume:0.5,
                     autoPlay:false,
                     preload:"auto",
@@ -196,6 +203,7 @@ shuffle: true,
                     useStatistics:false,
                     autoOpenPopup:false
        };
+	
 var playlist = new AudioPlaylist();
 	</script>
 
