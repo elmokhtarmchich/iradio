@@ -1,0 +1,5 @@
+id,link,image,title
+01,https://asmaki.ma:8000/radio.mp3,./image/zinbladi.png,ZinBladi
+O2,https://medinafm.ice.infomaniak.ch/medinafm-128.mp3,./image/medina.png,MedinaFM
+03,https://streaming.rimradio.ma/live,./image/rimradio.png,RimRadio
+04,https://streamer.eagrpservices.com/audio/chadafm.mp3,./image/chada.png,ChadaFM
