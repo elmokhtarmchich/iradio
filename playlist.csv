@@ -3,12 +3,12 @@ id,link,image,title
 2,https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8,./image/coran.png,Radio Coran 
 3,https://asmaki.ma:8000/radio.mp3,./image/zinbladi.png Zin B'ladi,Radio Zin B'ladi
 4,https://medinafm.ice.infomaniak.ch/medinafm-128.mp3,./image/medina.png,Medina FM 
-5,https://streaming.rimradio.ma/live,./image/rimradio.png Rim Radio,Rim Radio
+5,https://streaming.rimradio.ma/live,./image/rimradio.png,Rim Radio
 6,https://streamer.eagrpservices.com/audio/chadafm.mp3,./image/chada.png,Chada FM 
 7,https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8,./image/medi.png,Medi 1 
 8,http://radiomars.ice.infomaniak.ch/radiomars-128.mp3,./image/mars.png,Radio Mars 
-9,https://aswat.ice.infomaniak.ch/aswat-high.mp3,./image/aswat.png Aswat,Aswat 
-10,https://listen.radioking.com/radio/252934/stream/297385,./image/radiomanarat.png Manarat Edu,Manarat Edu
+9,https://aswat.ice.infomaniak.ch/aswat-high.mp3,./image/aswat.png,Aswat 
+10,https://listen.radioking.com/radio/252934/stream/297385,./image/radiomanarat.png,Manarat Edu
 11,https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3,./image/hit.png,Hit Radio 
 12,http://mgharba.ice.infomaniak.ch/mgharba-128.mp3,./image/hit-mgharba.png,Hit Radio Mgharba 
 13,https://french.ice.infomaniak.ch/french-128.mp3,./image/french.png,Hit Radio French 
