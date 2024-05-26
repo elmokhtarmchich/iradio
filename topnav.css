@@ -13,8 +13,12 @@ margin-left: -9px;
 border-width: 0px 0px 3px 0px;
 border-style: solid;
 border-image-slice: 1;
-border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0)); 
+border-image-source: linear-gradient(to left, #317066, rgba(0, 0, 0, 0)); 
 
+font-family: "Roboto", sans-serif;
+font-weight: 400;
+font-style: normal;
+font-size: 0.75em;
 }
 
 .topnav a {
@@ -33,10 +37,8 @@ border-color: #414b58;
 }
 
 .topnav a .img {
-filter: invert(1);
   width: 20px;
     height: 20px;
-
 }
 
 .logo {
@@ -50,7 +52,7 @@ height: 100%;
 
 .topnav a.active {
   color: white;
-  width: 125px;
+  width: 150px;
   padding: 0px;
   float: left;
 }
