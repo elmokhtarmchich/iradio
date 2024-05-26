@@ -1,0 +1,62 @@
+
+/* ============================================================ TOPNAV */
+
+
+.topnav {
+z-index: 3;
+overflow: hidden;
+background-color: #161b22;
+position: fixed;
+top: 0;
+width: 100%;
+margin-left: -9px;
+border-width: 0px 0px 3px 0px;
+border-style: solid;
+border-image-slice: 1;
+border-image-source: linear-gradient(to left, #5af7dc, rgba(0, 0, 0, 0)); 
+
+}
+
+.topnav a {
+
+float: right;
+display: flex;
+align-items: center;
+justify-content: center;
+height:45px;
+width: 45px;
+border-width: 0px 0px 0px 1px;
+border-style: solid;
+border-color: #414b58;
+
+	
+}
+
+.topnav a .img {
+filter: invert(1);
+  width: 20px;
+    height: 20px;
+
+}
+
+.logo {
+height: 100%;
+}
+
+.topnav a:hover {
+  background-color: #073a67;
+  color: black;
+}
+
+.topnav a.active {
+  color: white;
+  width: 125px;
+  padding: 0px;
+  float: left;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/* ============================================================ TOPNAV */
