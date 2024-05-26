@@ -1,7 +1,7 @@
 id,link,image,title
 1,https://streamer.eagrpservices.com/audio/medradio.mp3,./image/med.png,Med Radio
 2,https://admdn7ta.cdn.mangomolo.com/quranrdo/quranrdo.stream_aac/chunklist.m3u8,./image/coran.png,Radio Coran 
-3,https://asmaki.ma:8000/radio.mp3,./image/zinbladi.png Zin B'ladi,Radio Zin B'ladi
+3,https://asmaki.ma:8000/radio.mp3,./image/zinbladi.png,Radio Zin B'ladi
 4,https://medinafm.ice.infomaniak.ch/medinafm-128.mp3,./image/medina.png,Medina FM 
 5,https://streaming.rimradio.ma/live,./image/rimradio.png,Rim Radio
 6,https://streamer.eagrpservices.com/audio/chadafm.mp3,./image/chada.png,Chada FM 
