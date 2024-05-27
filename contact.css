@@ -1,0 +1,64 @@
+
+#message {
+  background-color: #cecece7c;
+  border: 1px solid #575757;
+  border-radius: 5px;
+  width: 100%;
+  }
+  #email {
+    background-color: #cecece7c;
+    border: 1px solid #575757;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    }
+    #submitbtn {
+      background-color: #5bb0ffa1;
+      border: 1px solid #575757;
+      border-radius: 5px;
+      width: 50%;
+      height: 30px;
+      }
+
+.container {
+width: 100%;
+max-width: 500px;
+margin: auto;
+margin-bottom: 50px;
+border-radius: 10px;
+border: 2px solid #383838;
+margin-top: 8px;
+background-color: rgb(59, 56, 73);
+}
+
+.box {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    box-sizing: border-box;
+  }
+
+  #main {
+    background-color: #44495081;
+  }
+  #contact {
+    font-family: 'Roboto', sans-serif;
+    background-color: #161b22;
+    color: #ffffff;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('icon/noto-bg-dark.jpg');
+  }
+
+  #webapp  {
+    font-family: 'Amiri', serif; 
+    font-weight: bold;
+    color: #181414;
+    background-color: #fcca34c7;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    background-size: cover;
+  }
