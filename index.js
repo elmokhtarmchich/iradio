@@ -1,29 +1,26 @@
-
-
-// Register service worker to control making site work offline
+let deferredPrompt;
+const addBtn = document.querySelector('#add-button');
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('./sw.js')
-    .then(() => { console.log('Service Worker Registered'); });
-}
-
-
-// Code to handle install prompt on desktop
-let deferredPrompt;
-const installApp = document.getElementById('installApp');
-
-installApp.addEventListener('click', async () => {
-    if (deferredPrompt !== null) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            deferredPrompt = null;
-        }
-    }
-});
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    $('.install-app-btn-container').show();
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
     deferredPrompt = e;
-});
+    addBtn.style.display = 'block';
+  });
+
+  addBtn.addEventListener('click', handleAddBtnClick);
+
+  function handleAddBtnClick() {
+    addBtn.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.warn('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+      addBtn.removeEventListener('click', handleAddBtnClick);
+    });
+  }
+}
