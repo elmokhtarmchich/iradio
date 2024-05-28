@@ -1,5 +1,5 @@
 let deferredPrompt;
-const addBtn = document.querySelector('#add-button');
+const addBtn = document.querySelector('.add-button');
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('beforeinstallprompt', (e) => {
