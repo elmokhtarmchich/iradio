@@ -1,7 +1,11 @@
+@font-face {
+  font-family: "OpenSymbol";
+  src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
+  }
+
 .install-app-btn-container {
   display: none;	
 }
-
 
 body {
   background-color: #161b22;
@@ -9,27 +13,9 @@ body {
   background-size:cover;
   margin: 0;
   text-align: center;
-  overscroll-behavior: contain;
-
   font-size:100%;
   line-height:18px;
   }
-
-.add-button {
-	background: transparent;
-font-family: inherit;
-    font-weight: 500;
-    font-size: 0.9rem;
-	font-weight: inherit;
-    cursor: pointer;
-    appearance: none;
-    height: 40px;
-    color: rgb(255, 255, 255);
-    border-radius: 6px;
-    border: 1px solid gray;
-    text-decoration: none;
-    padding: 100px;
-}
 
 .row {
 z-index: 1;
@@ -81,7 +67,7 @@ background-color: #1a1a1a70	;
 #playlist {
   list-style: none;
   display: block;
-  position: absolute;
+  position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -92,7 +78,6 @@ background-color: #1a1a1a70	;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 10px;
-  padding-bottom: 120px;
    }
   
   #playlist li{
@@ -113,7 +98,7 @@ text-decoration: none;
   justify-content: center;
   width: 120px;
   height: 120px;
-  border: 2px solid #404344;
+  border: 2px solid #263b2d;
   background-color: #5857548f;
   border-radius: 15px;
   margin: 2px;
@@ -139,7 +124,7 @@ max-height: 66px;
   font-size: 0.75em;
   color: aliceblue;
   border-radius: 5px;
-  background-color: #00000041;
+  background-color: #1c862e41;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -167,12 +152,6 @@ font-size: .8em;
 color: var(--on-surface);
 }
  
-@font-face {
-font-family: "OpenSymbol";
-src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
-}
-
-
 #playlist li:hover {
 background: rgb(63,251,246);
 background: -moz-radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 100%);
