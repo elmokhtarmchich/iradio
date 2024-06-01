@@ -77,16 +77,33 @@ class AudioPlaylist{
         return this.trackOrder;
     }
 	
-    setTrack(arrayPos){
 
-        var liPos = this.trackOrder[arrayPos]; // convert array index to html index
-        this.player.src = $("#"+this.playlistId+ " li a").eq(liPos).attr("href");
-        $("."+this.currentClass).removeClass(this.currentClass);
-        $("#"+this.playlistId+ " li").eq(liPos).addClass(this.currentClass);
-        this.trackPos = arrayPos; // update based on array index position
-				  		   document.title = x[this.trackPos].title;
-						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
-						   	  togglePlayPause();
+ 
+
+    setTrack(arrayPos) {
+        const liPos = this.trackOrder[arrayPos];
+        const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
+        this.player.src = trackUrl;
+
+        if (Hls.isSupported() && trackUrl.endsWith('.m3u8')) {
+            if (this.hls) {
+                this.hls.destroy();
+            }
+            this.hls = new Hls();
+            this.hls.loadSource(trackUrl);
+            this.hls.attachMedia(this.player);
+        } else if (this.player.canPlayType('application/vnd.apple.mpegurl')) {
+            this.player.src = trackUrl;
+        } else {
+            this.player.src = trackUrl;
+        }
+
+        document.querySelector(`.${this.currentClass}`).classList.remove(this.currentClass);
+        document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
+        this.trackPos = arrayPos;
+        document.title = x[this.trackPos].title;
+        document.getElementById("demo").innerHTML = x[this.trackPos].title;
+        togglePlayPause();
     }
 	
 
