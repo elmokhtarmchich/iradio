@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBCQ2RX72H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XBCQ2RX72H');
-</script>
 <meta charset = "utf-8" />
 <title>Radio Maroc FM/AM. Écouter la WebRadio sur iRadio.ma</title>
 <meta name="application-name" content="iRadio.ma">
@@ -44,15 +35,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XBCQ2RX72H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XBCQ2RX72H');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 
 <body>
-
-
     	<!-- / TOPNAV -->
 <div class="topnav" id="myTopnav">
   <a class="active" ><img src="./favicon_io/android-chrome-192x192.png" href="iradio.net" target="_blank" class="logoimg"><img href="iradio.net" target="_blank" class="logo" src="./icon/logotext.png" ></a>
@@ -63,16 +59,19 @@
   </div>
     <!-- / TOPNAV -->
 
-  <audio controls id="audioPlayer" onabort="abort-fct()" onstalled="stalled-fct()"  >
+  <audio controls id="audioPlayer" onabort="abort-fct()" onstalled="stalled-fct()" type="application/x-mpegurl" >
     <source src="https://asmaki.ma:8000/radio.mp3" type="audio/mpeg">
+    <source src="https://asmaki.ma:8000/radio.mp3" type="audio/mpeg">
+
 	</audio>
+
 
 <div class="row">
   <div class="column">
 <p id="demo">Playing..</p>
   </div>
   <div class="column">
-<img onclick="playlist.prevTrack();" src="./image/prev.png"> 
+<img onclick="playlist.prevTrack()" src="./image/prev.png"> 
   </div> 
   <div class="column">
 <img id="play-pause-button" onclick='playlist.playpause();' src="./image/play.png">
@@ -85,7 +84,7 @@
 <div class="container" id="main">
   <ul id="playlist">
     <li>
-      <a id="01" href="https://hlsjs.video-dev.org/demo/?src=https%3A%2F%2Fstream.bodkas.com%2Fplaylist%3Fid%3D3&demoConfig=eyJlbmFibGVTdHJlYW1pbmciOnRydWUsImF1dG9SZWNvdmVyRXJyb3IiOnRydWUsInN0b3BPblN0YWxsIjpmYWxzZSwiZHVtcGZNUDQiOmZhbHNlLCJsZXZlbENhcHBpbmciOi0xLCJsaW1pdE1ldHJpY3MiOi0xfQ==" >
+      <a id="01" href="https://stream.bodkas.com/playlist?id=3" >
         <div class="radio-container"><img class="oui-image-cover" title= "Med Radio " src="./image/med.png" >
       <span class="radiotitle">Med Radio</span>
     </div>
@@ -102,10 +101,10 @@
     <li  class="current-song"><a id="61" href="https://asmaki.ma:8000/radio.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Zin B'ladi" src="./image/zinbladi.png" ><span class="radiotitle">Zin B'ladi</span></div></a></li>
     <li><a id="03" href="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Medina FM " src="./image/medina.png" ><span class="radiotitle"> Medina FM </span></div></a></li>
     <li><a id="62" href="https://streaming.rimradio.ma/live" ><div class="radio-container"><img class="oui-image-cover" title= "Rim Radio" src="./image/rimradio.png" ><span class="radiotitle">Rim Radio</span></span></div></a></li>
-    <li><a id="04" href="https://streamer.eagrpservices.com/audio/chadafm.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Chada FM " src="./image/chada.png" ><span class="radiotitle"> Chada FM </span></div></a></li>
+    <li><a id="04" href="https://stream.bodkas.com/playlist?id=chadafmradio" ><div class="radio-container"><img class="oui-image-cover" title= "Chada FM " src="./image/chada.png" ><span class="radiotitle"> Chada FM </span></div></a></li>
     <li><a id="05" href="https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8" ><div class="radio-container"><img class="oui-image-cover" title= "Medi 1 " src="./image/medi.png" ><span class="radiotitle"> Medi 1 Radio </span></div></a></li>
     <li><a id="06" href="http://radiomars.ice.infomaniak.ch/radiomars-128.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Mars " src="./image/mars.png" ><span class="radiotitle"> Radio Mars </span></div></a></li>
-    <li><a id="07" href="https://aswat.ice.infomaniak.ch/aswat-high.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Aswat " src="./image/aswat.png" ><span class="radiotitle">Aswat</span></div></a></li>
+    <li><a id="80" href="https://aswat.ice.infomaniak.ch/aswat-high.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Aswat " src="./image/aswat.png" ><span class="radiotitle">Aswat</span></div></a></li>
     <li><a id="07" href="https://listen.radioking.com/radio/252934/stream/297385" ><div class="radio-container"><img class="oui-image-cover" title= "Manarat Edu" src="./image/radiomanarat.png" ><span class="radiotitle">Manarat Edu</span></div></a></li>
     <li><a id="08" href="https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Hit Radio " src="./image/hit.png" ><span class="radiotitle"> Hit Radio </span></div></a></li>
     <li><a id="09" href="http://mgharba.ice.infomaniak.ch/mgharba-128.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Hit Radio Mgharba " src="./image/hit-mgharba.png" ><span class="radiotitle"> Hit Radio Mgharba </span></div></a></li>
