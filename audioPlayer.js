@@ -21,10 +21,8 @@
 /*------------------------------------------------*/
 // Press spacebar to Play/Pause.
 var x = document.getElementsByClassName("oui-image-cover");
-
-
-
 var audio = document.getElementById('audioPlayer');
+
 
 
 if (audio) {
@@ -57,10 +55,13 @@ function togglePlayPause() {
    if (! mediaPlayer.paused) {
       btn.title = 'play';
       btn.className = 'play';
+      audio.poster = x[this.trackPos].src;
+
    }
    else {
       btn.title = 'pause';
       btn.className = 'pause';
+      audio.poster = x[this.trackPos].src;
    }
 }
 
@@ -77,9 +78,6 @@ class AudioPlaylist{
         return this.trackOrder;
     }
 	
-
- 
-
     setTrack(arrayPos) {
         const liPos = this.trackOrder[arrayPos];
         const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
@@ -103,6 +101,7 @@ class AudioPlaylist{
         this.trackPos = arrayPos;
         document.title = x[this.trackPos].title;
         document.getElementById("demo").innerHTML = x[this.trackPos].title;
+        audio.poster = x[this.trackPos].src;
         togglePlayPause();
     }
 	
@@ -112,11 +111,13 @@ playpause(){
 	   event.preventDefault();
       audio.paused ? audio.play() : audio.pause();
 	  document.title = x[this.trackPos].title;
+      audio.poster = x[this.trackPos].src;
+
 
 
 }
 
-    prevTrack(){
+prevTrack(){
 		var btn = document.getElementById('play-pause-button');
 		    var btn = $(".button");
 
@@ -128,8 +129,8 @@ playpause(){
       btn.className = 'pause';
 	  	    //togglePlayPause();
 	document.title = x[this.trackPos].title;
-						   document.getElementById("demo").innerHTML = x[this.trackPos].title;
-						   
+	document.getElementById("demo").innerHTML = x[this.trackPos].title;
+    audio.poster = x[this.trackPos].src;
 
     }
 	
@@ -149,11 +150,10 @@ btn.className = 'pause';
 //togglePlayPause();
 document.title = x[this.trackPos].title;
 document.getElementById("demo").innerHTML = x[this.trackPos].title;
+audio.poster = x[this.trackPos].src;
 }
 
 	
-
-
 
 constructor(config = {} ){
         
@@ -190,8 +190,7 @@ constructor(config = {} ){
             classObj.player.play();
 document.title = x[this.trackPos].title;
 document.getElementById("demo").innerHTML = x[this.trackPos].title;
-
-
+audio.poster = x[this.trackPos].src;
         });
   
     }
