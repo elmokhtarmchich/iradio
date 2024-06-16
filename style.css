@@ -20,8 +20,7 @@ body {
 .row {
 z-index: 1;
 width: 100%;
-min-height: 60px;
-max-height: 70px;
+height: 70px;
 position: fixed;
 left: 50%; 
 transform: translateX(-50%);
@@ -32,6 +31,8 @@ border-width: 2px 0px 0px 0px;
 background-color: rgb(59, 56, 73);
 display: flex;
 justify-content: center;
+object-fit: contain;
+padding: 5px;
 }
 
 .column {
@@ -39,9 +40,8 @@ object-fit: contain;
 float: left;
 width: 25%;
 max-width: 100px;
-padding: 5px;
 cursor: pointer;
-height: 70px;
+height: 100%;
 border-radius: 999px;
 transition: 0.6s;
 border: 0px solid #1e5469;
@@ -51,12 +51,11 @@ justify-content: center;
 }
 
 .column img {
-  height: 45px; 
+  height: 100%; 
   width: auto; 
   filter: invert(1); 
   display: table-cell;  
-  margin: auto; 
-  object-fit: contain;
+  padding: 5px;
   }
 
 .column:hover {
@@ -160,7 +159,7 @@ background: radial-gradient(circle, rgba(63,251,246,1) 0%, rgba(252,146,70,1) 10
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3ffbf6",endColorstr="#fc9246",GradientType=1);
 }
 
-#playlist .current-song{
+#playlist .current-video{
 background-color: #ffcc00;
 }
 
