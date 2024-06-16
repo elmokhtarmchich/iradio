@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('keydown', function (event) {
             if (event.key === ' ') { // spacebar
                 event.preventDefault();
-                togglePlayPause();
                 video.paused ? video.play() : video.pause();
+                togglePlayPause();
+
             }
         });
     }
@@ -145,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
             this.trackPos = arrayPos;
             this.updateUI();
+            togglePlayPause();
         }
 
         playPause() {
@@ -175,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateUI() {
             document.title = x[this.trackPos].title;
             document.getElementById("demo").innerHTML = x[this.trackPos].title;
-            video.poster = x[this.trackPos].src;
+            togglePlayPause();
         }
     }
 
@@ -190,10 +192,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function togglePlayPause() {
         if (!video.paused) {
-            playPauseBtn.src = './image/play.png';
+            playPauseBtn.src = './image/pause.png';
             video.poster = x[playlist.trackPos].src;
         } else {
-            playPauseBtn.src = './image/pause.png';
+            playPauseBtn.src = './image/play.png';
             video.poster = x[playlist.trackPos].src;
         }
     }
