@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Configuration
-    const config = {
+    var config = {
         autoplay: true,
         shuffle: true,
+        activeItem: 0,
         volume: 0.9,
         autoPlay: false,
         preload: "auto",
@@ -26,66 +26,54 @@ document.addEventListener('DOMContentLoaded', function () {
         autoOpenPopup: false
     };
 
-    // Elements
-    const video = document.getElementById('videoPlayer');
-    const playPauseBtn = document.getElementById('play-pause-button');
-    const nextBtn = document.getElementById('next-button');
-    const prevBtn = document.getElementById('prev-button');
-    const x = document.getElementsByClassName("oui-image-cover");
+    var video = document.getElementById('videoPlayer');
+    var playPauseBtn = document.getElementById('play-pause-button');
+    var nextBtn = document.getElementById('next-button');
+    var prevBtn = document.getElementById('prev-button');
+    var x = document.getElementsByClassName("oui-image-cover");
 
-    // Keyboard controls
     if (video) {
         window.addEventListener('keydown', function (event) {
             if (event.key === ' ') { // spacebar
+                togglePlayPause();
                 event.preventDefault();
                 video.paused ? video.play() : video.pause();
-                togglePlayPause();
-
             }
         });
     }
 
-    // Class for video playlist
     class VideoPlaylist {
         constructor(config = {}) {
-            this.shuffle = config.shuffle;
+            var classObj = this;
+            this.shuffle = config.shuffle || false;
             this.playerId = config.playerId || "videoPlayer";
             this.playlistId = config.playlistId || "playlist";
             this.currentClass = config.currentClass || "current-video";
             this.length = document.querySelectorAll(`#${this.playlistId} li`).length;
             this.player = document.getElementById(this.playerId);
             this.autoplay = config.autoplay || this.player.autoplay;
-            this.loop = config.loop;
+            this.loop = config.loop || false;
             this.trackPos = 0;
             this.trackOrder = Array.from({ length: this.length }, (_, i) => i);
 
-            this.init();
-        }
-
-        init() {
-            document.querySelectorAll(`#${this.playlistId} li a`).forEach((link, index) => {
-                link.addEventListener('click', (e) => {
+            document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
+                element.addEventListener('click', function (e) {
                     e.preventDefault();
-                    this.setTrack(this.trackOrder.indexOf(index));
-                    this.player.play();
-                    this.updateUI();
+                    classObj.setTrack(index);
+                    classObj.player.play();
+                    classObj.updateUI();
+                    togglePlayPause();
                 });
             });
 
             if ('mediaSession' in navigator) {
-                navigator.mediaSession.setActionHandler('previoustrack', () => this.prevTrack());
-                navigator.mediaSession.setActionHandler('nexttrack', () => this.nextTrack());
-            }
+                navigator.mediaSession.setActionHandler('previoustrack', function () {
+                    classObj.prevTrack();
+                });
 
-            playPauseBtn.addEventListener('click', () => this.playPause());
-            prevBtn.addEventListener('click', () => this.prevTrack());
-            nextBtn.addEventListener('click', () => this.nextTrack());
-        }
-
-        randomizeOrder() {
-            for (let i = this.trackOrder.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [this.trackOrder[i], this.trackOrder[j]] = [this.trackOrder[j], this.trackOrder[i]];
+                navigator.mediaSession.setActionHandler('nexttrack', function () {
+                    classObj.nextTrack();
+                });
             }
         }
 
@@ -109,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'https://mbn-channel-04.akacast.akamaistream.net/7/26/233453/v1/ibb.akacast.akamaistream.net/mbn_channel_04',
                 'https://stream2.atlanticradio.ma:9300/stream',
                 'https://manager8.streamradio.fr:1775/stream',
-                'https://listen.radioking.com/radio/252934/stream/297385'
+                'https://listen.radioking.com/radio/252934/stream/297385',
             ];
 
             const hlsMimeTypes = [
@@ -131,11 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.hls.attachMedia(this.player);
             } else if (fileType === 'mp3' || fileType === 'ogg' || fileType === 'aac' || fileHash === "aud") {
                 this.player.src = trackUrl;
-            } else if (hlsMimeTypes.some(type => this.player.canPlayType(type) !== '')) {
-                this.player.src = trackUrl;
             } else {
-                console.error('Unsupported media type');
-                return;
+                if (hlsMimeTypes.some(type => this.player.canPlayType(type) !== '')) {
+                    this.player.src = trackUrl;
+                } else {
+                    console.error('Unsupported media type');
+                    return;
+                }
             }
 
             this.player.play().catch(error => {
@@ -146,17 +136,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
             this.trackPos = arrayPos;
             this.updateUI();
-            togglePlayPause();
         }
 
         playPause() {
-            togglePlayPause();
             event.preventDefault();
             video.paused ? video.play() : video.pause();
+            togglePlayPause();
         }
 
         prevTrack() {
-            this.trackPos === 0 ? this.setTrack(0) : this.setTrack(this.trackPos - 1);
+            if (this.trackPos === 0) {
+                this.setTrack(0);
+            } else {
+                this.setTrack(this.trackPos - 1);
+            }
             this.player.play();
             playPauseBtn.src = './image/pause.png';
             this.updateUI();
@@ -166,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.trackPos < this.length - 1) {
                 this.setTrack(this.trackPos + 1);
             } else {
-                if (this.shuffle) this.randomizeOrder();
                 this.setTrack(0);
             }
             this.player.play();
@@ -177,13 +169,16 @@ document.addEventListener('DOMContentLoaded', function () {
         updateUI() {
             document.title = x[this.trackPos].title;
             document.getElementById("demo").innerHTML = x[this.trackPos].title;
-            togglePlayPause();
+            video.poster = x[this.trackPos].src;
         }
     }
 
-    const playlist = new VideoPlaylist(config);
+    var playlist = new VideoPlaylist(config);
 
-    // Prevent links from opening in a new tab
+    playPauseBtn.addEventListener('click', () => playlist.playPause());
+    prevBtn.addEventListener('click', () => playlist.prevTrack());
+    nextBtn.addEventListener('click', () => playlist.nextTrack());
+
     document.addEventListener('click', function (event) {
         if (event.target.tagName === 'A' && event.target.closest(`#${playlist.playlistId}`)) {
             event.preventDefault();
@@ -192,11 +187,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function togglePlayPause() {
         if (!video.paused) {
-            playPauseBtn.src = './image/pause.png';
-            video.poster = x[playlist.trackPos].src;
-        } else {
             playPauseBtn.src = './image/play.png';
-            video.poster = x[playlist.trackPos].src;
+        } else {
+            playPauseBtn.src = './image/pause.png';
         }
+        video.poster = x[playlist.trackPos].src;
     }
 });
