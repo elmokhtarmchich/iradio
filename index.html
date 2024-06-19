@@ -25,9 +25,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
 <link rel="manifest" href="./manifest.webmanifest">
 
-<link rel="stylesheet" href="./style.css">
+<link href="./style.css" rel="stylesheet">
 <link href="./topnav.css" rel="stylesheet">
 <link href="./contact.css" rel="stylesheet">
+<link href="./playerstyle.css" rel="stylesheet">
+
 
 <script src="https://iradio.ma/script.js"></script>
 <script src="https://iradio.ma/index.js" defer></script>
@@ -71,27 +73,30 @@
     <!-- / TOPNAV -->
 
     <video id="videoPlayer" controls width="640" height="360">
+      <source src="https://asmaki.ma:8000/radio.mp3" type="audio/mpeg" />    
     </video>
 
     <div class="row">
-      <div class="column">
-    <p id="demo">Playing..</p>
-      </div>
-      <div class="column">
-    <img alt="previous" id="prev-button" src="./image/prev.png"> 
-      </div> 
-      <div class="column">
-    <img alt="play/pause" id="play-pause-button" src="./image/play.png">
-      </div>  
-      <div class="column">
-    <img alt="next" id="next-button" src="./image/next.png">
-      </div>
+      <div class="music-widget">
+        <div class="cover" >
+            <img id="coverimg" src="https://th.bing.com/th/id/R.e157286bde8e6704824d9e0d9d42ec0c?rik=1T5XsDFcP1ciXA&pid=ImgRaw&r=0" alt="Album Cover">
+        </div>
+        <div class="details">
+            <div class="artist" id="artist">Now Playing ...</div>
+            <div class="song-title">Programme</div>
+            <div class="controls">
+                <button class="prev" id="prev-button"><img src="./image/prev.png" alt="Previous"></button>
+                <button class="play-pause"  id="play-pause-button"><img id="play-pause-button-img" src="./image/play.png" alt="Play/Pause"></button>
+                <button class="next" id="next-button"><img src="./image/next.png" alt="Next"></button>
+            </div>
+        </div>
+    </div>
     </div>
 
 
 <div class="container" id="main">
   <ul id="playlist">
-    <li class="current-video">
+    <li>
       <a id="01" href="https://stream.bodkas.com/playlist?id=3" >
         <div class="radio-container"><img class="oui-image-cover" title= "Med Radio " src="./image/med.png" >
       <span class="radiotitle">Med Radio</span>
@@ -99,14 +104,14 @@
       </a>
     </li>
     <li>
-      <a id="02" href="https://m.live.net.sa:1935/live/quransa/playlist.m3u8" >
+      <a id="02" href="http://m.live.net.sa:1935/live/quransa/playlist.m3u8" >
         <div class="radio-container">
           <img class="oui-image-cover" title= "Radio Coran " src="./image/coran.png" >
           <span class="radiotitle">Coran</span>
         </div>
       </a>
     </li>
-    <li><a id="61" href="https://asmaki.ma:8000/radio.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Zin B'ladi" src="./image/zinbladi.png" ><span class="radiotitle">Zin B'ladi</span></div></a></li>
+    <li class="current-video"><a id="61" href="https://asmaki.ma:8000/radio.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Zin B'ladi" src="./image/zinbladi.png" ><span class="radiotitle">Zin B'ladi</span></div></a></li>
     <li><a id="03" href="https://medinafm.ice.infomaniak.ch/medinafm-128.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Medina FM " src="./image/medina.png" ><span class="radiotitle"> Medina FM </span></div></a></li>
     <li><a id="62" href="https://streaming.rimradio.ma/live#aud" ><div class="radio-container"><img class="oui-image-cover" title= "Rim Radio" src="./image/rimradio.png" ><span class="radiotitle">Rim Radio</span></span></div></a></li>
     <li><a id="04" href="https://stream.bodkas.com/playlist?id=chadafmradio" ><div class="radio-container"><img class="oui-image-cover" title= "Chada FM " src="./image/chada.png" ><span class="radiotitle"> Chada FM </span></div></a></li>
