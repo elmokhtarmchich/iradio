@@ -28,16 +28,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var video = document.getElementById('videoPlayer');
     var playPauseBtn = document.getElementById('play-pause-button');
+    var playPauseBtnImg = document.getElementById('play-pause-button-img');
     var nextBtn = document.getElementById('next-button');
     var prevBtn = document.getElementById('prev-button');
     var x = document.getElementsByClassName("oui-image-cover");
+    var coverimg = document.getElementById("coverimg")
 
     if (video) {
         window.addEventListener('keydown', function (event) {
             if (event.key === ' ') { // spacebar
-                togglePlayPause();
                 event.preventDefault();
                 video.paused ? video.play() : video.pause();
+                togglePlayPause();
             }
         });
     }
@@ -151,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.setTrack(this.trackPos - 1);
             }
             this.player.play();
-            playPauseBtn.src = './image/pause.png';
+            playPauseBtnImg.src = './image/pause.png';
             this.updateUI();
         }
 
@@ -162,14 +164,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.setTrack(0);
             }
             this.player.play();
-            playPauseBtn.src = './image/pause.png';
+            playPauseBtnImg.src = './image/pause.png';
             this.updateUI();
         }
 
         updateUI() {
             document.title = x[this.trackPos].title;
-            document.getElementById("demo").innerHTML = x[this.trackPos].title;
-            video.poster = x[this.trackPos].src;
+            document.getElementById("artist").innerHTML = x[this.trackPos].title;
+            coverimg.src = x[this.trackPos].src;
+            togglePlayPause();
         }
     }
 
@@ -187,10 +190,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function togglePlayPause() {
         if (!video.paused) {
-            playPauseBtn.src = './image/play.png';
+            playPauseBtnImg.src = './image/pause.png';
         } else {
-            playPauseBtn.src = './image/pause.png';
+            playPauseBtnImg.src = './image/play.png';
         }
-        video.poster = x[playlist.trackPos].src;
+        coverimg.src = x[this.trackPos].src;
     }
 });
+
+
+
+function monitorPlayerToggle() {
+    var video = document.getElementById('videoPlayer');
+    var playPauseBtnImg = document.getElementById('play-pause-button-img');
+    var x = document.getElementsByClassName("oui-image-cover");
+
+    function updatePlayPauseIcon() {
+        if (video.paused) {
+            playPauseBtnImg.src = './image/play.png';
+        } else {
+            playPauseBtnImg.src = './image/pause.png';
+        }
+        coverimg.src = x[this.trackPos].src;
+    }
+
+    video.addEventListener('play', updatePlayPauseIcon);
+    video.addEventListener('pause', updatePlayPauseIcon);
+    video.addEventListener('ended', updatePlayPauseIcon);
+}
