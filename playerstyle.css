@@ -5,11 +5,11 @@
   
 .row {
     z-index: 1;
-    width: 50%;
-    min-width: 450px;
+    width: 100%;
+    max-width: 500px;
     height: auto;
     position: fixed;
-    left: 50%; 
+    left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
     display: flex;
@@ -19,7 +19,7 @@
     }
         .music-widget {
             display: flex;
-            width:100%;
+            width: 100%;
             max-width: 500px;
             height: 130px;
             box-shadow: 0 4px 8px rgba(110, 95, 95, 0.521);
@@ -29,9 +29,10 @@
             font-family: "OpenSymbol";
             background-color: rgba(78, 140, 172, 85%);
             backdrop-filter: blur(10px);
-            margin-bottom: 0.3cm;            
-            margin-left: 0.4cm;
-            margin-right: 0.4cm;
+            margin-bottom: 3vw;
+            margin-left: 2vw;
+            margin-right: 2vw;
+        }
         }
 
         .cover {
