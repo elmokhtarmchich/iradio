@@ -27,11 +27,11 @@
             overflow: hidden;
             padding: 10px;
             font-family: "OpenSymbol";
-            background-color: rgb(48 79 94 / 95%);
+            background-color: rgba(78, 140, 172, 85%);
             backdrop-filter: blur(10px);
-margin-bottom: 10px;            
-margin-left: 20px;
-            margin-right: 20px;
+            margin-bottom: 0.3cm;            
+            margin-left: 0.4cm;
+            margin-right: 0.4cm;
         }
 
         .cover {
@@ -84,13 +84,13 @@ margin-left: 20px;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
         }
 
         button img {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
         }
 
         button:focus {
