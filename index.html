@@ -33,6 +33,8 @@
 
 <script src="https://iradio.ma/script.js"></script>
 <script src="https://iradio.ma/index.js" defer></script>
+<script src="indicator.js" defer></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +80,7 @@
 
     <div class="row">
       <div class="music-widget">
+        <div id="indicator" class="indicator"></div>
         <div class="cover" >
             <img id="coverimg" src="./image/defaultplayerimg.webp" alt="Album Cover">
         </div>
@@ -158,13 +161,13 @@
     <li><a id="44" href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8" ><div class="radio-container"><img class="oui-image-cover" title= " إذاعة اغادير " src="./image/agadir.png" ><span class="radiotitle"> Agadir snrt </span></div></a></li>
     <li><a id="45" href="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8" ><div class="radio-container"><img class="oui-image-cover" title= " مة 􁘭 إذاعةالحس " src="./image/hoceima.png" ><span class="radiotitle"> Hoceima snrt </span></div></a></li>
     <li><a id="46" href="http://channel0.moroccanvoice.com:8000/;stream/1" ><div class="radio-container"><img class="oui-image-cover" title= "Moroccan Voice Radio " src="./image/morrocan.png" ><span class="radiotitle"> Moroccan Voice </span></div></a></li>
-    <li><a id="47" href="http://stream1.coran.tk:8005/stream/1/" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Chabab Maroc " src="./image/chabab-maroc.png" ><span class="radiotitle"> Chabab Maroc </span></div></a></li>
-    <li><a id="48" href="http://radio.nessradio.net:8000/nessradio.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Nass Radio " src="./image/ness.png" ><span class="radiotitle"> Nass Radio </span></div></a></li>
+    <li><a id="47" href="http://streaming.radionomy.com/jeunesradioma#aud" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Chabab Maroc " src="./image/chabab-maroc.png" ><span class="radiotitle"> Chabab Maroc </span></div></a></li>
+    <li><a id="48" href="https://radio.nessradio.net:8212/nessradio#aud" ><div class="radio-container"><img class="oui-image-cover" title= "Nass Radio " src="./image/ness.png" ><span class="radiotitle"> Nass Radio </span></div></a></li>
     <li><a id="49" href="http://rpc.ice.infomaniak.ch/rpc-casa.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Plus Casablanca " src="./image/plus-casablanca.png" ><span class="radiotitle"> Plus Casablanca </span></div></a></li>
     <li><a id="50" href="http://rpc.ice.infomaniak.ch/rpc-kesh.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Plus Marrakech " src="./image/plus-marrakech.png" ><span class="radiotitle"> Plus Marrakech </span></div></a></li>
     <li><a id="51" href="http://rpc.ice.infomaniak.ch/rpc-agadir.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Plus Agadir " src="./image/plus-agadir.png" ><span class="radiotitle"> Plus Agadir </span></div></a></li>
     <li><a id="52" href="https://radio.yabiladi.com:8002/;stream.mp3" ><div class="radio-container"><img class="oui-image-cover" title= "Radio Yabiladi " src="./image/yabiladi.png" ><span class="radiotitle"> Radio Yabiladi </span></div></a></li>
-    <li><a id="53" href="https://izlan.fr/radios/atlas/stream" ><div class="radio-container"><img class="oui-image-cover" title= "Izlanzik Radio " src="./image/izlanzik.png" ><span class="radiotitle"> Izlanzik Radio </span></div></a></li>
+    <li><a id="53" href="https://izlan.fr/radios/atlas/stream#aud" ><div class="radio-container"><img class="oui-image-cover" title= "Izlanzik Radio " src="./image/izlanzik.png" ><span class="radiotitle"> Izlanzik Radio </span></div></a></li>
     <li><a id="54" href="https://play.radioking.io/cap-radio3/698011#aud" ><div class="radio-container"><img class="oui-image-cover" title= "Cap Radio " src="./image/cap.png" ><span class="radiotitle"> Cap Radio </span></div></a></li>
     <li><a id="55" href="http://162.210.196.145:20016/stream.mp3" ><div class="radio-container"><img class="oui-image-cover" title= " Sawt Ouarzazate " src="./image/sawt-ouarzazate.png" ><span class="radiotitle"> Sawt Ouarzazate </span></div></a></li>
     <li><a id="56" href="http://stream3.broadcast-associes.com:8405/Radio-Orient" ><div class="radio-container"><img class="oui-image-cover" title= "Orient FM " src="./image/orient-fm.png" ><span class="radiotitle"> Orient FM </span></div></a></li>
