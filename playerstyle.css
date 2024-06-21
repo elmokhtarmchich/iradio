@@ -2,6 +2,34 @@
     font-family: "OpenSymbol";
     src: url("https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web@1.0.0/oui-css/fonts/samsungone-300-webfont.woff") format("truetype");	
     }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: red; /* Default color for paused state */
+    }
+
+    .blink {
+        animation: blink-animation 1s steps(5, start) infinite;
+    }
+
+    @keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    .orange {
+        background-color: orange; /* Loading or buffering state */
+    }
+
+    .green {
+        background-color: green; /* Playing state */
+    }
   
 .row {
     z-index: 1;
@@ -30,8 +58,8 @@
             background-color: rgba(78, 140, 172, 85%);
             backdrop-filter: blur(10px);
             margin-bottom: 3vw;
-            margin-left: 3vw;
-            margin-right: 3vw;
+            margin-left: 2vw;
+            margin-right: 2vw;
         }
         }
 
