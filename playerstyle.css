@@ -130,3 +130,6 @@
         button:hover {
             background-color: rgb(60, 83, 83);
         }
+#web-btn:hover {
+  background: #217dbb;
+}
