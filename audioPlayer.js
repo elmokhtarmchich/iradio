@@ -218,3 +218,27 @@ function monitorPlayerToggle() {
     video.addEventListener('pause', updatePlayPauseIcon);
     video.addEventListener('ended', updatePlayPauseIcon);
 }
+
+
+
+
+
+// playlist = [{ID:..., OfficialWebsite:...}, ...]
+// stationId = current station's ID
+
+function updateWebButton(stationId, playlist) {
+    var btn = document.getElementById('web-btn');
+    var station = playlist.find(st => st.ID === stationId);
+    if (station && station.OfficialWebsite) {
+        btn.style.display = 'inline-block';
+        btn.onclick = function() {
+            window.open(station.OfficialWebsite, '_blank');
+        }
+    } else {
+        btn.style.display = 'none';
+        btn.onclick = null;
+    }
+}
+
+// Example usage:
+// updateWebButton(currentStationId, playlist);
