@@ -230,7 +230,6 @@ function updateWebButton(stationId, playlist) {
     var btn = document.getElementById('web-btn');
     var station = playlist.find(st => st.ID === stationId);
     if (station && station.OfficialWebsite) {
-        btn.style.display = 'inline-block';
         btn.onclick = function() {
             window.open(station.OfficialWebsite, '_blank');
         }
@@ -242,3 +241,40 @@ function updateWebButton(stationId, playlist) {
 
 // Example usage:
 // updateWebButton(currentStationId, playlist);
+
+async function fetchDatabase() {
+    const response = await fetch('database.csv');
+    const text = await response.text();
+    const rows = text.split('\n').map(row => row.split(','));
+    const headers = rows.shift(); // Extract headers
+    return rows.map(row => Object.fromEntries(row.map((value, index) => [headers[index], value])));
+}
+
+async function updateWebButton() {
+    const stationId = getStationIdFromPlaylist();
+    if (!stationId) {
+        alert('No station is currently playing.');
+        return;
+    }
+
+    const database = await fetchDatabase();
+    const station = database.find(st => st.stationId === stationId);
+
+    const btn = document.getElementById('web-btn');
+    if (station && station.OfficialWebsite) {
+        btn.style.display = 'block';
+        btn.onclick = function () {
+            window.open(station.OfficialWebsite, '_blank');
+        };
+    } else {
+        btn.style.display = 'none';
+        btn.onclick = null;
+    }
+}
+
+document.getElementById('web-btn').addEventListener('click', updateWebButton);
+
+function getStationIdFromPlaylist() {
+    const currentElement = document.querySelector(`#playlist li.current-video a`);
+    return currentElement?.dataset.id || null; // Return the data-id or null
+}
