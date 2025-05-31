@@ -226,22 +226,6 @@ function monitorPlayerToggle() {
 // playlist = [{ID:..., OfficialWebsite:...}, ...]
 // stationId = current station's ID
 
-function updateWebButton(stationId, playlist) {
-    var btn = document.getElementById('web-btn');
-    var station = playlist.find(st => st.ID === stationId);
-    if (station && station.OfficialWebsite) {
-        btn.onclick = function() {
-            window.open(station.OfficialWebsite, '_blank');
-        }
-    } else {
-        btn.style.display = 'none';
-        btn.onclick = null;
-    }
-}
-
-// Example usage:
-// updateWebButton(currentStationId, playlist);
-
 async function fetchDatabase() {
     const response = await fetch('database.csv');
     const text = await response.text();
@@ -252,20 +236,23 @@ async function fetchDatabase() {
 
 async function updateWebButton() {
     const stationId = getStationIdFromPlaylist();
+    const btn = document.getElementById('web-btn');
+
     if (!stationId) {
+        btn.style.display = 'none'; // Hide button if no station is playing
+        btn.onclick = null;
         alert('No station is currently playing.');
         return;
     }
 
     const database = await fetchDatabase();
-    const station = database.find(st => st.stationId === stationId);
+    const station = database.find(st => st.StationId === stationId); // Ensure column name matches "StationId"
 
-    const btn = document.getElementById('web-btn');
     if (station && station.OfficialWebsite) {
-        btn.onclick = function () {
-            window.open(station.OfficialWebsite, '_blank');
-        };
+        btn.style.display = 'block'; // Show button
+        btn.onclick = () => window.open(station.OfficialWebsite, '_blank'); // Open website
     } else {
+        btn.style.display = 'none'; // Hide button if no website is found
         btn.onclick = null;
     }
 }
