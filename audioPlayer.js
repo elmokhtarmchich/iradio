@@ -263,3 +263,13 @@ function getStationIdFromPlaylist() {
     const currentElement = document.querySelector(`#playlist li.current-video a`);
     return currentElement?.dataset.id || null; // Return the data-id or null
 }
+
+// Update the web button whenever the station changes
+document.getElementById('web-btn').addEventListener('click', updateWebButton);
+
+// Ensure the web button is updated immediately after the station changes
+document.querySelectorAll(`#playlist li a`).forEach((element) => {
+    element.addEventListener('click', async () => {
+        await updateWebButton();
+    });
+});
