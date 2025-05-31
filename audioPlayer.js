@@ -262,12 +262,10 @@ async function updateWebButton() {
 
     const btn = document.getElementById('web-btn');
     if (station && station.OfficialWebsite) {
-        btn.style.display = 'block';
         btn.onclick = function () {
             window.open(station.OfficialWebsite, '_blank');
         };
     } else {
-        btn.style.display = 'none';
         btn.onclick = null;
     }
 }
