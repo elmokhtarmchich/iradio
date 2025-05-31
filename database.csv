@@ -1,66 +1,63 @@
-stationId,audio stream url,Title,Title,OfficialWebsite
-10,https://asmaki.ma:8000/radio.mp3,Radio Zin B'ladi,Radio Zin B'ladi,https://zin-bladi.ma
-11,https://medinafm.ice.infomaniak.ch/medinafm-128.mp3,Medina FM ,Medina FM,https://medinafm.ma
-12,https://stream.bodkas.com/playlist?id=chadafmradio,Chada FM ,Chada FM,https://chadafm.ma
-13,https://streaming.rimradio.ma/live#aud,Rim Radio,Rim Radio,https://rimradio.ma
-14,https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8,Medi 1 ,Medi 1 Radio,https://medi1.com
-15,https://live-hls-audio-web-aja.getaj.net/VOICE-AJA/01.m3u8,Al-Jazeera ,Al-Jazeera,https://aljazeera.com
-16,https://cdn-globecast.akamaized.net/live/eds/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400=1.m3u8,Radio 2M ,Radio 2M,https://radio2m.ma
-17,https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3,Monte Carlo ,Monte Carlo,https://mc-doualiya.net
-18,https://atlantic-sonic.nindohost.net:9300/stream#aud,Atlantic Radio ,Atlantic Radio,https://atlanticradio.ma
-19,https://a5.asurahosting.com:7980/radio.mp3,MFM Radio ,MFM Radio,https://mfm.ma
-20,http://radiomars.ice.infomaniak.ch/radiomars-128.mp3,Radio Mars ,Radio Mars,https://radiomars.ma
-21,https://aswat.ice.infomaniak.ch/aswat-high.mp3,Aswat ,Aswat,https://aswat.ma
-22,https://listen.radioking.com/radio/710810/stream/776366#aud,Cap Radio ,Cap Radio,https://capradio.ma
-23,https://listen.radioking.com/radio/252934/stream/297385#aud,Manarat Edu,Manarat Edu,https://manaratedu.ma
-24,https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3,Hit Radio ,Hit Radio,https://hitradio.ma
-25,http://mgharba.ice.infomaniak.ch/mgharba-128.mp3,Hit Radio Mgharba ,Hit Radio Mgharba,https://hrmgharba.ma
-26,https://gold.ice.infomaniak.ch/gold-128.mp3,Hit Radio Classic ,Hit Radio Classic,https://hrclassic.ma
-27,https://buzz.ice.infomaniak.ch/buzz-128.mp3,Hit Radio Tiktok ,Hit Radio Tiktok,https://hrtiktok.ma
-28,http://dancefloor.ice.infomaniak.ch/dancefloor-128.mp3,Hit Radio Party ,Hit Radio Party,https://hrparty.ma
-29,https://rnb.ice.infomaniak.ch/rnb-128.mp3,Hit Radio Urban ,Hit Radio Urban,https://hrurban.ma
-30,https://wayway.ice.infomaniak.ch/wayway-128.mp3,Hit Radio WayWay ,Hit Radio WayWay,https://hrwayway.ma
-31,https://u80.ice.infomaniak.ch/u80-128.aac,Urban 80's ,Urban 80's,https://urban80s.ma
-32,https://udance.ice.infomaniak.ch/udance-128.aac,Urban Dance ,Urban Dance,https://urbandance.ma
-33,https://urban.ice.infomaniak.ch/urban-128.aac,Urban ,Urban,https://urban.ma
-34,https://uradio-aac.ice.infomaniak.ch/uradio.aac,Urban Radio ,Urban Radio,https://urbanradio.ma
-35,https://upop.ice.infomaniak.ch/upop-128.aac,Urban PoP ,Urban PoP,https://urbanpop.ma
-36,https://u90.ice.infomaniak.ch/u90-128.aac,Urban 90's ,Urban 90's,https://urban90s.ma
-37,https://a2.asurahosting.com:6100/radio.mp3,Radio Star ,Radio Star,https://radiostar.ma
-38,https://radiosoleil.ice.infomaniak.ch/radiosoleil-128.mp3,Radio Soleil ,Radio Soleil,https://radiosoleil.ma
-39,http://broadcast.infomaniak.net/onlyrai-high.mp3,Radio Only Ra? ,Radio Only Ray,https://onlyrai.ma
-40,https://scdn.nrjaudio.fm/adwz1/ma/55820/aac_64.mp3?origine=nrjmaroc.com,NRJ Maroc ,NRJ Maroc,https://nrj.ma
-41,https://mbnv-audio-ingest.akamaized.net/hls/live/2038905/MBNV_SAWA_LEVANT_AUDIO_HLS/master_11.m3u8,Radio Sawa ,Radio Sawa,https://radiosawa.net
-42,http://channel0.moroccanvoice.com:8000/;stream/1,Moroccan Voice Radio ,Moroccan Voice,https://moroccanvoice.com
-43,http://streaming.radionomy.com/jeunesradioma#aud,Radio Chabab Maroc ,Chabab Maroc,https://chababmaroc.ma
-44,https://radio.nessradio.net:8212/nessradio#aud,Nass Radio ,Nass Radio,https://nessradio.ma
-45,http://rpc.ice.infomaniak.ch/rpc-casa.mp3,Radio Plus Casablanca ,Plus Casablanca,https://rpc-casa.ma
-46,http://rpc.ice.infomaniak.ch/rpc-kesh.mp3,Radio Plus Marrakech ,Plus Marrakech,https://rpc-kesh.ma
-47,http://rpc.ice.infomaniak.ch/rpc-agadir.mp3,Radio Plus Agadir ,Plus Agadir,https://rpc-agadir.ma
-48,https://radio.yabiladi.com:8002/;stream.mp3,Radio Yabiladi ,Radio Yabiladi,https://yabiladi.com
-49,https://stream.zeno.fm/7nqu31p6xg0uv#aud,Achkid FM,Achkid FM,https://achkidfm.ma
-50,https://izlan.fr/radios/atlas/stream#aud,Izlanzik Radio ,Izlanzik Radio,https://izlan.fr
-51,http://162.210.196.145:20016/stream.mp3, Sawt Ouarzazate ,Sawt Ouarzazate,https://sawtouarzazate.ma
-52,http://stream3.broadcast-associes.com:8405/Radio-Orient,Orient FM ,Orient FM,https://orientfm.ma
-53,https://streaming.radionomy.com/MarocMusic#aud,Radio Maroc Music ,Maroc Music,https://marocmusic.ma
-54,http://radiotangermed-22.ice.infomaniak.ch/radiotangermed-22-128.mp3,TANGER MED,TANGER MED,https://tangermed.ma
-55,http://stream.zenolive.com/bqdbb6hd0neuv#aud,Radio Atbir ,Radio Atbir,https://atbir.ma
-56,https://radiocampus.ice.infomaniak.ch/radiocampus-128.mp3,Oxygene Radio,Oxygene Radio,https://radiocampus.ma
-58,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/radio_chaine_inter-mp4a_130400_qad=1.m3u8,Radio Chaine Inter ,Radio Chaine Inter,https://chaineinter.ma
-59,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/index.m3u8,Idaa Al Watania ,Idaa Al Watania,https://iddaawataniya.ma
-60,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/radio_mohammed_6-mp4a_130400_qad=1.m3u8,Assadisa SNRT,Assadissa SNRT,https://assadissa.snrt.ma
-61,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/radio_amazigh-mp4a_130400_qad=1.m3u8,Amazighia,Amazighia SNRT,https://amazighia.snrt.ma
-62,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8,Meknes snrt,Meknes snrt,https://snrt.ma/radio/meknes
-63,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8,Fes snrt,Fes snrt,https://snrt.ma/radio/fes
-64,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8,Tetouan snrt,Tetouan snrt,https://snrt.ma/radio/tetouan
-65,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8,Tanger snrt,Tanger snrt,https://snrt.ma/radio/tanger
-66,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8,Marrakech snrt,Marrakech snrt,https://snrt.ma/radio/marrakech
-67,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8,Casablanca snrt,Casablanca snrt,https://snrt.ma/radio/casa
-68,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8,Oujda snrt,Oujda snrt,https://snrt.ma/radio/oujda
-69,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8,Dakhla snrt,Dakhla snrt,https://snrt.ma/radio/dakhla
-70,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8,Agadir snrt,Agadir snrt,https://snrt.ma/radio/agadir
-71,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8,Elhoceima snrt,Hoceima snrt,https://snrt.ma/radio/hoceima
-ID,,,,
-123,,,,
-456,,,,
-789,,,,
+StationId,StationTitle,OfficialWebsite,StreamURL
+10,Radio Zin B'ladi,https://zin-bladi.ma,https://asmaki.ma:8000/radio.mp3
+11,Qoran,https://www.admn.ae/en/brand/4197608/quran-kareem,
+12,Medina FM,https://medinafm.ma,https://medinafm.ice.infomaniak.ch/medinafm-128.mp3
+13,Chada FM,https://chadafm.ma,https://stream.bodkas.com/playlist?id=chadafmradio
+14,Rim Radio,https://rimradio.ma,https://streaming.rimradio.ma/live#aud
+15,Medi 1 Radio,https://medi1.com,https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8
+16,Al-Jazeera,https://aljazeera.com,https://live-hls-audio-web-aja.getaj.net/VOICE-AJA/01.m3u8
+17,Med Radio,https://medradio.ma/,
+18,Radio 2M,https://radio2m.ma,https://cdn-globecast.akamaized.net/live/eds/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400=1.m3u8
+19,Radio Chaine Inter,https://snrtlive.ma/chaine-inter,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_chaine_inter/hls_snrt_radio/radio_chaine_inter-mp4a_130400_qad=1.m3u8
+20,Idaa Al Watania,https://snrtlive.ma/ar/alidaa-alwatania,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_idaa_watanya/hls_snrt_radio/index.m3u8
+21,Assadissa SNRT,https://snrtlive.ma/assadissa,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_mohammed_6/hls_snrt_radio/radio_mohammed_6-mp4a_130400_qad=1.m3u8
+22,Amazighia SNRT,https://snrtlive.ma/ar/alidaa-alamazighia,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/radio_amazigh-mp4a_130400_qad=1.m3u8
+23,Meknes snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_meknes/hls_snrt_radio/radio_meknes-mp4a_130400_qad=1.m3u8
+24,Fes snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_fes/hls_snrt_radio/radio_fes-mp4a_130400_qad=1.m3u8
+25,Tetouan snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tetouan/hls_snrt_radio/radio_tetouan-mp4a_130400_qad=1.m3u8
+26,Tanger snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_tanger/hls_snrt_radio/radio_tanger-mp4a_130400_qad=1.m3u8
+27,Marrakech snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_marrakech/hls_snrt_radio/radio_marrakech-mp4a_130400_qad=1.m3u8
+28,Casablanca snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_casa/hls_snrt_radio/radio_casa-mp4a_130400_ara=1.m3u8
+29,Oujda snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_oujda/hls_snrt_radio/radio_oujda-mp4a_130400_qad=1.m3u8
+30,Dakhla snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_dakhla/hls_snrt_radio/radio_dakhla-mp4a_130400_qad=1.m3u8
+31,Agadir snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_agadir/hls_snrt_radio/radio_agadir-mp4a_130400_qad=1.m3u8
+32,Hoceima snrt,https://snrtlive.ma/fr/radio-regionale,https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_el_hoceima/hls_snrt_radio/radio_el_hoceima-mp4a_130400_qad=1.m3u8
+33,Monte Carlo,https://www.mc-doualiya.com/%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1,https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3
+34,Atlantic Radio,https://atlanticradio.ma,https://atlantic-sonic.nindohost.net:9300/stream#aud
+35,MFM Radio,https://mfmradio.ma,https://a5.asurahosting.com:7980/radio.mp3
+36,Radio Mars,https://radiomars.ma,http://radiomars.ice.infomaniak.ch/radiomars-128.mp3
+37,Aswat,https://aswat.ma,https://aswat.ice.infomaniak.ch/aswat-high.mp3
+38,Cap Radio,https://capradio.ma,https://listen.radioking.com/radio/710810/stream/776366#aud
+39,Manarat Edu,https://manaratedu.ma,https://listen.radioking.com/radio/252934/stream/297385#aud
+40,Hit Radio,https://hitradio.ma,https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3
+41,Hit Radio Mgharba,https://hitradio.ma,http://mgharba.ice.infomaniak.ch/mgharba-128.mp3
+42,Hit Radio Classic,https://hitradio.ma,https://gold.ice.infomaniak.ch/gold-128.mp3
+43,Hit Radio Tiktok,https://hitradio.ma,https://buzz.ice.infomaniak.ch/buzz-128.mp3
+44,Hit Radio Party,https://hitradio.ma,http://dancefloor.ice.infomaniak.ch/dancefloor-128.mp3
+45,Hit Radio Urban,https://hitradio.ma,https://rnb.ice.infomaniak.ch/rnb-128.mp3
+46,Hit Radio WayWay,https://hitradio.ma,https://wayway.ice.infomaniak.ch/wayway-128.mp3
+47,Urban 80's,https://uradio.ma/,https://u80.ice.infomaniak.ch/u80-128.aac
+48,Urban Dance,https://uradio.ma/,https://udance.ice.infomaniak.ch/udance-128.aac
+49,Urban,https://uradio.ma/,https://urban.ice.infomaniak.ch/urban-128.aac
+50,Urban Radio,https://uradio.ma/,https://uradio-aac.ice.infomaniak.ch/uradio.aac
+51,Urban PoP,https://uradio.ma/,https://upop.ice.infomaniak.ch/upop-128.aac
+52,Urban 90's,https://uradio.ma/,https://u90.ice.infomaniak.ch/u90-128.aac
+53,Radio Star,https://radiostarmaroc.com/,https://a2.asurahosting.com:6100/radio.mp3
+54,Radio Soleil,https://radiosoleil.bilsimaging.com/,https://radiosoleil.ice.infomaniak.ch/radiosoleil-128.mp3
+55,Radio Only Ray,https://onlyrai.ma,http://broadcast.infomaniak.net/onlyrai-high.mp3
+56,NRJ Maroc,https://www.nrjmaroc.com/,https://scdn.nrjaudio.fm/adwz1/ma/55820/aac_64.mp3?origine=nrjmaroc.com
+57,Radio Sawa,https://radiosawa.net,https://mbnv-audio-ingest.akamaized.net/hls/live/2038905/MBNV_SAWA_LEVANT_AUDIO_HLS/master_11.m3u8
+58,Moroccan Voice,https://moroccanvoice.com,http://channel0.moroccanvoice.com:8000/;stream/1
+59,Chabab Maroc,https://chababmaroc.ma,http://streaming.radionomy.com/jeunesradioma#aud
+60,Nass Radio,https://nessradio.ma,https://radio.nessradio.net:8212/nessradio#aud
+61,Plus Casablanca,https://teleplus.ma,http://rpc.ice.infomaniak.ch/rpc-casa.mp3
+62,Plus Agadir,https://teleplus.ma,http://rpc.ice.infomaniak.ch/rpc-agadir.mp3
+63,Radio Yabiladi,https://yabiladi.com,https://radio.yabiladi.com:8002/;stream.mp3
+64,Achkid FM,https://radioenlignefrance.com/yan-plus-radio,https://stream.zeno.fm/7nqu31p6xg0uv#aud
+65,Izlanzik Radio,https://izlan.fr,https://izlan.fr/radios/atlas/stream#aud
+66,Sawt Ouarzazate,https://sawtouarzazate.ma,http://162.210.196.145:20016/stream.mp3
+67,Orient FM,https://orientfm.ma,http://stream3.broadcast-associes.com:8405/Radio-Orient
+68,Maroc Music,https://marocmusic.ma,https://streaming.radionomy.com/MarocMusic#aud
+69,TANGER MED,https://tangermed.ma,http://radiotangermed-22.ice.infomaniak.ch/radiotangermed-22-128.mp3
+70,Radio Atbir,https://radioatbir.com/,http://stream.zenolive.com/bqdbb6hd0neuv#aud
+71,Oxygene Radio,https://oxygene.ma/,https://radiocampus.ice.infomaniak.ch/radiocampus-128.mp3
