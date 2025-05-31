@@ -219,10 +219,6 @@ function monitorPlayerToggle() {
     video.addEventListener('ended', updatePlayPauseIcon);
 }
 
-
-
-
-
 // playlist = [{ID:..., OfficialWebsite:...}, ...]
 // stationId = current station's ID
 
@@ -241,12 +237,11 @@ async function updateWebButton() {
     if (!stationId) {
         btn.style.display = 'none'; // Hide button if no station is playing
         btn.onclick = null;
-        alert('No station is currently playing.');
         return;
     }
 
     const database = await fetchDatabase();
-    const station = database.find(st => st.StationId === stationId); // Ensure column name matches "StationId"
+    const station = database.find(st => st.StationId === stationId);
 
     if (station && station.OfficialWebsite) {
         btn.style.display = 'block'; // Show button
@@ -257,19 +252,17 @@ async function updateWebButton() {
     }
 }
 
-document.getElementById('web-btn').addEventListener('click', updateWebButton);
-
 function getStationIdFromPlaylist() {
     const currentElement = document.querySelector(`#playlist li.current-video a`);
     return currentElement?.dataset.id || null; // Return the data-id or null
 }
 
-// Update the web button whenever the station changes
-document.getElementById('web-btn').addEventListener('click', updateWebButton);
-
 // Ensure the web button is updated immediately after the station changes
 document.querySelectorAll(`#playlist li a`).forEach((element) => {
     element.addEventListener('click', async () => {
-        await updateWebButton();
+        await updateWebButton(); // Update the button immediately after station change
     });
 });
+
+// Update the web button when the button is clicked
+document.getElementById('web-btn').addEventListener('click', updateWebButton);
