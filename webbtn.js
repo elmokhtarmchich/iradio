@@ -44,14 +44,14 @@ function getStationIdFromPlaylist() {
     return currentElement?.dataset.id || null;
 }
 
-// When the station changes, update the button's handler and url
+// Update the button URL and visibility when the station changes
 document.querySelectorAll(`#playlist li a`).forEach((element) => {
     element.addEventListener('click', async () => {
         await setWebButtonForCurrentStation();
     });
 });
 
-// When the button is clicked, open the url if set
+// Open the URL when the button is clicked
 document.getElementById('web-btn').addEventListener('click', function (e) {
     if (currentWebBtnUrl) {
         window.open(currentWebBtnUrl, '_blank');
@@ -60,5 +60,5 @@ document.getElementById('web-btn').addEventListener('click', function (e) {
     }
 });
 
-// Optionally, initialize on page load
+// Initialize on page load
 setWebButtonForCurrentStation();
