@@ -54,11 +54,18 @@ document.querySelectorAll(`#playlist li a`).forEach((element) => {
 // Open the URL when the button is clicked
 document.getElementById('web-btn').addEventListener('click', function (e) {
     if (currentWebBtnUrl) {
-        window.open(currentWebBtnUrl, '_blank');
+        // Always open the URL, and prevent default just in case
+        window.open(currentWebBtnUrl, '_blank', 'noopener');
+        e.preventDefault();
     } else {
+        // Optionally, show a message or just prevent default
         e.preventDefault();
     }
 });
 
-// Initialize on page load
-setWebButtonForCurrentStation();
+// Initialize on page load, and also after DOMContentLoaded to ensure button exists
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setWebButtonForCurrentStation);
+} else {
+    setWebButtonForCurrentStation();
+}
