@@ -94,11 +94,13 @@ if (webBtn) {
 
 // Initialize on page load, and also after DOMContentLoaded to ensure button exists
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded, initializing web button...');
-        setWebButtonForCurrentStation();
-    });
+    document.addEventListener('DOMContentLoaded', initializeWebButton);
+    console.log('DOM loading, initializing web button on DOMContentLoaded...');
 } else {
     console.log('DOM already loaded, initializing web button...');
-    setWebButtonForCurrentStation();
+    initializeWebButton();
+}
+
+async function initializeWebButton() {
+    await setWebButtonForCurrentStation();
 }
