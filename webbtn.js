@@ -75,7 +75,7 @@ document.querySelectorAll(`#playlist li a`).forEach((element) => {
     });
 });
 
-// Make sure the button exists before adding the event listener
+// Open the URL when the button is clicked
 const webBtn = document.getElementById('web-btn');
 if (webBtn) {
     webBtn.addEventListener('click', function (e) {
@@ -93,14 +93,15 @@ if (webBtn) {
 }
 
 // Initialize on page load, and also after DOMContentLoaded to ensure button exists
+async function initializeWebButton() {
+    console.log('Initializing web button...');
+    await setWebButtonForCurrentStation();
+}
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeWebButton);
     console.log('DOM loading, initializing web button on DOMContentLoaded...');
 } else {
     console.log('DOM already loaded, initializing web button...');
     initializeWebButton();
-}
-
-async function initializeWebButton() {
-    await setWebButtonForCurrentStation();
 }
