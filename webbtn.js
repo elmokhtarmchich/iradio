@@ -75,17 +75,22 @@ document.querySelectorAll(`#playlist li a`).forEach((element) => {
     });
 });
 
-// Open the URL when the button is clicked
-document.getElementById('web-btn').addEventListener('click', function (e) {
-    if (currentWebBtnUrl) {
-        console.log(`Opening website: ${currentWebBtnUrl}`);
-        window.open(currentWebBtnUrl, '_blank', 'noopener');
-        e.preventDefault();
-    } else {
-        console.warn('No website URL set for current station.');
-        e.preventDefault();
-    }
-});
+// Make sure the button exists before adding the event listener
+const webBtn = document.getElementById('web-btn');
+if (webBtn) {
+    webBtn.addEventListener('click', function (e) {
+        if (currentWebBtnUrl) {
+            console.log(`Opening website: ${currentWebBtnUrl}`);
+            window.open(currentWebBtnUrl, '_blank', 'noopener');
+            e.preventDefault();
+        } else {
+            console.warn('No website URL set for current station.');
+            e.preventDefault();
+        }
+    });
+} else {
+    console.error('web-btn element not found in DOM when adding click event listener.');
+}
 
 // Initialize on page load, and also after DOMContentLoaded to ensure button exists
 if (document.readyState === 'loading') {
