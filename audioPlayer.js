@@ -80,6 +80,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         setTrack(arrayPos) {
+            // Debounce the setTrack function
+            if (this.setTrackTimeout) {
+                clearTimeout(this.setTrackTimeout);
+            }
+            this.setTrackTimeout = setTimeout(() => {
+                this._setTrack(arrayPos);
+            }, 200); // Adjust the delay as needed
+        }
+
+        _setTrack(arrayPos) {
             const liPos = this.trackOrder[arrayPos];
             const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
 
