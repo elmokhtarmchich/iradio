@@ -21,32 +21,56 @@ async function setWebButtonForCurrentStation() {
     const btn = document.getElementById('web-btn');
     const stationId = getStationIdFromPlaylist();
 
+    if (!btn) {
+        console.error('web-btn element not found in DOM.');
+        return;
+    }
+
     if (!stationId) {
         btn.style.display = 'none';
         currentWebBtnUrl = null;
+        console.warn('No stationId found (no current-video in playlist).');
         return;
     }
 
     const database = await fetchDatabase();
+    if (!database.length) {
+        btn.style.display = 'none';
+        currentWebBtnUrl = null;
+        console.error('Database is empty or failed to load.');
+        return;
+    }
+
     const station = database.find(st => st.StationId === stationId);
 
     if (station && station.OfficialWebsite) {
         btn.style.display = 'block';
         currentWebBtnUrl = station.OfficialWebsite;
+        console.log(`Web button set for stationId=${stationId}, url=${currentWebBtnUrl}`);
     } else {
         btn.style.display = 'none';
         currentWebBtnUrl = null;
+        console.warn(`No OfficialWebsite found for stationId=${stationId}`);
     }
 }
 
 function getStationIdFromPlaylist() {
     const currentElement = document.querySelector(`#playlist li.current-video a`);
-    return currentElement?.dataset.id || null;
+    if (!currentElement) {
+        console.warn('No current-video <li> with <a> found in playlist.');
+        return null;
+    }
+    const id = currentElement.dataset.id || null;
+    if (!id) {
+        console.warn('No data-id attribute found on current <a>.');
+    }
+    return id;
 }
 
 // Update the button URL and visibility when the station changes
 document.querySelectorAll(`#playlist li a`).forEach((element) => {
     element.addEventListener('click', async () => {
+        console.log('Playlist item clicked, updating web button...');
         await setWebButtonForCurrentStation();
     });
 });
@@ -54,18 +78,22 @@ document.querySelectorAll(`#playlist li a`).forEach((element) => {
 // Open the URL when the button is clicked
 document.getElementById('web-btn').addEventListener('click', function (e) {
     if (currentWebBtnUrl) {
-        // Always open the URL, and prevent default just in case
+        console.log(`Opening website: ${currentWebBtnUrl}`);
         window.open(currentWebBtnUrl, '_blank', 'noopener');
         e.preventDefault();
     } else {
-        // Optionally, show a message or just prevent default
+        console.warn('No website URL set for current station.');
         e.preventDefault();
     }
 });
 
 // Initialize on page load, and also after DOMContentLoaded to ensure button exists
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setWebButtonForCurrentStation);
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded, initializing web button...');
+        setWebButtonForCurrentStation();
+    });
 } else {
+    console.log('DOM already loaded, initializing web button...');
     setWebButtonForCurrentStation();
 }
