@@ -64,7 +64,7 @@
             align-items: center; /* Align items vertically */
             justify-content: space-between; /* Space out items horizontally */
         }
-        }
+        
 
         .cover {
             flex: 1;
