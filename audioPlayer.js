@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTrack(arrayPos) {
             const liPos = this.trackOrder[arrayPos];
             const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
+			const stationId = newTrack.querySelector('a').dataset.id;
 
             // Remove 'current-video' class from the previously playing item
             const currentTrack = document.querySelector(`.${this.currentClass}`);
@@ -152,6 +153,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Add 'current-video' class to the newly playing item
             newTrack.classList.add(this.currentClass);
+
+			console.log(`setTrack called for stationId: ${stationId}`);
 
             const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
 
