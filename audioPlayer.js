@@ -140,6 +140,78 @@ document.addEventListener('DOMContentLoaded', function () {
             this.updateUI();
         }
 
+        setTrack(arrayPos) {
+            const liPos = this.trackOrder[arrayPos];
+            const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
+
+            // Remove 'current-video' class from the previously playing item
+            const currentTrack = document.querySelector(`.${this.currentClass}`);
+            if (currentTrack) {
+                currentTrack.classList.remove(this.currentClass);
+            }
+
+            // Add 'current-video' class to the newly playing item
+            newTrack.classList.add(this.currentClass);
+
+            const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
+
+            if (this.hls) {
+                this.hls.destroy();
+                this.hls = null;
+            }
+
+            const knownHlsUrls = [
+                'https://stream.bodkas.com/playlist?id=mfmradio',
+                'https://stream.bodkas.com/playlist?id=3',
+                'https://stream.bodkas.com/playlist?id=chadafmradio',
+                'http://stream3.broadcast-associes.com:8405/Radio-Orient',
+                'https://izlan.fr/radios/atlas/stream',
+                'http://stream1.coran.tk:8005/stream/1/',
+                'http://channel0.moroccanvoice.com:8000/;stream/1',
+                'https://mbn-channel-04.akacast.akamaistream.net/7/26/233453/v1/ibb.akacast.akamaistream.net/mbn_channel_04',
+                'https://stream2.atlanticradio.ma:9300/stream',
+                'https://manager8.streamradio.fr:1775/stream',
+                'https://listen.radioking.com/radio/252934/stream/297385',
+            ];
+
+            const hlsMimeTypes = [
+                'application/vnd.apple.mpegurl',
+                'application/x-mpegURL',
+                'application/vnd.apple.mpegurl.audio',
+                'application/vnd.apple.mpegurl.video'
+            ];
+
+            const fileType = trackUrl.split('.').pop().toLowerCase();
+            const fileHash = trackUrl.split('#').pop().toLowerCase();
+            const isKnownHlsUrl = knownHlsUrls.includes(trackUrl);
+
+            this.player.src = '';
+
+            if (Hls.isSupported() && (fileType === 'm3u8' || fileType === 'm3u' || isKnownHlsUrl)) {
+                this.hls = new Hls();
+                this.hls.loadSource(trackUrl);
+                this.hls.attachMedia(this.player);
+            } else if (fileType === 'mp3' || fileType === 'ogg' || fileType === 'aac' || fileHash === "aud") {
+                this.player.src = trackUrl;
+            } else {
+                if (hlsMimeTypes.some(type => this.player.canPlayType(type) !== '')) {
+                    this.player.src = trackUrl;
+                } else {
+                    console.error('Unsupported media type');
+                    return;
+                }
+            }
+
+            this.player.play().catch(error => {
+                console.error('Error playing the media:', error);
+            });
+
+            document.querySelector(`.${this.currentClass}`).classList.remove(this.currentClass);
+            document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
+            this.trackPos = arrayPos;
+            this.updateUI();
+        }
+
         playPause() {
             event.preventDefault();
             video.paused ? video.play() : video.pause();
