@@ -54,24 +54,52 @@ async function setWebButtonForCurrentStation() {
     }
 }
 
+async function setWebButtonForSpecificStation(stationId) {
+    const btn = document.getElementById('web-btn');
+
+    if (!btn) {
+        console.error('web-btn element not found in DOM.');
+        return;
+    }
+
+    if (!stationId) {
+        btn.style.display = 'none';
+        currentWebBtnUrl = null;
+        console.warn('No stationId provided.');
+        return;
+    }
+
+    const database = await fetchDatabase();
+    if (!database.length) {
+        btn.style.display = 'none';
+        currentWebBtnUrl = null;
+        console.error('Database is empty or failed to load.');
+        return;
+    }
+
+    const station = database.find(st => st.StationId === stationId);
+
+    if (station && station.OfficialWebsite) {
+        btn.style.display = 'block';
+        currentWebBtnUrl = station.OfficialWebsite;
+        console.log(`Web button set for stationId=${stationId}, url=${currentWebBtnUrl}`);
+    } else {
+        btn.style.display = 'none';
+        currentWebBtnUrl = null;
+        console.warn(`No OfficialWebsite found for stationId=${stationId}`);
+    }
+}
+
 function getStationIdFromPlaylist() {
-    const currentElement = document.querySelector(`#playlist li.current-video a`);
-    if (!currentElement) {
-        console.warn('No current-video <li> with <a> found in playlist.');
-        return null;
-    }
-    const id = currentElement.dataset.id || null;
-    if (!id) {
-        console.warn('No data-id attribute found on current <a>.');
-    }
-    return id;
+    return null; // This function is no longer needed
 }
 
 // Update the button URL and visibility when the station changes
 document.querySelectorAll(`#playlist li a`).forEach((element) => {
     element.addEventListener('click', async () => {
-        console.log('Playlist item clicked, updating web button...');
-        await setWebButtonForCurrentStation();
+        const stationId = element.dataset.id; // Get the stationId directly from the clicked element
+        console.log(`Playlist item clicked, updating web button for stationId: ${stationId}`);
+        await setWebButtonForSpecificStation(stationId); // Pass the stationId to a new function
     });
 });
 
@@ -95,7 +123,7 @@ if (webBtn) {
 // Initialize on page load, and also after DOMContentLoaded to ensure button exists
 async function initializeWebButton() {
     console.log('Initializing web button...');
-    await setWebButtonForCurrentStation();
+    //setWebButtonForCurrentStation(); // Remove this line
 }
 
 if (document.readyState === 'loading') {
