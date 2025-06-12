@@ -52,6 +52,57 @@
   gtag('config', 'G-XBCQ2RX72H');
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<script>
+  const video = document.getElementById('video');
+  const status = document.getElementById('status');
+  let hls;
+
+  // Function to load HLS from a token endpoint (href)
+  async function loadStreamFromHref(href) {
+    try {
+      const url = href.split('#')[0]; // remove #anchor
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Token fetch failed');
+      const streamUrl = await res.text();
+
+      if (Hls.isSupported()) {
+        if (!hls) {
+          hls = new Hls();
+          hls.attachMedia(video);
+        } else {
+          hls.stopLoad();
+        }
+        hls.loadSource(streamUrl);
+        status.textContent = '🎧 Loading new stream...';
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamUrl;
+        status.textContent = '🎧 Native playback loaded!';
+      } else {
+        status.textContent = '❌ HLS not supported in this browser.';
+      }
+    } catch (err) {
+      console.error(err);
+      status.textContent = '❌ Error: ' + err.message;
+    }
+  }
+
+  // Attach click listeners to all <a data-id>
+  document.querySelectorAll('a[data-id]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      loadStreamFromHref(href);
+    });
+  });
+
+  // Optionally load the first stream on page load
+  const firstLink = document.querySelector('a[data-id]');
+  if (firstLink) {
+    loadStreamFromHref(firstLink.getAttribute('href'));
+  }
+</script>
+
 <style>
 
   .cover-img {
