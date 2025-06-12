@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var config = {
+    const config = {
         autoplay: true,
         shuffle: true,
         activeItem: 0,
@@ -26,27 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
         autoOpenPopup: false
     };
 
-    var video = document.getElementById('videoPlayer');
-    var playPauseBtn = document.getElementById('play-pause-button');
-    var playPauseBtnImg = document.getElementById('play-pause-button-img');
-    var nextBtn = document.getElementById('next-button');
-    var prevBtn = document.getElementById('prev-button');
-    var x = document.getElementsByClassName("oui-image-cover");
-    var coverimg = document.getElementById("coverimg")
-
-    if (video) {
-        window.addEventListener('keydown', function (event) {
-            if (event.key === ' ') { // spacebar
-                event.preventDefault();
-                video.paused ? video.play() : video.pause();
-                togglePlayPause();
-            }
-        });
-    }
+    const video = document.getElementById('videoPlayer');
+    const playPauseBtn = document.getElementById('play-pause-button');
+    const playPauseBtnImg = document.getElementById('play-pause-button-img');
+    const nextBtn = document.getElementById('next-button');
+    const prevBtn = document.getElementById('prev-button');
+    const x = document.getElementsByClassName("oui-image-cover");
+    const coverimg = document.getElementById("coverimg");
 
     class VideoPlaylist {
         constructor(config = {}) {
-            var classObj = this;
             this.shuffle = config.shuffle || false;
             this.playerId = config.playerId || "videoPlayer";
             this.playlistId = config.playlistId || "playlist";
@@ -59,160 +48,72 @@ document.addEventListener('DOMContentLoaded', function () {
             this.trackOrder = Array.from({ length: this.length }, (_, i) => i);
 
             document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
-                element.addEventListener('click', function (e) {
+                element.addEventListener('click', (e) => {
                     e.preventDefault();
-                    classObj.setTrack(index);
-                    classObj.player.play();
-                    classObj.updateUI();
+                    this.setTrack(index);
+                    this.player.play();
+                    this.updateUI();
                     togglePlayPause();
                 });
             });
 
             if ('mediaSession' in navigator) {
-                navigator.mediaSession.setActionHandler('previoustrack', function () {
-                    classObj.prevTrack();
-                });
-
-                navigator.mediaSession.setActionHandler('nexttrack', function () {
-                    classObj.nextTrack();
-                });
+                navigator.mediaSession.setActionHandler('previoustrack', () => this.prevTrack());
+                navigator.mediaSession.setActionHandler('nexttrack', () => this.nextTrack());
             }
         }
 
-        setTrack(arrayPos) {
-            const liPos = this.trackOrder[arrayPos];
-            const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
-
-            if (this.hls) {
-                this.hls.destroy();
-                this.hls = null;
-            }
-
-            const knownHlsUrls = [
-                'https://stream.bodkas.com/playlist?id=mfmradio',
-                'https://stream.bodkas.com/playlist?id=3',
-                'https://stream.bodkas.com/playlist?id=chadafmradio',
-                'http://stream3.broadcast-associes.com:8405/Radio-Orient',
-                'https://izlan.fr/radios/atlas/stream',
-                'http://stream1.coran.tk:8005/stream/1/',
-                'http://channel0.moroccanvoice.com:8000/;stream/1',
-                'https://mbn-channel-04.akacast.akamaistream.net/7/26/233453/v1/ibb.akacast.akamaistream.net/mbn_channel_04',
-                'https://stream2.atlanticradio.ma:9300/stream',
-                'https://manager8.streamradio.fr:1775/stream',
-                'https://listen.radioking.com/radio/252934/stream/297385',
-            ];
-
-            const hlsMimeTypes = [
-                'application/vnd.apple.mpegurl',
-                'application/x-mpegURL',
-                'application/vnd.apple.mpegurl.audio',
-                'application/vnd.apple.mpegurl.video'
-            ];
-
-            const fileType = trackUrl.split('.').pop().toLowerCase();
-            const fileHash = trackUrl.split('#').pop().toLowerCase();
-            const isKnownHlsUrl = knownHlsUrls.includes(trackUrl);
-
-            this.player.src = '';
-
-            if (Hls.isSupported() && (fileType === 'm3u8' || fileType === 'm3u' || isKnownHlsUrl)) {
-                this.hls = new Hls();
-                this.hls.loadSource(trackUrl);
-                this.hls.attachMedia(this.player);
-            } else if (fileType === 'mp3' || fileType === 'ogg' || fileType === 'aac' || fileHash === "aud") {
-                this.player.src = trackUrl;
-            } else {
-                if (hlsMimeTypes.some(type => this.player.canPlayType(type) !== '')) {
-                    this.player.src = trackUrl;
-                } else {
-                    console.error('Unsupported media type');
-                    return;
-                }
-            }
-
-            this.player.play().catch(error => {
-                console.error('Error playing the media:', error);
-            });
-
-            document.querySelector(`.${this.currentClass}`).classList.remove(this.currentClass);
-            document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
-            this.trackPos = arrayPos;
-            this.updateUI();
-        }
-
-        setTrack(arrayPos) {
+        async setTrack(arrayPos) {
             const liPos = this.trackOrder[arrayPos];
             const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
-			const stationId = newTrack.querySelector('a').dataset.id;
-
-            // Remove 'current-video' class from the previously playing item
-            const currentTrack = document.querySelector(`.${this.currentClass}`);
-            if (currentTrack) {
-                currentTrack.classList.remove(this.currentClass);
-            }
-
-            // Add 'current-video' class to the newly playing item
-            newTrack.classList.add(this.currentClass);
-
-			console.log(`setTrack called for stationId: ${stationId}`);
-
-            const trackUrl = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1}) a`).href;
+            const anchor = newTrack.querySelector('a');
+            const trackHref = anchor.getAttribute('href');
+            const isTokenWorker = trackHref.includes('workers.dev/token');
+            const fileHash = trackHref.split('#').pop().toLowerCase();
+            const ext = trackHref.split('.').pop().split('?')[0].toLowerCase();
 
             if (this.hls) {
                 this.hls.destroy();
                 this.hls = null;
             }
-
-            const knownHlsUrls = [
-                'https://stream.bodkas.com/playlist?id=mfmradio',
-                'https://stream.bodkas.com/playlist?id=3',
-                'https://stream.bodkas.com/playlist?id=chadafmradio',
-                'http://stream3.broadcast-associes.com:8405/Radio-Orient',
-                'https://izlan.fr/radios/atlas/stream',
-                'http://stream1.coran.tk:8005/stream/1/',
-                'http://channel0.moroccanvoice.com:8000/;stream/1',
-                'https://mbn-channel-04.akacast.akamaistream.net/7/26/233453/v1/ibb.akacast.akamaistream.net/mbn_channel_04',
-                'https://stream2.atlanticradio.ma:9300/stream',
-                'https://manager8.streamradio.fr:1775/stream',
-                'https://listen.radioking.com/radio/252934/stream/297385',
-            ];
-
-            const hlsMimeTypes = [
-                'application/vnd.apple.mpegurl',
-                'application/x-mpegURL',
-                'application/vnd.apple.mpegurl.audio',
-                'application/vnd.apple.mpegurl.video'
-            ];
-
-            const fileType = trackUrl.split('.').pop().toLowerCase();
-            const fileHash = trackUrl.split('#').pop().toLowerCase();
-            const isKnownHlsUrl = knownHlsUrls.includes(trackUrl);
-
             this.player.src = '';
 
-            if (Hls.isSupported() && (fileType === 'm3u8' || fileType === 'm3u' || isKnownHlsUrl)) {
-                this.hls = new Hls();
-                this.hls.loadSource(trackUrl);
-                this.hls.attachMedia(this.player);
-            } else if (fileType === 'mp3' || fileType === 'ogg' || fileType === 'aac' || fileHash === "aud") {
-                this.player.src = trackUrl;
-            } else {
-                if (hlsMimeTypes.some(type => this.player.canPlayType(type) !== '')) {
-                    this.player.src = trackUrl;
-                } else {
-                    console.error('Unsupported media type');
+            document.querySelectorAll(`.${this.currentClass}`).forEach(el => el.classList.remove(this.currentClass));
+            newTrack.classList.add(this.currentClass);
+            this.trackPos = arrayPos;
+            this.updateUI();
+
+            let streamUrl = trackHref.split('#')[0];
+            if (isTokenWorker) {
+                try {
+                    const res = await fetch(streamUrl);
+                    if (!res.ok) throw new Error('Token fetch failed');
+                    streamUrl = await res.text();
+                } catch (err) {
+                    console.error('Error fetching tokenized stream:', err);
                     return;
                 }
             }
 
-            this.player.play().catch(error => {
-                console.error('Error playing the media:', error);
-            });
+            const isHls = streamUrl.includes('.m3u8');
 
-            document.querySelector(`.${this.currentClass}`).classList.remove(this.currentClass);
-            document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`).classList.add(this.currentClass);
-            this.trackPos = arrayPos;
-            this.updateUI();
+            if (Hls.isSupported() && isHls) {
+                this.hls = new Hls();
+                this.hls.loadSource(streamUrl);
+                this.hls.attachMedia(this.player);
+            } else if (
+                ext === 'mp3' || ext === 'aac' || ext === 'ogg' || fileHash === 'aud' ||
+                this.player.canPlayType('audio/mpeg') !== ''
+            ) {
+                this.player.src = streamUrl;
+            } else if (this.player.canPlayType('application/vnd.apple.mpegurl')) {
+                this.player.src = streamUrl;
+            } else {
+                console.error('Unsupported media format:', streamUrl);
+                return;
+            }
+
+            this.player.play().catch(err => console.error('Playback failed:', err));
         }
 
         playPause() {
@@ -251,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    var playlist = new VideoPlaylist(config);
+    const playlist = new VideoPlaylist(config);
 
     playPauseBtn.addEventListener('click', () => playlist.playPause());
     prevBtn.addEventListener('click', () => playlist.prevTrack());
@@ -269,38 +170,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             playPauseBtnImg.src = './image/play.png';
         }
-        coverimg.src = x[this.trackPos].src;
+        coverimg.src = x[playlist.trackPos].src;
     }
+
+    function monitorPlayerToggle() {
+        video.addEventListener('play', togglePlayPause);
+        video.addEventListener('pause', togglePlayPause);
+        video.addEventListener('ended', togglePlayPause);
+    }
+
+    monitorPlayerToggle();
 });
-
-
-
-function monitorPlayerToggle() {
-    var video = document.getElementById('videoPlayer');
-    var playPauseBtnImg = document.getElementById('play-pause-button-img');
-    var x = document.getElementsByClassName("oui-image-cover");
-
-    function updatePlayPauseIcon() {
-        if (video.paused) {
-            playPauseBtnImg.src = './image/play.png';
-        } else {
-            playPauseBtnImg.src = './image/pause.png';
-        }
-        coverimg.src = x[this.trackPos].src;
-    }
-
-    video.addEventListener('play', updatePlayPauseIcon);
-    video.addEventListener('pause', updatePlayPauseIcon);
-    video.addEventListener('ended', updatePlayPauseIcon);
-}
-
-
-
-
-
-// playlist = [{ID:..., OfficialWebsite:...}, ...]
-// stationId = current station's ID
-
-
-// Example usage:
-// updateWebButton(currentStationId, playlist);
