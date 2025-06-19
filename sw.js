@@ -1,13 +1,14 @@
-self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open('radio-store').then((cache) => cache.addAll([
-      '/index.html',
-      '/index.js',
-      '/style.css',
-      '/sw.js',
-      '/script.js',
-	    '/audioPlayer.js',
-      './image/med.png'                                ,
+const CACHE_NAME = 'iradio-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/topnav.css',
+  '/contact.css',
+  '/playerstyle.css',
+  '/audioPlayer.js',
+  '/webbtn.js',
+  './image/med.png'                                ,
 './image/coran.png'                              ,
 './image/medina.png'                             ,
 './image/chada.png'                              ,
@@ -70,14 +71,35 @@ self.addEventListener('install', (e) => {
 './image/pause.png'                              ,
 './image/play.png'                               ,
 './image/logo.png'                               ,
-    ])),
+];
+
+// Install: cache all required files
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
   );
+  self.skipWaiting();
 });
 
-self.addEventListener('fetch', (e) => {
-  console.log(e.request.url);
-  e.respondWith(
-    caches.match(e.request).then((response) => response || fetch(e.request)),
+// Activate: clean up old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME)
+            .map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+// Fetch: serve from cache, then network fallback
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request, {ignoreSearch: true})
+      .then(response => response || fetch(event.request))
   );
 });
 
