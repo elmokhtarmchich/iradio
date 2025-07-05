@@ -84,31 +84,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // --- DEBUG: Check Content-Type for proxy/worker endpoints ---
+            // Handle proxy/worker endpoints that return a tokenized URL as plain text
             if (
                 streamUrl.includes('proxy.iradio.ma') ||
                 streamUrl.includes('.workers.dev')
             ) {
                 try {
-                    const res = await fetch(streamUrl, { method: 'HEAD' });
-                    const contentType = res.headers.get('content-type');
-                    console.log('Proxy/Worker Content-Type:', contentType);
-                    // Accept audio, video, or HLS playlist
-                    if (!contentType || (
-                        !contentType.includes('audio') &&
-                        !contentType.includes('video') &&
-                        !contentType.includes('mpegurl') &&
-                        !contentType.includes('application/octet-stream')
-                    )) {
-                        alert('This proxy/worker endpoint did not return a playable audio stream. Content-Type: ' + contentType);
+                    // Try to fetch the tokenized URL (GET, not HEAD)
+                    const res = await fetch(streamUrl);
+                    if (!res.ok) {
+                        alert('Proxy/worker endpoint error: ' + res.status);
                         return;
                     }
+                    const text = await res.text();
+                    // If the response looks like a URL, use it as the stream
+                    if (text.startsWith('http')) {
+                        streamUrl = text.trim();
+                    } else {
+                        // fallback: check content-type as before
+                        const contentType = res.headers.get('content-type');
+                        console.log('Proxy/Worker Content-Type:', contentType);
+                        if (!contentType || (
+                            !contentType.includes('audio') &&
+                            !contentType.includes('video') &&
+                            !contentType.includes('mpegurl') &&
+                            !contentType.includes('application/octet-stream')
+                        )) {
+                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                            return;
+                        }
+                    }
                 } catch (err) {
-                    console.error('Error checking proxy/worker content-type:', err);
+                    console.error('Error fetching proxy/worker tokenized stream:', err);
                     return;
                 }
             }
-            // --- END DEBUG ---
+            // --- END TOKENIZED URL HANDLING ---
 
             const isHls = streamUrl.includes('.m3u8');
 
