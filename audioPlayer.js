@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
             const anchor = newTrack.querySelector('a');
             let trackHref = anchor.getAttribute('href');
-            const isTokenWorker = trackHref.includes('workers.dev/token');
-            const isProxyToken = trackHref.includes('proxy.iradio.ma');
             const fileHash = trackHref.split('#').pop().toLowerCase();
             const ext = trackHref.split('.').pop().split('?')[0].toLowerCase();
 
@@ -86,42 +84,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Fetch tokenized stream for workers.dev
-            if (isTokenWorker) {
+            // --- DEBUG: Check Content-Type for proxy.iradio.ma ---
+            if (streamUrl.includes('proxy.iradio.ma')) {
                 try {
-                    const res = await fetch(streamUrl);
-                    if (!res.ok) throw new Error('Token fetch failed');
-                    streamUrl = await res.text();
-                } catch (err) {
-                    console.error('Error fetching tokenized stream:', err);
-                    return;
-                }
-            }
-
-            // Fetch tokenized stream for proxy.iradio.ma if it returns a URL
-            if (isProxyToken && (trackHref.endsWith('/token') || trackHref.endsWith('/token#aud'))) {
-                try {
-                    const res = await fetch(streamUrl);
-                    if (!res.ok) throw new Error('Proxy token fetch failed');
-                    // Try to parse as text (URL) or as JSON with a url property
-                    const text = await res.text();
-                    // If the response is a valid URL, use it
-                    if (text.startsWith('http')) {
-                        streamUrl = text.trim();
-                    } else {
-                        try {
-                            const json = JSON.parse(text);
-                            if (json.url) streamUrl = json.url;
-                        } catch (e) {
-                            console.error('Proxy token response not a valid URL or JSON:', text);
-                            return;
-                        }
+                    const res = await fetch(streamUrl, { method: 'HEAD' });
+                    const contentType = res.headers.get('content-type');
+                    console.log('proxy.iradio.ma Content-Type:', contentType);
+                    // If not audio or video, warn the user
+                    if (!contentType || (!contentType.includes('audio') && !contentType.includes('video') && !contentType.includes('mpegurl'))) {
+                        alert('The proxy did not return a playable audio stream. Content-Type: ' + contentType);
+                        return;
                     }
                 } catch (err) {
-                    console.error('Error fetching proxy tokenized stream:', err);
+                    console.error('Error checking proxy content-type:', err);
                     return;
                 }
             }
+            // --- END DEBUG ---
 
             const isHls = streamUrl.includes('.m3u8');
 
