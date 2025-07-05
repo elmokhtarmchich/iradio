@@ -90,8 +90,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     const res = await fetch(streamUrl, { method: 'HEAD' });
                     const contentType = res.headers.get('content-type');
                     console.log('proxy.iradio.ma Content-Type:', contentType);
-                    // If not audio or video, warn the user
-                    if (!contentType || (!contentType.includes('audio') && !contentType.includes('video') && !contentType.includes('mpegurl'))) {
+                    // Accept audio, video, or HLS playlist
+                    if (!contentType || (
+                        !contentType.includes('audio') &&
+                        !contentType.includes('video') &&
+                        !contentType.includes('mpegurl') &&
+                        !contentType.includes('application/octet-stream')
+                    )) {
                         alert('The proxy did not return a playable audio stream. Content-Type: ' + contentType);
                         return;
                     }
