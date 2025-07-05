@@ -67,8 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const liPos = this.trackOrder[arrayPos];
             const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
             const anchor = newTrack.querySelector('a');
-            const trackHref = anchor.getAttribute('href');
+            let trackHref = anchor.getAttribute('href');
             const isTokenWorker = trackHref.includes('workers.dev/token');
+            const isProxyToken = trackHref.includes('proxy.iradio.ma');
             const fileHash = trackHref.split('#').pop().toLowerCase();
             const ext = trackHref.split('.').pop().split('?')[0].toLowerCase();
 
@@ -84,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
             this.updateUI();
 
             let streamUrl = trackHref.split('#')[0];
+
+            // Fetch tokenized stream for workers.dev
             if (isTokenWorker) {
                 try {
                     const res = await fetch(streamUrl);
@@ -91,6 +94,31 @@ document.addEventListener('DOMContentLoaded', function () {
                     streamUrl = await res.text();
                 } catch (err) {
                     console.error('Error fetching tokenized stream:', err);
+                    return;
+                }
+            }
+
+            // Fetch tokenized stream for proxy.iradio.ma if it returns a URL
+            if (isProxyToken && (trackHref.endsWith('/token') || trackHref.endsWith('/token#aud'))) {
+                try {
+                    const res = await fetch(streamUrl);
+                    if (!res.ok) throw new Error('Proxy token fetch failed');
+                    // Try to parse as text (URL) or as JSON with a url property
+                    const text = await res.text();
+                    // If the response is a valid URL, use it
+                    if (text.startsWith('http')) {
+                        streamUrl = text.trim();
+                    } else {
+                        try {
+                            const json = JSON.parse(text);
+                            if (json.url) streamUrl = json.url;
+                        } catch (e) {
+                            console.error('Proxy token response not a valid URL or JSON:', text);
+                            return;
+                        }
+                    }
+                } catch (err) {
+                    console.error('Error fetching proxy tokenized stream:', err);
                     return;
                 }
             }
