@@ -84,12 +84,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // --- DEBUG: Check Content-Type for proxy.iradio.ma ---
-            if (streamUrl.includes('proxy.iradio.ma')) {
+            // --- DEBUG: Check Content-Type for proxy/worker endpoints ---
+            if (
+                streamUrl.includes('proxy.iradio.ma') ||
+                streamUrl.includes('.workers.dev')
+            ) {
                 try {
                     const res = await fetch(streamUrl, { method: 'HEAD' });
                     const contentType = res.headers.get('content-type');
-                    console.log('proxy.iradio.ma Content-Type:', contentType);
+                    console.log('Proxy/Worker Content-Type:', contentType);
                     // Accept audio, video, or HLS playlist
                     if (!contentType || (
                         !contentType.includes('audio') &&
@@ -97,11 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         !contentType.includes('mpegurl') &&
                         !contentType.includes('application/octet-stream')
                     )) {
-                        alert('The proxy did not return a playable audio stream. Content-Type: ' + contentType);
+                        alert('This proxy/worker endpoint did not return a playable audio stream. Content-Type: ' + contentType);
                         return;
                     }
                 } catch (err) {
-                    console.error('Error checking proxy content-type:', err);
+                    console.error('Error checking proxy/worker content-type:', err);
                     return;
                 }
             }
