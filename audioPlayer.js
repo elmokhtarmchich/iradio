@@ -84,32 +84,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Only fetch tokenized URL for proxy/worker endpoints, not for normal streams
+            // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL as plain text
             if (
                 (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) &&
                 !streamUrl.includes('bodkas.com')
             ) {
                 try {
-                    const res = await fetch(streamUrl);
+                    const res = await fetch(streamUrl, { method: 'GET' });
                     if (!res.ok) {
                         alert('Proxy/worker endpoint error: ' + res.status);
                         return;
                     }
+                    const contentType = res.headers.get('content-type');
                     const text = await res.text();
+                    // If the response is a URL, use it; otherwise, fallback to original streamUrl
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
+                        console.log('Tokenized URL from proxy/worker:', streamUrl);
+                    } else if (
+                        contentType &&
+                        (contentType.includes('mpegurl') || contentType.includes('audio') || contentType.includes('video'))
+                    ) {
+                        // If the response is a playlist (m3u8), create a Blob URL for HLS.js
+                        const blob = new Blob([text], { type: contentType });
+                        streamUrl = URL.createObjectURL(blob);
+                        console.log('Blob URL created for playlist:', streamUrl);
                     } else {
-                        const contentType = res.headers.get('content-type');
-                        console.log('Proxy/Worker Content-Type:', contentType);
-                        if (!contentType || (
-                            !contentType.includes('audio') &&
-                            !contentType.includes('video') &&
-                            !contentType.includes('mpegurl') &&
-                            !contentType.includes('application/octet-stream')
-                        )) {
-                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                            return;
-                        }
+                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                        return;
                     }
                 } catch (err) {
                     console.error('Error fetching proxy/worker tokenized stream:', err);
@@ -118,10 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // --- END TOKENIZED URL HANDLING ---
 
-            // DEBUG: Log the final streamUrl for troubleshooting
             console.log('Final streamUrl:', streamUrl);
 
-            const isHls = streamUrl.includes('.m3u8');
+            const isHls = streamUrl.includes('.m3u8') || (streamUrl.startsWith('blob:') && ext === 'm3u8');
 
             if (Hls.isSupported() && isHls) {
                 this.hls = new Hls();
