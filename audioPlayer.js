@@ -84,24 +84,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Handle proxy/worker endpoints that return a tokenized URL as plain text
+            // Only fetch tokenized URL for proxy/worker endpoints, not for normal streams
             if (
-                streamUrl.includes('proxy.iradio.ma') ||
-                streamUrl.includes('.workers.dev')
+                (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) &&
+                !streamUrl.includes('bodkas.com')
             ) {
                 try {
-                    // Try to fetch the tokenized URL (GET, not HEAD)
                     const res = await fetch(streamUrl);
                     if (!res.ok) {
                         alert('Proxy/worker endpoint error: ' + res.status);
                         return;
                     }
                     const text = await res.text();
-                    // If the response looks like a URL, use it as the stream
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
                     } else {
-                        // fallback: check content-type as before
                         const contentType = res.headers.get('content-type');
                         console.log('Proxy/Worker Content-Type:', contentType);
                         if (!contentType || (
@@ -120,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
             // --- END TOKENIZED URL HANDLING ---
+
+            // DEBUG: Log the final streamUrl for troubleshooting
+            console.log('Final streamUrl:', streamUrl);
 
             const isHls = streamUrl.includes('.m3u8');
 
