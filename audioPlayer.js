@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL as plain text
+            // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL as plain text or playlist content
             if (
                 (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev'))
             ) {
@@ -96,27 +96,33 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     const contentType = res.headers.get('content-type');
                     const text = await res.text();
-                    // If the response is a URL, use it; otherwise, fallback to original streamUrl
+                    // If the response is a URL, use it
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
                         console.log('Tokenized URL from proxy/worker:', streamUrl);
                     } else if (
                         contentType &&
                         (
-                            contentType.includes('mpegurl') ||
-                            contentType.includes('audio') ||
-                            contentType.includes('video') ||
-                            contentType.includes('application/octet-stream') ||
-                            contentType.includes('application/x-mpegurl')
+                            contentType.toLowerCase().includes('mpegurl') ||
+                            contentType.toLowerCase().includes('audio') ||
+                            contentType.toLowerCase().includes('video') ||
+                            contentType.toLowerCase().includes('application/octet-stream')
                         )
                     ) {
-                        // If the response is a playlist (m3u8), create a Blob URL for HLS.js
+                        // If the response is a playlist (m3u8), use a Blob URL for HLS.js
                         const blob = new Blob([text], { type: contentType });
                         streamUrl = URL.createObjectURL(blob);
                         console.log('Blob URL created for playlist:', streamUrl);
                     } else {
-                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                        return;
+                        // --- FIX: Accept application/x-mpegURL (case-insensitive) as valid ---
+                        if (contentType && contentType.toLowerCase().includes('application/x-mpegurl')) {
+                            const blob = new Blob([text], { type: contentType });
+                            streamUrl = URL.createObjectURL(blob);
+                            console.log('Blob URL created for x-mpegurl playlist:', streamUrl);
+                        } else {
+                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                            return;
+                        }
                     }
                 } catch (err) {
                     console.error('Error fetching proxy/worker tokenized stream:', err);
