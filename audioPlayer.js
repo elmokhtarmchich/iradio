@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL as plain text
             if (
-                (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) &&
-                !streamUrl.includes('bodkas.com')
+                (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev'))
             ) {
                 try {
                     const res = await fetch(streamUrl, { method: 'GET' });
@@ -103,7 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.log('Tokenized URL from proxy/worker:', streamUrl);
                     } else if (
                         contentType &&
-                        (contentType.includes('mpegurl') || contentType.includes('audio') || contentType.includes('video'))
+                        (
+                            contentType.includes('mpegurl') ||
+                            contentType.includes('audio') ||
+                            contentType.includes('video') ||
+                            contentType.includes('application/octet-stream') ||
+                            contentType.includes('application/x-mpegurl')
+                        )
                     ) {
                         // If the response is a playlist (m3u8), create a Blob URL for HLS.js
                         const blob = new Blob([text], { type: contentType });
@@ -122,7 +127,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Final streamUrl:', streamUrl);
 
-            const isHls = streamUrl.includes('.m3u8') || (streamUrl.startsWith('blob:') && ext === 'm3u8');
+            const isHls =
+                streamUrl.includes('.m3u8') ||
+                (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u'));
 
             if (Hls.isSupported() && isHls) {
                 this.hls = new Hls();
@@ -133,7 +140,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.player.canPlayType('audio/mpeg') !== ''
             ) {
                 this.player.src = streamUrl;
-            } else if (this.player.canPlayType('application/vnd.apple.mpegurl')) {
+            } else if (
+                this.player.canPlayType('application/vnd.apple.mpegurl') ||
+                this.player.canPlayType('application/x-mpegurl')
+            ) {
                 this.player.src = streamUrl;
             } else {
                 console.error('Unsupported media format:', streamUrl);
