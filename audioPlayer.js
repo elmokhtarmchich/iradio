@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             contentType.toLowerCase().includes('mpegurl') ||
                             contentType.toLowerCase().includes('audio') ||
                             contentType.toLowerCase().includes('video') ||
-                            contentType.toLowerCase().includes('application/octet-stream')
+                            contentType.toLowerCase().includes('application/octet-stream') ||
+                            contentType.toLowerCase().includes('application/x-mpegurl')
                         )
                     ) {
                         // If the response is a playlist (m3u8), use a Blob URL for HLS.js
@@ -114,15 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         streamUrl = URL.createObjectURL(blob);
                         console.log('Blob URL created for playlist:', streamUrl);
                     } else {
-                        // --- FIX: Accept application/x-mpegURL (case-insensitive) as valid ---
-                        if (contentType && contentType.toLowerCase().includes('application/x-mpegurl')) {
-                            const blob = new Blob([text], { type: contentType });
-                            streamUrl = URL.createObjectURL(blob);
-                            console.log('Blob URL created for x-mpegurl playlist:', streamUrl);
-                        } else {
-                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                            return;
-                        }
+                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                        return;
                     }
                 } catch (err) {
                     console.error('Error fetching proxy/worker tokenized stream:', err);
