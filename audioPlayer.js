@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // If the response is a URL, use it
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
+                        // ✅ Correct: hls.loadSource(streamUrl) will load the real URL
                         console.log('Tokenized URL from proxy/worker:', streamUrl);
                     } else if (
                         contentType &&
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             contentType.toLowerCase().includes('application/x-mpegurl')
                         )
                     ) {
-                        // If the response is a playlist (m3u8), use a Blob URL for HLS.js
+                        // ❌ This creates a Blob URL from playlist text, which is only needed if the proxy returns the playlist CONTENT, not a URL.
                         const blob = new Blob([text], { type: contentType });
                         streamUrl = URL.createObjectURL(blob);
                         console.log('Blob URL created for playlist:', streamUrl);
