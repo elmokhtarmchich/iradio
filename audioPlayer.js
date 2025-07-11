@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             contentType.toLowerCase().includes('application/x-mpegurl')
                         )
                     ) {
-                        // ❌ This creates a Blob URL from playlist text, which is only needed if the proxy returns the playlist CONTENT, not a URL.
-                        const blob = new Blob([text], { type: contentType });
-                        streamUrl = URL.createObjectURL(blob);
-                        console.log('Blob URL created for playlist:', streamUrl);
+                        // ❌ Do NOT create a Blob for .m3u8 proxy URLs, just use the proxy URL directly!
+                        // Instead, just use the proxy URL as the HLS source:
+                        streamUrl = streamUrl;
+                        console.log('Proxy/worker returns playlist content, using proxy URL directly:', streamUrl);
                     } else {
                         alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
                         return;
@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u'));
 
             if (Hls.isSupported() && isHls) {
+                // ✅ Always pass the proxy URL (or tokenized URL) directly to hls.loadSource
                 this.hls = new Hls();
                 this.hls.loadSource(streamUrl);
                 this.hls.attachMedia(this.player);
