@@ -84,47 +84,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL as plain text or playlist content
+            // If the URL is a proxy/worker, use the proxy URL directly for HLS.js
             if (
                 (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev'))
             ) {
-                try {
-                    const res = await fetch(streamUrl, { method: 'GET' });
-                    if (!res.ok) {
-                        alert('Proxy/worker endpoint error: ' + res.status);
-                        return;
-                    }
-                    const contentType = res.headers.get('content-type');
-                    const text = await res.text();
-                    // If the response is a URL, use it
-                    if (text.startsWith('http')) {
-                        streamUrl = text.trim();
-                        // ✅ Correct: hls.loadSource(streamUrl) will load the real URL
-                        console.log('Tokenized URL from proxy/worker:', streamUrl);
-                    } else if (
-                        contentType &&
-                        (
-                            contentType.toLowerCase().includes('mpegurl') ||
-                            contentType.toLowerCase().includes('audio') ||
-                            contentType.toLowerCase().includes('video') ||
-                            contentType.toLowerCase().includes('application/octet-stream') ||
-                            contentType.toLowerCase().includes('application/x-mpegurl')
-                        )
-                    ) {
-                        // ❌ Do NOT create a Blob for .m3u8 proxy URLs, just use the proxy URL directly!
-                        // Instead, just use the proxy URL as the HLS source:
-                        streamUrl = streamUrl;
-                        console.log('Proxy/worker returns playlist content, using proxy URL directly:', streamUrl);
-                    } else {
-                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                        return;
-                    }
-                } catch (err) {
-                    console.error('Error fetching proxy/worker tokenized stream:', err);
-                    return;
-                }
+                // No need to fetch or parse, just use the proxy URL directly
+                // This matches the logic in your prompt
+                console.log('Using proxy/worker URL directly for HLS:', streamUrl);
             }
-            // --- END TOKENIZED URL HANDLING ---
 
             console.log('Final streamUrl:', streamUrl);
 
@@ -133,26 +100,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u'));
 
             if (Hls.isSupported() && isHls) {
-                // ✅ Always pass the proxy URL (or tokenized URL) directly to hls.loadSource
                 this.hls = new Hls();
                 this.hls.loadSource(streamUrl);
                 this.hls.attachMedia(this.player);
+                this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    this.player.play();
+                });
             } else if (
                 ext === 'mp3' || ext === 'aac' || ext === 'ogg' || fileHash === 'aud' ||
                 this.player.canPlayType('audio/mpeg') !== ''
             ) {
                 this.player.src = streamUrl;
+                this.player.play();
             } else if (
                 this.player.canPlayType('application/vnd.apple.mpegurl') ||
                 this.player.canPlayType('application/x-mpegurl')
             ) {
                 this.player.src = streamUrl;
+                this.player.addEventListener('loadedmetadata', () => {
+                    this.player.play();
+                }, { once: true });
             } else {
                 console.error('Unsupported media format:', streamUrl);
                 return;
             }
-
-            this.player.play().catch(err => console.error('Playback failed:', err));
         }
 
         playPause() {
