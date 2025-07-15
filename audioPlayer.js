@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let streamUrl = trackHref.split('#')[0];
 
-            // Try to handle proxy/worker endpoints that return a tokenized URL or playlist content
+            // Only fetch tokenized URL for proxy/worker endpoints that return a tokenized URL or playlist content
             if (
                 (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev'))
             ) {
@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     const contentType = res.headers.get('content-type');
                     const text = await res.text();
-                    // If the response is a URL, use it
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
                         console.log('Tokenized URL from proxy/worker:', streamUrl);
@@ -110,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             contentType.toLowerCase().includes('application/x-mpegurl')
                         )
                     ) {
-                        // If the response is a playlist (m3u8), use a Blob URL for HLS.js
                         const blob = new Blob([text], { type: contentType });
                         streamUrl = URL.createObjectURL(blob);
                         console.log('Blob URL created for playlist:', streamUrl);
@@ -126,35 +124,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Final streamUrl:', streamUrl);
 
-            // Universal HLS logic: try Hls.js, then native, then fallback
+            // Robust HLS/audio logic: treat .m3u8 and direct HLS URLs like the HLS.js demo
             let isHls = false;
-            // Accept .m3u8, .m3u, blob, or playlist content types
             if (
                 streamUrl.match(/\.m3u8(\?|$)/i) ||
                 streamUrl.match(/\.m3u(\?|$)/i) ||
-                (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u'))
+                (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) ||
+                streamUrl.includes('playlist?id=') // Accept direct HLS playlist URLs like bodkas.com
             ) {
                 isHls = true;
             }
 
-            // Try Hls.js first
             if (Hls.isSupported() && isHls) {
-                this.hls = new Hls({
-                    // Try to be robust for CORS and segment redirects
-                    xhrSetup: function(xhr, url) {
-                        xhr.withCredentials = false;
-                    }
-                });
+                this.hls = new Hls();
                 this.hls.loadSource(streamUrl);
                 this.hls.attachMedia(this.player);
                 this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
                     this.player.play();
                 });
-                this.hls.on(Hls.Events.ERROR, (event, data) => {
-                    console.error('HLS.js error:', data);
-                });
             } else if (
-                // Try native HLS support (Safari, iOS, some browsers)
                 (this.player.canPlayType('application/vnd.apple.mpegurl') ||
                  this.player.canPlayType('application/x-mpegurl')) && isHls
             ) {
@@ -166,11 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 ext === 'mp3' || ext === 'aac' || ext === 'ogg' || fileHash === 'aud' ||
                 this.player.canPlayType('audio/mpeg') !== ''
             ) {
-                // Fallback for direct audio streams
                 this.player.src = streamUrl;
                 this.player.play();
             } else {
-                // Try to force play anyway as a last resort
                 this.player.src = streamUrl;
                 this.player.play().catch(err => {
                     console.error('Playback failed (last resort):', err);
