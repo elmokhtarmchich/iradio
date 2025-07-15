@@ -124,18 +124,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Final streamUrl:', streamUrl);
 
-            // Robust HLS/audio logic: treat .m3u8 and direct HLS URLs like the HLS.js demo
+            // --- HLS Robustness for relative segments ---
+            // For URLs like https://vo-live-media.cdb.cdn.orange.com/Content/Channel/quran_kareem/HLS/stream_02/index.m3u8,
+            // Hls.js will resolve relative segment URLs (e.g., Segment-17526166054075176.ts) correctly
+            // as long as you pass the playlist URL directly to hls.loadSource().
+            // DO NOT fetch the playlist and create a Blob for these URLs, or segment loading will break.
+
             let isHls = false;
             if (
                 streamUrl.match(/\.m3u8(\?|$)/i) ||
                 streamUrl.match(/\.m3u(\?|$)/i) ||
                 (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) ||
-                streamUrl.includes('playlist?id=') // Accept direct HLS playlist URLs like bodkas.com
+                streamUrl.includes('playlist?id=')
             ) {
                 isHls = true;
             }
 
             if (Hls.isSupported() && isHls) {
+                // Always pass the original playlist URL to Hls.js for correct segment resolution
                 this.hls = new Hls();
                 this.hls.loadSource(streamUrl);
                 this.hls.attachMedia(this.player);
