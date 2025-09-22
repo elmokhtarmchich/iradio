@@ -154,6 +154,16 @@
     border-radius: 8px;
     background-color: #14232a4c; /* Default color for paused state */
     margin-left: 10px; /* Add spacing from the cover */
+    padding: 0;
+    border: none;
+    color: white;
+    font-size: 10px;
+    line-height: 16px; /* Same as height to vertically center */
+}
+
+#web-btn:active {
+    border: none;
+    padding: 0;
 }
 
 #web-btn:hover {
