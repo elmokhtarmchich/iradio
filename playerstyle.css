@@ -78,7 +78,7 @@
         .cover img {
             width: 110px;
             height: 110px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 10px;
             background-color: #1a2c34;
         }
