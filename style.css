@@ -8,15 +8,22 @@
 }
 
 body {
-  background-color: #161b22;
-  background-size: auto;
-  background-size:cover;
   margin: 0;
+  height: 100vh;
+  background: 
+    /* grid lines */
+    linear-gradient(to right, rgba(255,255,255,0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.3) 1px, transparent 1px),
+    /* green fade gradient */
+    linear-gradient(to bottom, #000000, #003300);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  background-repeat: repeat, repeat, no-repeat;
+  background-blend-mode: overlay;
   text-align: center;
   font-size:100%;
   line-height:18px;
   padding-bottom: 150px; /* Space for sticky music widget on mobile */
-  }
+}
 
 /* .row styles for mobile (default) - music widget container */
 .row {
@@ -195,16 +202,37 @@ box-sizing: border-box;
   }
 
   .left-column {
-    width: 380px; /* Increased width for music widget */
+    width: 456px; /* Increased width for music widget */
     height: 100vh; /* Full viewport height */
     overflow-y: auto; /* Make left column scrollable */
     position: fixed; /* Keep left column fixed */
     top: 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    border-right: 3px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .left-column::-webkit-scrollbar {
+    display: none;
+  }
+
+  .left-column::after {
+    content: '';
+    position: fixed;
+    bottom: 60px;
+    left: 204px; /* (456px / 2) - (48px / 2) */
+    width: 48px;
+    height: 48px;
+    background-image: url('./icon/mouse-cursor.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    pointer-events: none; /* Make sure it doesn't interfere with mouse events */
   }
 
   .right-column {
-    width: calc(100% - 380px); /* Remaining width */
-    margin-left: 380px; /* Offset for fixed left column */
+    width: calc(100% - 456px); /* Remaining width */
+    margin-left: 456px; /* Offset for fixed left column */
     height: 100vh; /* Full viewport height */
     overflow-y: auto; /* Make right column scrollable */
   }
@@ -217,9 +245,19 @@ box-sizing: border-box;
   .row {
     /* Music widget positioning for desktop */
     position: sticky; /* Make music widget sticky within left column */
-    top: 60px; /* Adjust to clear header */
+    top: 40px; /* Adjust to clear header */
     background-color: #161b22; /* Match body background */
     padding-bottom: 0; /* Reset padding */
+  }
+
+  .row::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 3px;
+    background-color: rgb(16 62 10 / 82%);
   }
 
   body {
@@ -228,7 +266,7 @@ box-sizing: border-box;
 }
 
 footer {
-    background-color: #222; /* Dark gray */
+    background-color: #161b22; /* Dark gray */
     color: #eee; /* Light gray text */
     text-align: center;
     padding: 30px 20px;

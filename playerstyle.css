@@ -37,11 +37,13 @@
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     height: auto;
     display: flex;
     justify-content: center;
     object-fit: contain;
-    background: transparent;
+    background: #000000e0;
     }
         .music-widget {
             display: flex;
