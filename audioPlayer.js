@@ -1,50 +1,82 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    let allStations = [];
+    let playlistManager;
+
     async function initializePlayer() {
         try {
-            // 1. Fetch data
             const response = await fetch('stations.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const stations = await response.json();
+            allStations = await response.json();
 
-            // 2. Generate HTML
-            const playlistElement = document.getElementById('playlist');
-            if (!playlistElement) {
-                console.error('Playlist element not found!');
-                return;
-            }
-
-            const playlistHTML = stations.map(station => {
-                // Set the first station as the current one
-                const liClass = station.id === 10 ? 'current-video' : ''; 
-                return `
-                    <li class="${liClass}">
-                        <a data-id="${station.id}" href="${station.streamUrl}">
-                            <div class="radio-container">
-                                <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
-                                <span class="radiotitle">${station.title}</span>
-                            </div>
-                        </a>
-                    </li>
-                `;
-            }).join('');
-
-            // 3. Inject HTML
-            playlistElement.innerHTML = playlistHTML;
+            generateCategoryButtons(allStations);
+            renderPlaylist('All'); 
 
         } catch (error) {
             console.error('Failed to initialize player:', error);
-            // Optionally, display an error message to the user
             const mainElement = document.getElementById('main');
             if(mainElement) {
                 mainElement.innerHTML = '<p style="color: red; text-align: center;">Could not load radio stations. Please try again later.</p>';
             }
-            return; // Stop execution if fetching/parsing fails
+        }
+    }
+
+    function generateCategoryButtons(stations) {
+        const categoryButtonsElement = document.getElementById('category-buttons');
+        if (!categoryButtonsElement) return;
+
+        const categories = ['All', ...new Set(stations.map(s => s.category))];
+        
+        const buttonsHTML = categories.map(category => 
+            `<button class="category-button ${category === 'All' ? 'active' : ''}" data-category="${category}">${category}</button>`
+        ).join('');
+
+        categoryButtonsElement.innerHTML = buttonsHTML;
+
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                renderPlaylist(category);
+                
+                document.querySelectorAll('.category-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+
+    function renderPlaylist(category) {
+        const playlistElement = document.getElementById('playlist');
+        if (!playlistElement) {
+            console.error('Playlist element not found!');
+            return;
         }
 
-        // 4. Original Player Code
+        const filteredStations = category === 'All' ? allStations : allStations.filter(station => station.category === category);
+
+        const playlistHTML = filteredStations.map(station => {
+            const isFirstStation = filteredStations.indexOf(station) === 0;
+            const liClass = isFirstStation ? 'current-video' : '';
+            return `
+                <li class="${liClass}">
+                    <a data-id="${station.id}" href="${station.streamUrl}">
+                        <div class="radio-container">
+                            <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
+                            <span class="radiotitle">${station.title}</span>
+                        </div>
+                    </a>
+                </li>
+            `;
+        }).join('');
+
+        playlistElement.innerHTML = playlistHTML;
+
+        // Re-initialize the player logic for the new playlist
+        initializePlaylistManager();
+    }
+
+    function initializePlaylistManager() {
         const config = {
             autoplay: true,
             shuffle: true,
@@ -72,204 +104,176 @@ document.addEventListener('DOMContentLoaded', function () {
             autoOpenPopup: false
         };
 
-        const video = document.getElementById('videoPlayer');
+        playlistManager = new VideoPlaylist(config);
+
+        // Ensure global controls are wired up only once, or re-wired if necessary
         const playPauseBtn = document.getElementById('play-pause-button');
-        const playPauseBtnImg = document.getElementById('play-pause-button-img');
         const nextBtn = document.getElementById('next-button');
         const prevBtn = document.getElementById('prev-button');
-        const x = document.getElementsByClassName("oui-image-cover");
-        const coverimg = document.getElementById("coverimg");
 
-        class VideoPlaylist {
-            constructor(config = {}) {
-                this.shuffle = config.shuffle || false;
-                this.playerId = config.playerId || "videoPlayer";
-                this.playlistId = config.playlistId || "playlist";
-                this.currentClass = config.currentClass || "current-video";
-                this.length = document.querySelectorAll(`#${this.playlistId} li`).length;
-                this.player = document.getElementById(this.playerId);
-                this.autoplay = config.autoplay || this.player.autoplay;
-                this.loop = config.loop || false;
-                this.trackPos = 0;
-                this.trackOrder = Array.from({ length: this.length }, (_, i) => i);
+        // Using a flag to ensure events are not attached multiple times
+        if (!playPauseBtn.hasAttribute('data-listener-attached')) {
+            playPauseBtn.addEventListener('click', () => playlistManager.playPause());
+            prevBtn.addEventListener('click', () => playlistManager.prevTrack());
+            nextBtn.addEventListener('click', () => playlistManager.nextTrack());
+            playPauseBtn.setAttribute('data-listener-attached', 'true');
+        }
+    }
 
-                document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
-                    element.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        this.setTrack(index);
-                        this.player.play();
-                        this.updateUI();
-                        togglePlayPause();
-                    });
+    const video = document.getElementById('videoPlayer');
+    const playPauseBtnImg = document.getElementById('play-pause-button-img');
+    const coverimg = document.getElementById("coverimg");
+
+    class VideoPlaylist {
+        constructor(config = {}) {
+            this.shuffle = config.shuffle || false;
+            this.playerId = config.playerId || "videoPlayer";
+            this.playlistId = config.playlistId || "playlist";
+            this.currentClass = config.currentClass || "current-video";
+            this.player = document.getElementById(this.playerId);
+            this.autoplay = config.autoplay || this.player.autoplay;
+            this.loop = config.loop || false;
+            this.trackPos = 0;
+            
+            this.attachEventListeners();
+            this.length = document.querySelectorAll(`#${this.playlistId} li`).length;
+            this.trackOrder = Array.from({ length: this.length }, (_, i) => i);
+
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.setActionHandler('previoustrack', () => this.prevTrack());
+                navigator.mediaSession.setActionHandler('nexttrack', () => this.nextTrack());
+            }
+        }
+
+        attachEventListeners() {
+            document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.setTrack(index);
+                    this.player.play();
+                    this.updateUI();
+                    togglePlayPause();
                 });
+            });
+        }
 
-                if ('mediaSession' in navigator) {
-                    navigator.mediaSession.setActionHandler('previoustrack', () => this.prevTrack());
-                    navigator.mediaSession.setActionHandler('nexttrack', () => this.nextTrack());
-                }
+        async setTrack(arrayPos) {
+            if (arrayPos < 0 || arrayPos >= this.length) {
+                console.warn("Track position out of bounds, resetting to 0.");
+                arrayPos = 0;
+            }
+            this.trackPos = arrayPos;
+
+            const liPos = this.trackOrder[arrayPos];
+            const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
+            if (!newTrack) {
+                console.error("Could not find track element in the playlist.");
+                return;
             }
 
-            async setTrack(arrayPos) {
-                const liPos = this.trackOrder[arrayPos];
-                const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
-                const anchor = newTrack.querySelector('a');
-                let trackHref = anchor.getAttribute('href');
-                const fileHash = trackHref.split('#').pop().toLowerCase();
-                const ext = trackHref.split('.').pop().split('?')[0].toLowerCase();
+            const anchor = newTrack.querySelector('a');
+            let trackHref = anchor.getAttribute('href');
+            const fileHash = trackHref.split('#').pop().toLowerCase();
+            const ext = trackHref.split('.').pop().split('?')[0].toLowerCase();
 
-                if (this.hls) {
-                    this.hls.destroy();
-                    this.hls = null;
-                }
-                this.player.src = '';
+            if (this.hls) {
+                this.hls.destroy();
+                this.hls = null;
+            }
+            this.player.src = '';
 
-                document.querySelectorAll(`.${this.currentClass}`).forEach(el => el.classList.remove(this.currentClass));
-                newTrack.classList.add(this.currentClass);
-                this.trackPos = arrayPos;
-                this.updateUI();
+            document.querySelectorAll(`.${this.currentClass}`).forEach(el => el.classList.remove(this.currentClass));
+            newTrack.classList.add(this.currentClass);
+            this.updateUI();
 
-                let streamUrl = trackHref.split('#')[0];
+            let streamUrl = trackHref.split('#')[0];
 
-                if (
-                    (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev'))
-                ) {
-                    try {
-                        const res = await fetch(streamUrl, { method: 'GET' });
-                        if (!res.ok) {
-                            alert('Proxy/worker endpoint error: ' + res.status);
-                            return;
-                        }
-                        const contentType = res.headers.get('content-type');
-                        const text = await res.text();
-                        if (text.startsWith('http')) {
-                            streamUrl = text.trim();
-                        } else if (
-                            contentType &&
-                            (
-                                contentType.toLowerCase().includes('mpegurl') ||
-                                contentType.toLowerCase().includes('audio') ||
-                                contentType.toLowerCase().includes('video') ||
-                                contentType.toLowerCase().includes('application/octet-stream') ||
-                                contentType.toLowerCase().includes('application/x-mpegurl')
-                            )
-                        ) {
-                            const blob = new Blob([text], { type: contentType });
-                            streamUrl = URL.createObjectURL(blob);
-                        } else {
-                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                            return;
-                        }
-                    } catch (err) {
-                        console.error('Error fetching proxy/worker tokenized stream:', err);
+            if (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) {
+                try {
+                    const res = await fetch(streamUrl, { method: 'GET' });
+                    if (!res.ok) {
+                        alert('Proxy/worker endpoint error: ' + res.status);
                         return;
                     }
-                }
-
-                let isHls = false;
-                if (
-                    streamUrl.match(/\.m3u8(\?|$)/i) ||
-                    streamUrl.match(/\.m3u(\?|$)/i) ||
-                    (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) ||
-                    streamUrl.includes('playlist?id=')
-                ) {
-                    isHls = true;
-                }
-
-                if (Hls.isSupported() && isHls) {
-                    this.hls = new Hls();
-                    this.hls.loadSource(streamUrl);
-                    this.hls.attachMedia(this.player);
-                    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                        this.player.play();
-                    });
-                } else if (
-                    (this.player.canPlayType('application/vnd.apple.mpegurl') ||
-                     this.player.canPlayType('application/x-mpegurl')) && isHls
-                ) {
-                    this.player.src = streamUrl;
-                    this.player.addEventListener('loadedmetadata', () => {
-                        this.player.play();
-                    }, { once: true });
-                } else if (
-                    ext === 'mp3' || ext === 'aac' || ext === 'ogg' || fileHash === 'aud' ||
-                    this.player.canPlayType('audio/mpeg') !== ''
-                ) {
-                    this.player.src = streamUrl;
-                    this.player.play();
-                } else {
-                    this.player.src = streamUrl;
-                    this.player.play().catch(err => {
-                        console.error('Playback failed (last resort):', err);
-                    });
-                    console.error('Unsupported or unknown media format:', streamUrl);
+                    const contentType = res.headers.get('content-type');
+                    const text = await res.text();
+                    if (text.startsWith('http')) {
+                        streamUrl = text.trim();
+                    } else if (contentType && (contentType.toLowerCase().includes('mpegurl') || contentType.toLowerCase().includes('audio') || contentType.toLowerCase().includes('video') || contentType.toLowerCase().includes('application/octet-stream') || contentType.toLowerCase().includes('application/x-mpegurl'))) {
+                        const blob = new Blob([text], { type: contentType });
+                        streamUrl = URL.createObjectURL(blob);
+                    } else {
+                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                        return;
+                    }
+                } catch (err) {
+                    console.error('Error fetching proxy/worker tokenized stream:', err);
+                    return;
                 }
             }
 
-            playPause() {
-                event.preventDefault();
-                video.paused ? video.play() : video.pause();
-                togglePlayPause();
-            }
+            let isHls = streamUrl.match(/\.m3u8(\?|$)/i) || streamUrl.match(/\.m3u(\?|$)/i) || (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) || streamUrl.includes('playlist?id=');
 
-            prevTrack() {
-                if (this.trackPos === 0) {
-                    this.setTrack(0);
-                } else {
-                    this.setTrack(this.trackPos - 1);
-                }
-                this.player.play();
-                playPauseBtnImg.src = './image/pause.png';
-                this.updateUI();
-            }
-
-            nextTrack() {
-                if (this.trackPos < this.length - 1) {
-                    this.setTrack(this.trackPos + 1);
-                } else {
-                    this.setTrack(0);
-                }
-                this.player.play();
-                playPauseBtnImg.src = './image/pause.png';
-                this.updateUI();
-            }
-
-            updateUI() {
-                document.title = x[this.trackPos].title;
-                document.getElementById("artist").innerHTML = x[this.trackPos].title;
-                coverimg.src = x[this.trackPos].src;
-                togglePlayPause();
-            }
-        }
-
-        const playlist = new VideoPlaylist(config);
-
-        playPauseBtn.addEventListener('click', () => playlist.playPause());
-        prevBtn.addEventListener('click', () => playlist.prevTrack());
-        nextBtn.addEventListener('click', () => playlist.nextTrack());
-
-        document.addEventListener('click', function (event) {
-            if (event.target.tagName === 'A' && event.target.closest(`#${playlist.playlistId}`)) {
-                event.preventDefault();
-            }
-        });
-
-        function togglePlayPause() {
-            if (!video.paused) {
-                playPauseBtnImg.src = './image/pause.png';
+            if (Hls.isSupported() && isHls) {
+                this.hls = new Hls();
+                this.hls.loadSource(streamUrl);
+                this.hls.attachMedia(this.player);
+                this.hls.on(Hls.Events.MANIFEST_PARSED, () => { this.player.play(); });
+            } else if ((this.player.canPlayType('application/vnd.apple.mpegurl') || this.player.canPlayType('application/x-mpegurl')) && isHls) {
+                this.player.src = streamUrl;
+                this.player.addEventListener('loadedmetadata', () => { this.player.play(); }, { once: true });
             } else {
-                playPauseBtnImg.src = './image/play.png';
+                this.player.src = streamUrl;
+                this.player.play().catch(err => { console.error('Playback failed:', err); });
             }
-            coverimg.src = x[playlist.trackPos].src;
         }
 
-        function monitorPlayerToggle() {
-            video.addEventListener('play', togglePlayPause);
-            video.addEventListener('pause', togglePlayPause);
-            video.addEventListener('ended', togglePlayPause);
+        playPause() {
+            video.paused ? video.play() : video.pause();
+            togglePlayPause();
         }
 
-        monitorPlayerToggle();
+        prevTrack() {
+            let newPos = this.trackPos - 1;
+            if (newPos < 0) { newPos = this.length - 1; } // Loop to the end
+            this.setTrack(newPos);
+            this.player.play();
+            playPauseBtnImg.src = './image/pause.png';
+            this.updateUI();
+        }
+
+        nextTrack() {
+            let newPos = this.trackPos + 1;
+            if (newPos >= this.length) { newPos = 0; } // Loop to the beginning
+            this.setTrack(newPos);
+            this.player.play();
+            playPauseBtnImg.src = './image/pause.png';
+            this.updateUI();
+        }
+
+        updateUI() {
+            const stationElements = document.querySelectorAll(`#${this.playlistId} .oui-image-cover`);
+            if (stationElements.length > this.trackPos) {
+                const currentStationElement = stationElements[this.trackPos];
+                document.title = currentStationElement.title;
+                document.getElementById("artist").innerHTML = currentStationElement.title;
+                coverimg.src = currentStationElement.src;
+            }
+            togglePlayPause();
+        }
     }
+
+    function togglePlayPause() {
+        if (!video.paused) {
+            playPauseBtnImg.src = './image/pause.png';
+        } else {
+            playPauseBtnImg.src = './image/play.png';
+        }
+    }
+
+    video.addEventListener('play', togglePlayPause);
+    video.addEventListener('pause', togglePlayPause);
+    video.addEventListener('ended', () => playlistManager.nextTrack());
 
     initializePlayer();
 });
