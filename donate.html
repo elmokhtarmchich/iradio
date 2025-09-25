@@ -43,7 +43,13 @@
       <p>iRadio.ma هي خدمة مجانية، ونود أن تبقى كذلك. يساعدنا دعمك في تغطية تكاليف الخوادم والتطوير. إذا وجدت خدمتنا مفيدة، يرجى التفكير في تقديم تبرع صغير لمساعدتنا على مواصلة عملنا. كل مساهمة، مهما كانت كبيرة أو صغيرة، هي قيمة لمستقبلنا.</p>
       <p>يمكنك التبرع عبر الطرق التالية:</p>
       <div class="donation-options">
-          <a href="#" class="donate-button">PayPal</a>
+          <form action="https://www.paypal.com/donate" method="post" target="_top" style="display: inline;">
+              <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL_OR_ID" />
+              <input type="hidden" name="item_name" value="Donation to iRadio.ma" />
+              <input type="hidden" name="currency_code" value="USD" />
+              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" style="vertical-align: middle;"/>
+              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+          </form>
           <a href="#" class="donate-button">Credit Card</a>
       </div>
     </div>
