@@ -11,7 +11,7 @@ export default {
     // Only allow requests from the website's origin
     const origin = request.headers.get('Origin');
     // TODO: Replace with your website's domain
-    if (origin !== 'https://your-website-domain.com') {
+    if (origin !== 'https://iradio.ma') {
       return new Response('Request not allowed from this origin', { status: 403 });
     }
 
