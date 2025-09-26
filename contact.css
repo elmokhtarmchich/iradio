@@ -1,5 +1,10 @@
 /* New styles for the rebuilt contact page */
 
+body.subpage .container.content-card {
+    background-color: #fff;
+    color: #333;
+}
+
 /* Use the main container styles from style.css for consistency */
 .content-card {
     background-color: #fff;
