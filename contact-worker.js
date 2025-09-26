@@ -38,7 +38,7 @@ export default {
       recaptchaData.append('secret', env.RECAPTCHA_SECRET_KEY);
       recaptchaData.append('response', recaptchaResponse);
 
-      const recaptchaResult = await fetch(recaptchaURL, { 
+      const recaptchaResult = await fetch(recaptchaURL, {
         method: 'POST',
         body: recaptchaData,
         headers: {
@@ -59,6 +59,7 @@ export default {
           personalizations: [
             {
               to: [{ email: env.EMAIL_TO, name: 'iRadio Contact Form' }],
+              dkim_domain: 'iradio.ma', // Explicitly set the domain for DKIM
             },
           ],
           from: {
