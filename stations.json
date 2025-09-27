@@ -217,6 +217,38 @@
     "category": "College"
   },
   {
+    "id": 73,
+    "title": "أضواء إف إم",
+    "streamUrl": "https://stream.zeno.fm/5bxh2nh0x1zuv",
+    "imageUrl": "/image/adwaa.png",
+    "category": "News & Talk",
+    "website": "https://adwaafm.com/"
+  },
+  {
+    "id": 74,
+    "title": "أضواء للقرأن الكريم",
+    "streamUrl": "https://stream.zeno.fm/vrrtqsh0x1zuv",
+    "imageUrl": "/image/adwaaquran.png",
+    "category": "Religious",
+    "website": "https://adwaafm.com/"
+  },
+  {
+    "id": 75,
+    "title": "أضواء أطفال",
+    "streamUrl": "https://stream.zeno.fm/8wrs2bh0x1zuv",
+    "imageUrl": "/image/adwaaatfal.png",
+    "category": "أطفال",
+    "website": "https://adwaafm.com/"
+  },
+  {
+    "id": 76,
+    "title": "أضواء صوامت",
+    "streamUrl": "https://stream.zeno.fm/x4451xh0x1zuv",
+    "imageUrl": "/image/adwaasawamit.png",
+    "category": "Music",
+    "website": "https://adwaafm.com/"
+  },
+  {
     "id": 40,
     "title": "Hit Radio",
     "streamUrl": "https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3",
