@@ -3,9 +3,8 @@ let currentWebBtnUrl = null;
 // Global variable to cache the stations database
 let stationsDatabase = null;
 
-// Fetches the station database from stations.json
+// Fetches and caches the station database from stations.json
 async function fetchDatabase() {
-    // Return cached database if available
     if (stationsDatabase) {
         return stationsDatabase;
     }
@@ -18,7 +17,7 @@ async function fetchDatabase() {
         return stationsDatabase;
     } catch (error) {
         console.error('Error fetching database:', error);
-        return []; // Return empty array on error
+        return [];
     }
 }
 
@@ -26,7 +25,6 @@ async function fetchDatabase() {
 async function setWebButtonForStation(stationId) {
     const btn = document.getElementById('web-btn');
     if (!btn) {
-        console.error('web-btn element not found in DOM.');
         return;
     }
 
@@ -40,18 +38,14 @@ async function setWebButtonForStation(stationId) {
     if (!database || !database.length) {
         btn.style.display = 'none';
         currentWebBtnUrl = null;
-        console.error('Database is empty or failed to load.');
         return;
     }
 
-    // Find the station by ID (use == to handle string/number comparison)
     const station = database.find(st => st.id == stationId);
 
-    // Check if the station and its website property exist and are not empty
     if (station && station.website && station.website.trim() !== '') {
         btn.style.display = 'block';
         currentWebBtnUrl = station.website;
-        console.log(`Web button set for stationId=${stationId}, url=${currentWebBtnUrl}`);
     } else {
         btn.style.display = 'none';
         currentWebBtnUrl = null;
@@ -60,39 +54,50 @@ async function setWebButtonForStation(stationId) {
 
 // --- Event Listeners ---
 
-// Add click event listeners to all playlist items
-document.querySelectorAll('#playlist li a').forEach((element) => {
-    element.addEventListener('click', async () => {
-        const stationId = element.dataset.id;
-        await setWebButtonForStation(stationId);
-    });
-});
+function initializeWebButtonEventListeners() {
+    // Use event delegation on the playlist container
+    const playlistElement = document.getElementById('playlist');
+    if (playlistElement) {
+        playlistElement.addEventListener('click', async (e) => {
+            // Find the clicked anchor tag, even if the user clicks on a child element (img, span)
+            const anchor = e.target.closest('a');
+            if (anchor && anchor.dataset.id) {
+                const stationId = anchor.dataset.id;
+                await setWebButtonForStation(stationId);
+            }
+        });
+    }
 
-// Add click event listener to the web button itself
-const webBtn = document.getElementById('web-btn');
-if (webBtn) {
-    webBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentWebBtnUrl) {
-            window.open(currentWebBtnUrl, '_blank', 'noopener');
-        }
-    });
+    // Add click event listener to the web button itself
+    const webBtn = document.getElementById('web-btn');
+    if (webBtn) {
+        webBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentWebBtnUrl) {
+                window.open(currentWebBtnUrl, '_blank', 'noopener');
+            }
+        });
+    }
 }
+
 
 // --- Initialization ---
 
-// Ensures the web button logic is initialized after the DOM is loaded
 async function initializeWebButton() {
     // Pre-fetch the database on page load
     await fetchDatabase();
-
-    // You might want to set an initial state for the button here
-    // For example, for the first station in the list or a default station.
-    // For now, it will remain hidden until a station is clicked.
-    const initialStation = document.querySelector('#playlist li a');
-    if (initialStation) {
-        await setWebButtonForStation(initialStation.dataset.id);
-    }
+    // Set up the event listeners
+    initializeWebButtonEventListeners();
+    
+    // Set initial state for the button based on the default loaded station
+    // We need to wait for the playlist to be rendered by audioPlayer.js
+    // A simple timeout can work, but a more robust solution would be a custom event or callback
+    setTimeout(() => {
+        const initialStation = document.querySelector('#playlist li a');
+        if (initialStation) {
+            setWebButtonForStation(initialStation.dataset.id);
+        }
+    }, 500); // Wait 500ms for audioPlayer.js to likely have finished rendering
 }
 
 // Run initialization when the DOM is ready

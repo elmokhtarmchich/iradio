@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const categoryButtonsElement = document.getElementById('category-buttons');
         if (!categoryButtonsElement) return;
 
-        const categories = ['All', ...new Set(stations.map(s => s.category))];
+        const categories = ['All', ...new Set(stations.flatMap(s => s.category))];
         
         const buttonsHTML = categories.map(category => 
             `<button class="category-button ${category === 'All' ? 'active' : ''}" data-category="${category}">${category}</button>`
@@ -53,7 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const filteredStations = category === 'All' ? allStations : allStations.filter(station => station.category === category);
+        const filteredStations = category === 'All' 
+            ? allStations 
+            : allStations.filter(station => 
+                Array.isArray(station.category) 
+                    ? station.category.includes(category) 
+                    : station.category === category
+            );
 
         const playlistHTML = filteredStations.map(station => {
             const isFirstStation = filteredStations.indexOf(station) === 0;
