@@ -4,217 +4,248 @@
     "title": "Radio Zin B'ladi",
     "streamUrl": "https://asmaki.ma:8000/radio.mp3",
     "imageUrl": "./image/zinbladi.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://zin-bladi.ma"
   },
   {
     "id": 11,
     "title": "Radio Coran",
     "streamUrl": "https://jrtv-live.ercdn.net/jrradio/quranradiovideo.m3u8",
     "imageUrl": "./image/coran.png",
-    "category": "Religious"
+    "category": "Religious",
+    "website": "https://www.admn.ae/en/brand/4197608/quran-kareem"
   },
   {
     "id": 12,
     "title": "Medina FM",
     "streamUrl": "https://medinafm.ice.infomaniak.ch/medinafm-128.mp3",
     "imageUrl": "./image/medina.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://medinafm.ma"
   },
   {
     "id": 13,
     "title": "Chada FM",
     "streamUrl": "https://stream.bodkas.com/playlist?id=chadafmradio",
     "imageUrl": "./image/chada.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://chadafm.ma"
   },
   {
     "id": 14,
     "title": "Rim Radio",
     "streamUrl": "https://streaming.rimradio.ma/live#aud",
     "imageUrl": "./image/rimradio.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://rimradio.ma"
   },
   {
     "id": 15,
     "title": "Medi 1 Radio",
     "streamUrl": "https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8",
     "imageUrl": "./image/medi.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://medi1.com"
   },
   {
     "id": 16,
     "title": "Al-Jazeera",
     "streamUrl": "https://live-hls-audio-web-aja.getaj.net/VOICE-AJA/01.m3u8",
     "imageUrl": "./image/aljazeera.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://aljazeera.com"
   },
   {
     "id": 72,
     "title": "RT Radio",
     "streamUrl": "https://rt-arb.rttv.com/dvr/rtarab/playlist_64Kb.m3u8",
     "imageUrl": "./image/rtradio.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://www.rtarabic.com"
   },
   {
     "id": 17,
     "title": "Med Radio",
     "streamUrl": "https://medradio.ice.infomaniak.ch/medradio-128.mp3",
     "imageUrl": "./image/med.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://medradio.ma/"
   },
   {
     "id": 18,
     "title": "Radio 2M",
     "streamUrl": "https://raw.githubusercontent.com/elmokhtarmchich/iradio/main/radio2m.m3u8",
     "imageUrl": "./image/2m.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://radio2m.ma"
   },
   {
     "id": 19,
     "title": "Radio Chaine Inter",
     "streamUrl": "https://proxy.iradio.ma/snrtchaineinter",
     "imageUrl": "./image/chaine.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/chaine-inter"
   },
   {
     "id": 20,
     "title": "Idaa Al Watania",
     "streamUrl": "https://proxy.iradio.ma/snrtwataniya",
     "imageUrl": "./image/watania.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/ar/alidaa-alwatania"
   },
   {
     "id": 21,
     "title": "Assadisa SNRT",
     "streamUrl": "https://proxy.iradio.ma/snrtassadissa",
     "imageUrl": "./image/assadissa.png",
-    "category": "Religious"
+    "category": "Religious",
+    "website": "https://snrtlive.ma/assadissa"
   },
   {
     "id": 22,
     "title": "Amazighia",
     "streamUrl": "https://proxy.iradio.ma/snrtamazighia",
     "imageUrl": "./image/amazighia.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/ar/alidaa-alamazighia"
   },
   {
     "id": 23,
     "title": "إذاعة مكناس",
     "streamUrl": "https://proxy.iradio.ma/snrtmeknes",
     "imageUrl": "./image/meknes.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 24,
     "title": "إذاعة فاس",
     "streamUrl": "https://proxy.iradio.ma/snrtfes",
     "imageUrl": "./image/fes.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 25,
     "title": "إذاعة تطوان",
     "streamUrl": "https://proxy.iradio.ma/snrttetouan",
     "imageUrl": "./image/tetouan.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 26,
     "title": "إذاعة طنجة",
     "streamUrl": "https://proxy.iradio.ma/snrttanger",
     "imageUrl": "./image/tanger.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 27,
     "title": "إذاعة مراكش",
     "streamUrl": "https://proxy.iradio.ma/snrtmarrakech",
     "imageUrl": "./image/marrakech.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 28,
     "title": "إذاعة الدار البيضاء",
     "streamUrl": "https://proxy.iradio.ma/snrtcasablanca",
     "imageUrl": "./image/casa.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 29,
     "title": "إذاعة وجدة",
     "streamUrl": "https://proxy.iradio.ma/snrtoujda",
     "imageUrl": "./image/oujda.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 30,
     "title": "إذاعة داخلة",
     "streamUrl": "https://proxy.iradio.ma/snrtdakhla",
     "imageUrl": "./image/dakhla.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 31,
     "title": "إذاعة اغادير",
     "streamUrl": "https://proxy.iradio.ma/snrtagadir",
     "imageUrl": "./image/agadir.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 32,
     "title": "إذاعةالحسيمة",
     "streamUrl": "https://proxy.iradio.ma/snrthociema",
     "imageUrl": "./image/hoceima.png",
-    "category": "Nonprofit/Public Radio"
+    "category": "Nonprofit/Public Radio",
+    "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
     "id": 33,
     "title": "Monte Carlo",
     "streamUrl": "https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3",
     "imageUrl": "./image/monte-calro-doualiya.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://www.mc-doualiya.com/البث-المباشر"
   },
   {
     "id": 34,
     "title": "Atlantic Radio",
     "streamUrl": "https://atlantic-sonic.nindohost.net:9300/stream#aud",
     "imageUrl": "./image/atlantic.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://atlanticradio.ma"
   },
   {
     "id": 35,
     "title": "MFM Radio",
     "streamUrl": "https://a5.asurahosting.com:7980/radio.mp3",
     "imageUrl": "./image/mfm.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://mfmradio.ma"
   },
   {
     "id": 36,
     "title": "Radio Mars",
     "streamUrl": "https://radiomars.ice.infomaniak.ch/radiomars-128.mp3",
     "imageUrl": "./image/mars.png",
-    "category": "Sports"
+    "category": "Sports",
+    "website": "https://radiomars.ma"
   },
   {
     "id": 37,
     "title": "Aswat",
     "streamUrl": "https://aswat.ice.infomaniak.ch/aswat-high.mp3",
     "imageUrl": "./image/aswat.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://aswat.ma"
   },
   {
     "id": 38,
     "title": "Cap Radio",
     "streamUrl": "https://listen.radioking.com/radio/710810/stream/776366#aud",
     "imageUrl": "./image/cap.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://capradio.ma"
   },
   {
     "id": 39,
     "title": "Manarat Edu",
     "streamUrl": "https://listen.radioking.com/radio/252934/stream/297385#aud",
     "imageUrl": "./image/radiomanarat.png",
-    "category": "College"
+    "category": "College",
+    "website": "https://manaratedu.ma"
   },
   {
     "id": 73,
@@ -253,223 +284,255 @@
     "title": "Hit Radio",
     "streamUrl": "https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3",
     "imageUrl": "./image/hit.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 41,
     "title": "Hit Radio Mgharba",
     "streamUrl": "https://mgharba.ice.infomaniak.ch/mgharba-128.mp3",
     "imageUrl": "./image/hr-mgharba.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 42,
     "title": "Hit Radio Classic",
     "streamUrl": "https://gold.ice.infomaniak.ch/gold-128.mp3",
     "imageUrl": "./image/hr-classic.jpg",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 43,
     "title": "Hit Radio Tiktok",
     "streamUrl": "https://buzz.ice.infomaniak.ch/buzz-128.mp3",
     "imageUrl": "./image/hr-tiktok.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 44,
     "title": "Hit Radio Party",
     "streamUrl": "https://dancefloor.ice.infomaniak.ch/dancefloor-128.mp3",
     "imageUrl": "./image/hr-party.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 45,
     "title": "Hit Radio Urban",
     "streamUrl": "https://rnb.ice.infomaniak.ch/rnb-128.mp3",
     "imageUrl": "./image/hr-urban.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 46,
     "title": "Hit Radio WayWay",
     "streamUrl": "https://wayway.ice.infomaniak.ch/wayway-128.mp3",
     "imageUrl": "./image/hr-wayway.jpg",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://hitradio.ma"
   },
   {
     "id": 47,
     "title": "Urban 80's",
     "streamUrl": "https://u80.ice.infomaniak.ch/u80-128.aac",
     "imageUrl": "./image/u80.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 48,
     "title": "Urban Dance",
     "streamUrl": "https://udance.ice.infomaniak.ch/udance-128.aac",
     "imageUrl": "./image/udance.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 49,
     "title": "Urban",
     "streamUrl": "https://urban.ice.infomaniak.ch/urban-128.aac",
     "imageUrl": "./image/urban.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 50,
     "title": "Urban Radio",
     "streamUrl": "https://uradio-aac.ice.infomaniak.ch/uradio.aac",
     "imageUrl": "./image/uradio.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 51,
     "title": "Urban PoP",
     "streamUrl": "https://upop.ice.infomaniak.ch/upop-128.aac",
     "imageUrl": "./image/upop.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 52,
     "title": "Urban 90's",
     "streamUrl": "https://u90.ice.infomaniak.ch/u90-128.aac",
     "imageUrl": "./image/u90.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://uradio.ma/"
   },
   {
     "id": 53,
     "title": "Radio Star",
     "streamUrl": "https://a2.asurahosting.com:6100/radio.mp3",
     "imageUrl": "./image/star-maroc.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://radiostarmaroc.com/"
   },
   {
     "id": 54,
     "title": "Radio Soleil",
     "streamUrl": "https://radiosoleil.ice.infomaniak.ch/radiosoleil-128.mp3",
     "imageUrl": "./image/soleil.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://radiosoleil.bilsimaging.com/"
   },
   {
     "id": 55,
     "title": "Radio Only Raï",
     "streamUrl": "https://broadcast.infomaniak.net/onlyrai-high.mp3",
     "imageUrl": "./image/only-rai.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://onlyrai.ma"
   },
   {
     "id": 56,
     "title": "NRJ Maroc",
     "streamUrl": "https://icecast.nrjmaroc.com/stream#aud",
     "imageUrl": "./image/nrj-maroc.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://www.nrjmaroc.com/"
   },
   {
     "id": 57,
     "title": "Radio Sawa",
     "streamUrl": "https://mbnv-audio-ingest.akamaized.net/hls/live/2038905/MBNV_SAWA_LEVANT_AUDIO_HLS/master_11.m3u8",
     "imageUrl": "./image/sawa.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://radiosawa.net"
   },
   {
     "id": 58,
     "title": "Moroccan Voice Radio",
     "streamUrl": "https://channel0.moroccanvoice.com:8000/;stream/1",
     "imageUrl": "./image/morrocan.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://moroccanvoice.com"
   },
   {
     "id": 59,
     "title": "Radio Chabab Maroc",
     "streamUrl": "https://streaming.radionomy.com/jeunesradioma#aud",
     "imageUrl": "./image/chabab-maroc.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://chababmaroc.ma"
   },
   {
     "id": 60,
     "title": "Nass Radio",
     "streamUrl": "https://radio.nessradio.net:8212/nessradio#aud",
     "imageUrl": "./image/ness.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://nessradio.ma"
   },
   {
     "id": 61,
     "title": "Radio Plus Casablanca",
     "streamUrl": "https://hosting.studioradiomedia.fr:3040/stream#aud",
     "imageUrl": "./image/plus-casablanca.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://teleplus.ma"
   },
   {
     "id": 62,
     "title": "Radio Plus Agadir",
     "streamUrl": "https://hosting.studioradiomedia.fr:3040/stream#aud",
     "imageUrl": "./image/plus-agadir.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://teleplus.ma"
   },
   {
     "id": 63,
     "title": "Radio Yabiladi",
     "streamUrl": "https://radio.yabiladi.com:8002/;stream.mp3",
     "imageUrl": "./image/yabiladi.png",
-    "category": "Arabic"
+    "category": "Arabic",
+    "website": "https://yabiladi.com"
   },
   {
     "id": 64,
     "title": "Achkid FM",
     "streamUrl": "https://stream.zeno.fm/7nqu31p6xg0uv#aud",
     "imageUrl": "./image/achkidfm.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://radioenlignefrance.com/yan-plus-radio"
   },
   {
     "id": 65,
     "title": "Izlanzik Radio",
     "streamUrl": "https://izlan.fr/radios/atlas/stream#aud",
     "imageUrl": "./image/izlanzik.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://izlan.fr"
   },
   {
     "id": 66,
     "title": "Sawt Ouarzazate",
     "streamUrl": "http://162.210.196.145:20016/stream.mp3",
     "imageUrl": "./image/sawt-ouarzazate.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://sawtouarzazate.ma"
   },
   {
     "id": 67,
     "title": "Orient FM",
     "streamUrl": "https://stream3.broadcast-associes.com:8405/Radio-Orient",
     "imageUrl": "./image/orient-fm.png",
-    "category": "Arabic"
+    "category": "Arabic",
+    "website": "https://www.arabic.radioorient.com/"
   },
   {
     "id": 68,
     "title": "Radio Maroc Music",
     "streamUrl": "https://streaming.radionomy.com/MarocMusic#aud",
     "imageUrl": "./image/music.png",
-    "category": "Music"
+    "category": "Music",
+    "website": "https://marocmusic.ma"
   },
   {
     "id": 69,
     "title": "TANGER MED",
     "streamUrl": "https://radiotangermed-22.ice.infomaniak.ch/radiotangermed-22-128.mp3",
     "imageUrl": "./image/radiotangermed.png",
-    "category": "News & Talk"
+    "category": "News & Talk",
+    "website": "https://tangermed.ma"
   },
   {
     "id": 70,
     "title": "Radio Atbir",
     "streamUrl": "https://stream.zenolive.com/bqdbb6hd0neuv#aud",
     "imageUrl": "./image/atbir.png",
-    "category": "Community"
+    "category": "Community",
+    "website": "https://radioatbir.com/"
   },
   {
     "id": 71,
     "title": "Oxygene Radio",
     "streamUrl": "https://radiocampus.ice.infomaniak.ch/radiocampus-128.mp3",
     "imageUrl": "./image/oxygene.png",
-    "category": "College"
+    "category": "College",
+    "website": "https://oxygene.ma/"
   }
 ]
