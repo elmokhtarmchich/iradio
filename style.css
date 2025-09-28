@@ -495,3 +495,16 @@ body.subpage {
 .subpage .donate-button:hover {
     background-color: #45a049;
 }
+
+#offline-notification {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1001; /* Make sure it's on top of other elements */
+    font-family: "Roboto", sans-serif;
+}
