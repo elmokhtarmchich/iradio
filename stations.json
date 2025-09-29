@@ -52,7 +52,11 @@
     "title": "Al-Jazeera",
     "streamUrl": "https://live-hls-audio-web-aja.getaj.net/VOICE-AJA/01.m3u8",
     "imageUrl": "./image/aljazeera.png",
-    "category": "News & Talk",
+    "category": [
+     "News & Talk",
+      "Arabic",
+      "International"
+    ],    
     "website": "https://aljazeera.com"
   },
   {
@@ -60,7 +64,11 @@
     "title": "RT Radio",
     "streamUrl": "https://rt-arb.rttv.com/dvr/rtarab/playlist_64Kb.m3u8",
     "imageUrl": "./image/rtradio.png",
-    "category": "News & Talk",
+    "category": [
+     "News & Talk",
+      "Arabic",
+      "International"
+    ],      
     "website": "https://www.rtarabic.com"
   },
   {
@@ -76,7 +84,7 @@
     "title": "Radio 2M",
     "streamUrl": "https://raw.githubusercontent.com/elmokhtarmchich/iradio/main/radio2m.m3u8",
     "imageUrl": "./image/2m.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://radio2m.ma"
   },
   {
@@ -84,7 +92,7 @@
     "title": "Radio Chaine Inter",
     "streamUrl": "https://proxy.iradio.ma/snrtchaineinter",
     "imageUrl": "./image/chaine.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/chaine-inter"
   },
   {
@@ -92,7 +100,7 @@
     "title": "Idaa Al Watania",
     "streamUrl": "https://proxy.iradio.ma/snrtwataniya",
     "imageUrl": "./image/watania.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/ar/alidaa-alwatania"
   },
   {
@@ -108,7 +116,7 @@
     "title": "Amazighia",
     "streamUrl": "https://proxy.iradio.ma/snrtamazighia",
     "imageUrl": "./image/amazighia.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/ar/alidaa-alamazighia"
   },
   {
@@ -116,7 +124,7 @@
     "title": "إذاعة مكناس",
     "streamUrl": "https://proxy.iradio.ma/snrtmeknes",
     "imageUrl": "./image/meknes.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -124,7 +132,7 @@
     "title": "إذاعة فاس",
     "streamUrl": "https://proxy.iradio.ma/snrtfes",
     "imageUrl": "./image/fes.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -132,7 +140,7 @@
     "title": "إذاعة تطوان",
     "streamUrl": "https://proxy.iradio.ma/snrttetouan",
     "imageUrl": "./image/tetouan.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -140,7 +148,7 @@
     "title": "إذاعة طنجة",
     "streamUrl": "https://proxy.iradio.ma/snrttanger",
     "imageUrl": "./image/tanger.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -148,7 +156,7 @@
     "title": "إذاعة مراكش",
     "streamUrl": "https://proxy.iradio.ma/snrtmarrakech",
     "imageUrl": "./image/marrakech.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -156,7 +164,7 @@
     "title": "إذاعة الدار البيضاء",
     "streamUrl": "https://proxy.iradio.ma/snrtcasablanca",
     "imageUrl": "./image/casa.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -164,7 +172,7 @@
     "title": "إذاعة وجدة",
     "streamUrl": "https://proxy.iradio.ma/snrtoujda",
     "imageUrl": "./image/oujda.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -172,7 +180,7 @@
     "title": "إذاعة داخلة",
     "streamUrl": "https://proxy.iradio.ma/snrtdakhla",
     "imageUrl": "./image/dakhla.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -180,7 +188,7 @@
     "title": "إذاعة اغادير",
     "streamUrl": "https://proxy.iradio.ma/snrtagadir",
     "imageUrl": "./image/agadir.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
@@ -188,7 +196,7 @@
     "title": "إذاعةالحسيمة",
     "streamUrl": "https://proxy.iradio.ma/snrthociema",
     "imageUrl": "./image/hoceima.png",
-    "category": "Nonprofit/Public Radio",
+    "category": "Public",
     "website": "https://snrtlive.ma/fr/radio-regionale"
   },
   {
