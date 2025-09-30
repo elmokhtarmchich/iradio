@@ -299,23 +299,25 @@ footer {
 
 @media (min-width: 768px) {
     .footer-container {
-        flex-direction: row;
+        flex-direction: column;
     }
 }
 
 .footer-section {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 @media (min-width: 768px) {
     .footer-section {
-        margin-bottom: 0;
+        margin-bottom: 30px;
     }
 }
 
 .footer-logo-title {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 15px;
 }
 
@@ -338,13 +340,14 @@ footer {
 
 .footer-description {
     color: #aaa;
-    max-width: 250px;
+    max-width: 450px;
 }
 
 .footer-links-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -507,4 +510,17 @@ body.subpage {
     border-radius: 5px;
     z-index: 1001; /* Make sure it's on top of other elements */
     font-family: "Roboto", sans-serif;
+}
+
+/* New styles for the footer logo */
+.footer-logo-container {
+    text-align: center; /* Center the image horizontally */
+    margin-bottom: 20px;
+}
+.footer-logo-container .img{
+  height: 60px;
+}
+.footer-logo {
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
 }
