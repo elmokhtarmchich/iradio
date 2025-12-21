@@ -170,24 +170,13 @@ background-color: #ffcc00;
   overflow-x: auto;
   white-space: nowrap;
   margin-bottom: 20px;
-  padding-bottom: 10px; /* Space for the scrollbar */
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #555 #333; /* For Firefox */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 /* For Webkit browsers like Chrome, Safari */
 #category-buttons::-webkit-scrollbar {
-  height: 5px;
-}
-
-#category-buttons::-webkit-scrollbar-track {
-  background: #333;
-}
-
-#category-buttons::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 10px;
-  border: 1px solid #333;
+  display: none;
 }
 
 .category-button {
