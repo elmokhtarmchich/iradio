@@ -281,5 +281,27 @@ document.addEventListener('DOMContentLoaded', function () {
     video.addEventListener('pause', togglePlayPause);
     video.addEventListener('ended', () => playlistManager.nextTrack());
 
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', searchStations);
+    }
+
+    function searchStations() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const playlistItems = document.querySelectorAll('#playlist li');
+
+        playlistItems.forEach(item => {
+            const titleElement = item.querySelector('.radiotitle');
+            if (titleElement) {
+                const title = titleElement.textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    item.style.display = 'inline-block';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        });
+    }
+
     initializePlayer();
 });
