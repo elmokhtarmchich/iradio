@@ -282,8 +282,19 @@ document.addEventListener('DOMContentLoaded', function () {
     video.addEventListener('ended', () => playlistManager.nextTrack());
 
     const searchInput = document.getElementById('search-input');
+    const searchIcon = document.querySelector('.search-icon');
+
     if (searchInput) {
         searchInput.addEventListener('keyup', searchStations);
+    }
+
+    if (searchIcon && searchInput) {
+        searchIcon.addEventListener('click', () => {
+            searchInput.classList.toggle('active');
+            if (searchInput.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
     }
 
     function searchStations() {
