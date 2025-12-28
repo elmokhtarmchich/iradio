@@ -41,3 +41,5 @@ database.yml
 
 # Coverage
 /coverage
+indexnow.js
+/node_modules

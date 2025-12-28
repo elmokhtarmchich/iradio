@@ -16,3 +16,13 @@ DON'T
 Repetitive violations of these guidelines might get your access to the repository restricted.
 
 <!-- workflow trigger -->
+
+## IndexNow SEO Submission
+
+This project includes a script to notify search engines like Bing and Yandex about website updates using the IndexNow protocol. This helps get your content indexed faster.
+
+After you have deployed your changes, run the following command from the project root:
+
+```bash
+node indexnow.js
+```
