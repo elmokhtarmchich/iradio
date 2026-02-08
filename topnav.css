@@ -3,7 +3,6 @@
 
 .topnav {
 z-index: 3;
-overflow: hidden;
 background-color: #161b22;
 position: fixed;
 top: 0;
@@ -16,10 +15,11 @@ font-family: "Roboto", sans-serif;
 font-weight: 400;
 font-style: normal;
 font-size: 0.75em;
+display: flex;
+align-items: center;
 }
 
 .topnav a {
-float: right;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -28,7 +28,7 @@ width: 45px;
 border-width: 0px 0px 0px 1px;
 border-style: solid;
 border-color: #414b58;
-
+flex-shrink: 0;
 }
 .topnav a .img {
   width: auto;
@@ -53,9 +53,11 @@ margin-left: 10px;
 
 .topnav a.active {
   color: white;
-  width: 170px;
-  padding: 0px;
-  float: left;
+  width: auto;
+  padding: 0 10px;
+  border: none;
+  flex-grow: 1;
+  justify-content: flex-start;
 }
 
 .topnav .icon {
@@ -64,11 +66,12 @@ margin-left: 10px;
 
 /* Search container styles */
 .topnav .search-container {
-    float: right;
     position: relative; /* For icon positioning */
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .topnav #search-input {
@@ -102,6 +105,9 @@ margin-left: 10px;
 
 /* Mobile responsive styles */
 @media (max-width: 731px) {
+    .logoimg {
+        display: none;
+    }
     .topnav #search-input {
         width: 0;
         padding-left: 18px; /* half of height */

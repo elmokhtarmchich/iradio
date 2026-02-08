@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topnav Responsive Test</title>
+    <link rel="stylesheet" href="topnav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #333; /* Dark background to see the nav clearly */
+            padding-top: 60px; /* Space for fixed nav */
+        }
+        /* Override filter for test visibility if needed */
+        .search-icon {
+            filter: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a class="active" href="#">
+            <img class="logoimg" src="https://placehold.co/100x30/transparent/white?text=LOGO" alt="Logo">
+        </a>
+        
+        <a href="#">
+            <img class="img" src="https://placehold.co/20x20/transparent/white?text=I" alt="Icon">
+        </a>
+        <a href="#">
+            <img class="img" src="https://placehold.co/20x20/transparent/white?text=I" alt="Icon">
+        </a>
+
+        <div class="search-container">
+            <img class="search-icon" src="https://placehold.co/18x18/transparent/white?text=S" alt="Search">
+            <input type="text" id="search-input" placeholder="Search...">
+        </div>
+    </div>
+
+    <script src="audioPlayer.js"></script>
+</body>
+</html>
