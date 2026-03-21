@@ -9,7 +9,7 @@ async function fetchDatabase() {
         return stationsDatabase;
     }
     try {
-        const response = await fetch('/api/stations');
+        const response = await fetch('./stations.json');
         if (!response.ok) {
             throw new Error(`Failed to fetch database: ${response.statusText}`);
         }

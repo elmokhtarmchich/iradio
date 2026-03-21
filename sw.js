@@ -2,6 +2,7 @@ const CACHE_NAME = 'iradio-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
+  '/manifest.webmanifest',
   '/style.css',
   '/topnav.css',
   '/contact.css',
