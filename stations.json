@@ -82,7 +82,7 @@
   {
     "id": 18,
     "title": "Radio 2M",
-    "streamUrl": "https://raw.githubusercontent.com/elmokhtarmchich/iradio/main/radio2m.m3u8",
+    "streamUrl": "https://cdn-globecast.akamaized.net/live/eds/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400=1.m3u8",
     "imageUrl": "./image/2m.png",
     "category": "Public",
     "website": "https://radio2m.ma"
