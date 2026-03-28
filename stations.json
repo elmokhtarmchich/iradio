@@ -74,7 +74,7 @@
   {
     "id": 17,
     "title": "Med Radio",
-    "streamUrl": "https://medradio.ice.infomaniak.ch/medradio-128.mp3",
+    "streamUrl": "https://proxy.iradio.ma/snrtmedradio",
     "imageUrl": "./image/med.png",
     "category": "News & Talk",
     "website": "https://medradio.ma/"
@@ -82,7 +82,7 @@
   {
     "id": 18,
     "title": "Radio 2M",
-    "streamUrl": "https://cdn-globecast.akamaized.net/live/eds/radio_2m/radio_hls_ts_hy217612tge1f21j83/radio_2m-mp4a_130400=1.m3u8",
+    "streamUrl": "https://proxy.iradio.ma/snrt2m",
     "imageUrl": "./image/2m.png",
     "category": "Public",
     "website": "https://radio2m.ma"
