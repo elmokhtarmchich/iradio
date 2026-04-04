@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iradio-cache-v1';
+const CACHE_NAME = 'iradio-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -114,6 +114,12 @@ self.addEventListener('activate', event => {
 
 // Fetch: serve from cache, then network fallback
 self.addEventListener('fetch', event => {
+  // Never cache stations.json - always fetch fresh
+  if (event.request.url.includes('stations.json')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request, {ignoreSearch: true})
       .then(response => response || fetch(event.request))

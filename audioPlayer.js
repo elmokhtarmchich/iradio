@@ -5,11 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function initializePlayer() {
         try {
-            const response = await fetch('./stations.json');
+            console.log('Fetching stations.json...');
+            const response = await fetch('./stations.json?v=' + Date.now());
+            console.log('Response status:', response.status);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             allStations = await response.json();
+            console.log('Stations loaded:', allStations.length);
 
             generateCategoryButtons(allStations);
             renderPlaylist('All'); 
