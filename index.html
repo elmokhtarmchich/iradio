@@ -28,10 +28,13 @@
 
 <link href="./style.css" rel="stylesheet">
 <link href="./topnav.css" rel="stylesheet">
+<link href="./contact.css" rel="stylesheet">
+<link href="./playerstyle.css" rel="stylesheet">
 
 
-<script src="https://iradio.ma/script.js?v=2"></script>
-<script src="https://iradio.ma/index.js?v=2" defer></script>
+<!-- External scripts commented out for local testing -->
+<!-- <script src="https://iradio.ma/script.js?v=2"></script> -->
+<!-- <script src="https://iradio.ma/index.js?v=2" defer></script> -->
 <script src="indicator.js?v=2" defer></script>
 <script src="webbtn.js?v=2" defer></script>
 
@@ -278,13 +281,13 @@
             if ('caches' in window) {
                 caches.keys().then(keys => {
                     if (keys.length > 0) {
-                        document.getElementById('cache-status').textContent = 'Cache is active';
+                        console.log('Cache is active');
                     } else {
-                        document.getElementById('cache-status').textContent = 'Cache is empty';
+                        console.log('Cache is empty');
                     }
                 });
             } else {
-                document.getElementById('cache-status').textContent = 'Not supported';
+                console.log('Cache API not supported');
             }
         }
 
@@ -293,28 +296,15 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.getRegistrations().then(registrations => {
                     if (registrations.length > 0) {
-                        document.getElementById('sw-status').textContent = 'Service Worker is active';
+                        console.log('Service Worker is active');
                     } else {
-                        document.getElementById('sw-status').textContent = 'Service Worker is not active';
+                        console.log('Service Worker is not active');
                     }
                 });
             } else {
-                document.getElementById('sw-status').textContent = 'Not supported';
+                console.log('Service Worker not supported');
             }
         }
-
-        // Clear Cache
-        document.getElementById('clear-cache-button').addEventListener('click', async () => {
-            if ('caches' in window) {
-                caches.keys().then(keys => {
-                    keys.forEach(key => caches.delete(key));
-                }).then(() => {
-                    console.log('Cache cleared successfully');
-                    alert('Cache cleared! Reload the page.');
-                    checkCacheStatus(); // Update cache status after clearing
-                });
-            }
-        });
 
         // Initialize
         checkCacheStatus();
@@ -322,6 +312,8 @@
     </script>
     <script>
     // Register the service worker for PWA/offline caching
+    // DISABLED FOR TESTING - uncomment for production
+    /*
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker.register('/sw.js?v=2').then(function(registration) {
@@ -331,6 +323,7 @@
             });
         });
     }
+    */
     </script>
 
                     <script src="offline.js" defer></script>
