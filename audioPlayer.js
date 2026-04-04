@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function initializePlayer() {
         try {
-            const response = await fetch('/api/stations');
+            const response = await fetch('./stations.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
