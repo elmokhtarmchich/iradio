@@ -545,5 +545,21 @@
       "أطفال"
     ],
     "website": "https://oxygene.ma/"
+  },
+    {
+    "id": 77,
+    "title": "Marrakech Plus",
+    "streamUrl": "https://cast5.my-control-panel.com/proxy/marrakec/stream",
+    "imageUrl": "./image/marrakechplus.png",
+    "category": "Public",
+    "website": "https://www.marrakechplus.ma/"
+  },
+  {
+    "id": 78,
+    "title": "Alpha Radio",
+    "streamUrl": "https://manager11.streamradio.fr:3115/stream",
+    "imageUrl": "./image/alpharadio.png",
+    "category": "Public",
+    "website": "https://alpharadio.ma"
   }
 ]
