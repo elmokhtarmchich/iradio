@@ -57,7 +57,8 @@
     "streamUrl": "https://proxy.iradio.ma/medi1radio",
     "imageUrl": "./image/medi.png",
     "category": "News & Talk",
-    "website": "https://medi1.com"
+    "website": "https://medi1.com",
+    "bundle": "main"
   },
   {
     "id": 16,
@@ -89,7 +90,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtmedradio",
     "imageUrl": "./image/med.png",
     "category": "News & Talk",
-    "website": "https://medradio.ma/"
+    "website": "https://medradio.ma/",
+    "bundle": 20
   },
   {
     "id": 18,
@@ -105,7 +107,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtchaineinter",
     "imageUrl": "./image/chaine.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/chaine-inter"
+    "website": "https://snrtlive.ma/chaine-inter",
+    "bundle": 20
   },
   {
     "id": 20,
@@ -113,7 +116,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtwataniya",
     "imageUrl": "./image/watania.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/ar/alidaa-alwatania"
+    "website": "https://snrtlive.ma/ar/alidaa-alwatania",
+    "bundle": "main"
   },
   {
     "id": 21,
@@ -121,7 +125,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtassadissa",
     "imageUrl": "./image/assadissa.png",
     "category": "Religious",
-    "website": "https://snrtlive.ma/assadissa"
+    "website": "https://snrtlive.ma/assadissa",
+    "bundle": 20
   },
   {
     "id": 22,
@@ -129,7 +134,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtamazighia",
     "imageUrl": "./image/amazighia.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/ar/alidaa-alamazighia"
+    "website": "https://snrtlive.ma/ar/alidaa-alamazighia",
+    "bundle": 20
   },
   {
     "id": 23,
@@ -137,7 +143,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtmeknes",
     "imageUrl": "./image/meknes.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 24,
@@ -145,7 +152,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtfes",
     "imageUrl": "./image/fes.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 25,
@@ -153,7 +161,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrttetouan",
     "imageUrl": "./image/tetouan.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 26,
@@ -161,7 +170,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrttanger",
     "imageUrl": "./image/tanger.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 27,
@@ -169,7 +179,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtmarrakech",
     "imageUrl": "./image/marrakech.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 28,
@@ -177,7 +188,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtcasablanca",
     "imageUrl": "./image/casa.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 29,
@@ -185,7 +197,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtoujda",
     "imageUrl": "./image/oujda.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 30,
@@ -193,7 +206,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtdakhla",
     "imageUrl": "./image/dakhla.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 31,
@@ -201,7 +215,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrtagadir",
     "imageUrl": "./image/agadir.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 32,
@@ -209,7 +224,8 @@
     "streamUrl": "https://proxy.iradio.ma/snrthociema",
     "imageUrl": "./image/hoceima.png",
     "category": "Public",
-    "website": "https://snrtlive.ma/fr/radio-regionale"
+    "website": "https://snrtlive.ma/fr/radio-regionale",
+    "bundle": 20
   },
   {
     "id": 33,
@@ -273,7 +289,8 @@
     "streamUrl": "https://stream.zeno.fm/5bxh2nh0x1zuv",
     "imageUrl": "/image/adwaa.png",
     "category": "News & Talk",
-    "website": "https://adwaafm.com/"
+    "website": "https://adwaafm.com/",
+    "bundle": "main"
   },
   {
     "id": 74,
@@ -281,7 +298,8 @@
     "streamUrl": "https://stream.zeno.fm/vrrtqsh0x1zuv",
     "imageUrl": "/image/adwaaquran.png",
     "category": "Religious",
-    "website": "https://adwaafm.com/"
+    "website": "https://adwaafm.com/",
+    "bundle": 73
   },
   {
     "id": 75,
@@ -289,7 +307,8 @@
     "streamUrl": "https://stream.zeno.fm/8wrs2bh0x1zuv",
     "imageUrl": "/image/adwaaatfal.png",
     "category": "أطفال",
-    "website": "https://adwaafm.com/"
+    "website": "https://adwaafm.com/",
+    "bundle": 73
   },
   {
     "id": 76,
@@ -297,7 +316,8 @@
     "streamUrl": "https://stream.zeno.fm/x4451xh0x1zuv",
     "imageUrl": "/image/adwaasawamit.png",
     "category": "Music",
-    "website": "https://adwaafm.com/"
+    "website": "https://adwaafm.com/",
+    "bundle": 73
   },
   {
     "id": 40,
@@ -305,7 +325,8 @@
     "streamUrl": "https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3",
     "imageUrl": "./image/hit.png",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": "main"
   },
   {
     "id": 41,
@@ -313,7 +334,8 @@
     "streamUrl": "https://mgharba.ice.infomaniak.ch/mgharba-128.mp3",
     "imageUrl": "./image/hr-mgharba.png",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 42,
@@ -321,7 +343,8 @@
     "streamUrl": "https://gold.ice.infomaniak.ch/gold-128.mp3",
     "imageUrl": "./image/hr-classic.jpg",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 43,
@@ -329,7 +352,8 @@
     "streamUrl": "https://buzz.ice.infomaniak.ch/buzz-128.mp3",
     "imageUrl": "./image/hr-tiktok.png",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 44,
@@ -337,7 +361,8 @@
     "streamUrl": "https://dancefloor.ice.infomaniak.ch/dancefloor-128.mp3",
     "imageUrl": "./image/hr-party.png",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 45,
@@ -345,7 +370,8 @@
     "streamUrl": "https://rnb.ice.infomaniak.ch/rnb-128.mp3",
     "imageUrl": "./image/hr-urban.png",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 46,
@@ -353,7 +379,8 @@
     "streamUrl": "https://wayway.ice.infomaniak.ch/wayway-128.mp3",
     "imageUrl": "./image/hr-wayway.jpg",
     "category": "Music",
-    "website": "https://hitradio.ma"
+    "website": "https://hitradio.ma",
+    "bundle": 40
   },
   {
     "id": 47,
@@ -361,7 +388,8 @@
     "streamUrl": "https://u80.ice.infomaniak.ch/u80-128.aac",
     "imageUrl": "./image/u80.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": 49
   },
   {
     "id": 48,
@@ -369,7 +397,8 @@
     "streamUrl": "https://udance.ice.infomaniak.ch/udance-128.aac",
     "imageUrl": "./image/udance.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": 49
   },
   {
     "id": 49,
@@ -377,7 +406,8 @@
     "streamUrl": "https://urban.ice.infomaniak.ch/urban-128.aac",
     "imageUrl": "./image/urban.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": "main"
   },
   {
     "id": 50,
@@ -385,7 +415,8 @@
     "streamUrl": "https://uradio-aac.ice.infomaniak.ch/uradio.aac",
     "imageUrl": "./image/uradio.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": 49
   },
   {
     "id": 51,
@@ -393,7 +424,8 @@
     "streamUrl": "https://upop.ice.infomaniak.ch/upop-128.aac",
     "imageUrl": "./image/upop.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": 49
   },
   {
     "id": 52,
@@ -401,7 +433,8 @@
     "streamUrl": "https://u90.ice.infomaniak.ch/u90-128.aac",
     "imageUrl": "./image/u90.png",
     "category": "Music",
-    "website": "https://uradio.ma/"
+    "website": "https://uradio.ma/",
+    "bundle": 49
   },
   {
     "id": 53,

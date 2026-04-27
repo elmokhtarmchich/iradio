@@ -1,7 +1,57 @@
+// Global function for inline bundle toggle
+function toggleInlineBundle(mainStationId, event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
+    const bundledStations = document.querySelectorAll(`[data-bundle-main="${mainStationId}"]`);
+    const mainStationArrow = document.querySelector(`#bundle-arrow-${mainStationId}`);
+    
+    if (!mainStationArrow) return;
+    
+    const isExpanded = mainStationArrow.classList.contains('expanded');
+    
+    bundledStations.forEach(station => {
+        if (isExpanded) {
+            // Hide the stations
+            station.style.display = 'none';
+            station.classList.remove('bundle-station');
+            station.classList.add('hidden');
+        } else {
+            // Show the stations with reduced opacity
+            station.style.display = '';
+            station.classList.remove('hidden');
+            station.classList.add('bundle-station');
+        }
+    });
+    
+    mainStationArrow.classList.toggle('expanded');
+}
+
+// Global function to close all bundles
+function closeAllBundles() {
+    document.querySelectorAll('.bundle-arrow.expanded').forEach(arrow => {
+        arrow.classList.remove('expanded');
+    });
+    
+    document.querySelectorAll('.bundle-station').forEach(station => {
+        station.style.display = 'none';
+        station.classList.remove('bundle-station');
+        station.classList.add('hidden');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     let allStations = [];
     let playlistManager;
+    
+    // Bundle preferences
+    const bundlePreferences = {
+        defaultExpanded: localStorage.getItem('bundleDefaultExpanded') === 'true',
+        autoClose: localStorage.getItem('bundleAutoClose') !== 'false' // default true
+    };
 
     async function initializePlayer() {
         try {
@@ -49,6 +99,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function identifyBundles(stations) {
+        const bundles = {};
+        
+        stations.forEach(station => {
+            if (station.bundle === 'main') {
+                // This is a main station, create a bundle for it
+                bundles[station.id] = {
+                    main: station,
+                    subStations: []
+                };
+            }
+        });
+        
+        // Add sub-stations to their respective bundles
+        stations.forEach(station => {
+            if (typeof station.bundle === 'number' && bundles[station.bundle]) {
+                bundles[station.bundle].subStations.push(station);
+            }
+        });
+
+        return bundles;
+    }
+
+    function getMainStationForBundle(bundleStations, bundleKey) {
+        // With the new system, the main station is already identified
+        return bundleStations.main || null;
+    }
+
     function renderPlaylist(category) {
         const playlistElement = document.getElementById('playlist');
         if (!playlistElement) {
@@ -64,22 +142,85 @@ document.addEventListener('DOMContentLoaded', function () {
                     : station.category === category
             );
 
-        const playlistHTML = filteredStations.map(station => {
-            const isFirstStation = filteredStations.indexOf(station) === 0;
-            const liClass = isFirstStation ? 'current-video' : '';
-            const isComingSoon = station.status === 'coming soon';
-            const containerClass = isComingSoon ? 'radio-container coming-soon' : 'radio-container';
-            return `
-                <li class="${liClass}">
-                    <a data-id="${station.id}" href="${station.streamUrl}">
-                        <div class="${containerClass}">
-                            <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
-                            <span class="radiotitle">${station.title}</span>
-                        </div>
-                    </a>
-                </li>
-            `;
-        }).join('');
+        const bundles = identifyBundles(filteredStations);
+        const renderedMainStations = new Set();
+        
+        let playlistHTML = '';
+        let isFirstOverall = true;
+
+        // Render stations in original order
+        filteredStations.forEach(station => {
+            // Skip if this station is already rendered as part of a bundle
+            if (renderedMainStations.has(station.id)) return;
+            
+            // Check if this is a main bundle station
+            const isMainBundle = station.bundle === 'main';
+            const bundle = isMainBundle ? bundles[station.id] : null;
+            
+            if (isMainBundle && bundle && bundle.subStations.length > 0) {
+                // Render main bundle station with indicator
+                const liClass = isFirstOverall ? 'current-video' : '';
+                const isComingSoon = station.status === 'coming soon';
+                const containerClass = isComingSoon ? 'radio-container coming-soon bundle-main' : 'radio-container bundle-main';
+                
+                const bundleName = `${station.title} Bundle`;
+                const stationCount = bundle.subStations.length + 1; // +1 for main station
+                const isExpandedByDefault = bundlePreferences.defaultExpanded;
+                
+                playlistHTML += `
+                    <li class="${liClass}">
+                        <a data-id="${station.id}" href="${station.streamUrl}">
+                            <div class="${containerClass}">
+                                <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
+                                <span class="radiotitle">${station.title}</span>
+                                <div class="bundle-indicator" onclick="toggleInlineBundle(${station.id}, event); return false;">
+                                    <div class="bundle-name">${bundleName}</div>
+                                    <div class="bundle-count">${stationCount} stations</div>
+                                    <span class="bundle-arrow" id="bundle-arrow-${station.id}" ${isExpandedByDefault ? 'class="expanded"' : ''}>▶</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `;
+
+                // Add sub-stations (respect default expanded preference)
+                bundle.subStations.forEach(subStation => {
+                    const isComingSoon = subStation.status === 'coming soon';
+                    const containerClass = isComingSoon ? 'radio-container coming-soon' : 'radio-container';
+                    const subStationClass = isExpandedByDefault ? 'bundle-station' : 'hidden';
+                    playlistHTML += `
+                        <li class="${subStationClass}" data-bundle-main="${station.id}">
+                            <a data-id="${subStation.id}" href="${subStation.streamUrl}">
+                                <div class="${containerClass}">
+                                    <img class="oui-image-cover" title="${subStation.title}" src="${subStation.imageUrl}">
+                                    <span class="radiotitle">${subStation.title}</span>
+                                </div>
+                            </a>
+                        </li>
+                    `;
+                });
+                
+                renderedMainStations.add(station.id);
+            } else if (typeof station.bundle !== 'number') {
+                // Render regular station (not a sub-station)
+                const liClass = isFirstOverall ? 'current-video' : '';
+                const isComingSoon = station.status === 'coming soon';
+                const containerClass = isComingSoon ? 'radio-container coming-soon' : 'radio-container';
+                playlistHTML += `
+                    <li class="${liClass}">
+                        <a data-id="${station.id}" href="${station.streamUrl}">
+                            <div class="${containerClass}">
+                                <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
+                                <span class="radiotitle">${station.title}</span>
+                            </div>
+                        </a>
+                    </li>
+                `;
+            }
+            // Skip sub-stations (they're rendered with their main station)
+            
+            isFirstOverall = false;
+        });
 
         playlistElement.innerHTML = playlistHTML;
 
@@ -160,6 +301,17 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
                 element.addEventListener('click', (e) => {
                     e.preventDefault();
+                    
+                    // Check if this is a bundled station or main bundle station
+                    const listItem = element.closest('li');
+                    const isSubStation = listItem.hasAttribute('data-bundle-main');
+                    const isMainBundle = listItem.querySelector('.bundle-main');
+                    
+                    // Close all bundles if selecting a regular station (not bundled) and auto-close is enabled
+                    if (!isSubStation && !isMainBundle && bundlePreferences.autoClose) {
+                        closeAllBundles();
+                    }
+                    
                     this.setTrack(index);
                     this.player.play();
                     this.updateUI();
