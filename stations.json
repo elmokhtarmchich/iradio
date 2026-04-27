@@ -50,12 +50,11 @@
     "language": "Arabic",
     "description": "Barlamane Radio is a Moroccan radio station that broadcasts in Arabic and French.",
     "status": "coming soon"
-
   },
   {
     "id": 15,
     "title": "Medi 1 Radio",
-    "streamUrl": "https://streaming2.medi1tv.com/webradio/radio_mag.stream_aac/chunklist_w1607380952.m3u8",
+    "streamUrl": "https://proxy.iradio.ma/medi1radio",
     "imageUrl": "./image/medi.png",
     "category": "News & Talk",
     "website": "https://medi1.com"
