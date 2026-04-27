@@ -67,10 +67,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const playlistHTML = filteredStations.map(station => {
             const isFirstStation = filteredStations.indexOf(station) === 0;
             const liClass = isFirstStation ? 'current-video' : '';
+            const isComingSoon = station.status === 'coming soon';
+            const containerClass = isComingSoon ? 'radio-container coming-soon' : 'radio-container';
             return `
                 <li class="${liClass}">
                     <a data-id="${station.id}" href="${station.streamUrl}">
-                        <div class="radio-container">
+                        <div class="${containerClass}">
                             <img class="oui-image-cover" title="${station.title}" src="${station.imageUrl}">
                             <span class="radiotitle">${station.title}</span>
                         </div>
