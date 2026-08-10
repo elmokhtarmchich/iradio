@@ -293,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.currentStationId = null;
             this.currentStation = null;
             this.lastStableTrackPos = 0;
+            this.selectionGeneration = 0;
 
             this.attachEventListeners();
             this.length = document.querySelectorAll(`#${this.playlistId} li`).length;
@@ -301,8 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.refreshStationIdIndex();
 
             this.player.addEventListener('error', () => {
-                console.warn('Audio player reported an error; attempting resilient recovery to the next station.');
-                this.recoverFromPlaybackError();
+                console.warn('Audio player reported an error; keeping the active station contract stable and avoiding automatic station recovery.');
             });
 
             if ('mediaSession' in navigator) {
@@ -322,23 +322,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         attachEventListeners() {
-            document.querySelectorAll(`#${this.playlistId} li a`).forEach((element, index) => {
-                element.addEventListener('click', (e) => {
+            document.querySelectorAll(`#${this.playlistId} li a`).forEach((element) => {
+                element.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    
+
                     // Check if this is a bundled station or main bundle station
-                    const listItem = element.closest('li');
+                            const listItem = element.closest('li');
                     const isSubStation = listItem.hasAttribute('data-bundle-main');
                     const isMainBundle = listItem.querySelector('.bundle-main');
-                    
+
                     // Close all bundles if selecting a regular station (not bundled) and auto-close is enabled
                     if (!isSubStation && !isMainBundle && bundlePreferences.autoClose) {
                         closeAllBundles();
                     }
-                    
-                    this.setTrack(index);
-                    this.player.play();
-                    this.updateUI();
+
+                    const stationId = Number(element.dataset.id);
+                    if (!stationId) {
+                        console.warn('Clicked playlist row does not expose a station ID.');
+                        return;
+                    }
+
+                    await this.setTrackByStationId(stationId);
                     togglePlayPause();
                 });
             });
@@ -409,34 +413,42 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        async setTrack(arrayPos) {
-            if (arrayPos < 0 || arrayPos >= this.length) {
-                console.warn("Track position out of bounds, resetting to 0.");
-                arrayPos = 0;
-            }
-            this.trackPos = arrayPos;
+        async setTrack(stationId) {
+            const generation = ++this.selectionGeneration;
+            const normalizedStationId = Number(stationId);
 
-            const liPos = this.trackOrder[arrayPos];
-            const newTrack = document.querySelector(`#${this.playlistId} li:nth-child(${liPos + 1})`);
-            if (!newTrack) {
-                console.error("Could not find track element in the playlist.");
+            if (!Number.isInteger(normalizedStationId) || normalizedStationId <= 0) {
+                console.warn('Invalid station id requested for playback:', stationId);
                 return;
             }
 
-            const anchor = newTrack.querySelector('a');
-            const stationId = Number(anchor?.dataset?.id || 0);
-            const station = stationLookup.get(stationId) || allStations.find(s => s.id === stationId);
-
-            if (station) {
-                this.currentStation = station;
-                this.currentStationId = station.id;
-                this.lastStableTrackPos = arrayPos;
-                this.stationHistory.push(station.id);
-                if (this.stationHistory.length > 16) {
-                    this.stationHistory = this.stationHistory.slice(-16);
-                }
-                this.syncActiveStationWithUi(station);
+            const station = stationLookup.get(normalizedStationId) || allStations.find(s => s.id === normalizedStationId);
+            if (!station) {
+                console.warn('Station metadata can not be resolved for station id:', normalizedStationId);
+                return;
             }
+
+            const anchor = document.querySelector(`#${this.playlistId} li a[data-id="${normalizedStationId}"]`);
+            if (!anchor) {
+                console.warn('Station anchor is missing from DOM for station ID:', normalizedStationId);
+                return;
+            }
+
+            const newTrack = anchor.closest('li');
+            if (!newTrack) {
+                console.warn('Track DOM item is missing for station ID:', normalizedStationId);
+                return;
+            }
+
+            this.currentStation = station;
+            this.currentStationId = station.id;
+            this.lastStableTrackPos = this.stationIds.indexOf(station.id);
+            this.stationHistory.push(station.id);
+            if (this.stationHistory.length > 16) {
+                this.stationHistory = this.stationHistory.slice(-16);
+            }
+
+            this.trackPos = this.stationIds.indexOf(station.id);
 
             let trackHref = anchor.getAttribute('href');
             const fileHash = trackHref.split('#').pop().toLowerCase();
@@ -446,10 +458,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.hls.destroy();
                 this.hls = null;
             }
+
             this.player.src = '';
+
+            if (generation !== this.selectionGeneration) {
+                console.warn('Ignoring stale station selection because a newer station selection has already been requested.');
+                return;
+            }
 
             document.querySelectorAll(`.${this.currentClass}`).forEach(el => el.classList.remove(this.currentClass));
             newTrack.classList.add(this.currentClass);
+            this.syncActiveStationWithUi(station);
             this.updateUI();
 
             let streamUrl = trackHref.split('#')[0];
@@ -457,12 +476,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) {
                 try {
                     const res = await fetch(streamUrl, { method: 'GET' });
+
+                    if (generation !== this.selectionGeneration) {
+                        console.warn('Ignoring stale proxy stream response for station selection.', generation, this.selectionGeneration);
+                        return;
+                    }
+
                     if (!res.ok) {
                         alert('Proxy/worker endpoint error: ' + res.status);
                         return;
                     }
                     const contentType = res.headers.get('content-type');
                     const text = await res.text();
+
+                    if (generation !== this.selectionGeneration) {
+                        console.warn('Ignoring stale proxy response body for station selection.', generation, this.selectionGeneration);
+                        return;
+                    }
+
                     if (text.startsWith('http')) {
                         streamUrl = text.trim();
                     } else if (contentType && (contentType.toLowerCase().includes('mpegurl') || contentType.toLowerCase().includes('audio') || contentType.toLowerCase().includes('video') || contentType.toLowerCase().includes('application/octet-stream') || contentType.toLowerCase().includes('application/x-mpegurl'))) {
@@ -476,6 +507,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.error('Error fetching proxy/worker tokenized stream:', err);
                     return;
                 }
+            }
+
+            if (generation !== this.selectionGeneration) {
+                console.warn('Stopping stale station stream handoff before src activation.');
+                return;
             }
 
             let isHls = streamUrl.match(/\.m3u8(\?|$)/i) || streamUrl.match(/\.m3u(\?|$)/i) || (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) || streamUrl.includes('playlist?id=');
@@ -531,89 +567,80 @@ document.addEventListener('DOMContentLoaded', function () {
             this.setTrackByStationId(fallbackStationId);
         }
 
-        prevTrack() {
+        async prevTrack() {
             if (!this.stationIds.length) {
                 console.warn('Cannot move to previous track: the station ID list is empty.');
                 return;
             }
 
             const currentStationId = this.getCurrentStationId() || this.currentStationId;
-            const currentPosition = currentStationId ? this.stationIds.indexOf(currentStationId) : this.trackPos;
+            const currentPosition = currentStationId ? this.stationIds.indexOf(currentStationId) : (this.trackPos >= 0 ? this.trackPos : 0);
             const safePosition = currentPosition >= 0 ? currentPosition : 0;
             const newPosition = (safePosition - 1 + this.stationIds.length) % this.stationIds.length;
             const stationId = this.stationIds[newPosition];
 
-            this.setTrackByStationId(stationId);
-            this.player.play().catch(err => {
-                console.error('Play request from prevTrack failed:', err);
-            });
+            await this.setTrack(stationId);
             playPauseBtnImg.src = './image/pause.png';
             this.updateUI();
         }
 
-        nextTrack() {
+        async nextTrack() {
             if (!this.stationIds.length) {
                 console.warn('Cannot move to next track: the station ID list is empty.');
                 return;
             }
 
             const currentStationId = this.getCurrentStationId() || this.currentStationId;
-            const currentPosition = currentStationId ? this.stationIds.indexOf(currentStationId) : this.trackPos;
+            const currentPosition = currentStationId ? this.stationIds.indexOf(currentStationId) : (this.trackPos >= 0 ? this.trackPos : 0);
             const safePosition = currentPosition >= 0 ? currentPosition : 0;
             const newPosition = (safePosition + 1) % this.stationIds.length;
             const stationId = this.stationIds[newPosition];
 
-            this.setTrackByStationId(stationId);
-            this.player.play().catch(err => {
-                console.error('Play request from nextTrack failed:', err);
-            });
+            await this.setTrack(stationId);
             playPauseBtnImg.src = './image/pause.png';
             this.updateUI();
         }
 
-        setTrackByStationId(stationId) {
+        async setTrackByStationId(stationId) {
             const normalizedStationId = Number(stationId);
-            const anchor = document.querySelector(`#${this.playlistId} li a[data-id="${normalizedStationId}"]`);
-            if (!anchor) {
-                console.warn('Station anchor is missing from DOM for station ID:', normalizedStationId);
-                return;
-            }
-
-            const li = anchor.closest('li');
-            const stationPosition = Array.from(document.querySelectorAll(`#${this.playlistId} li`)).indexOf(li);
-            if (stationPosition < 0) {
-                console.warn('Station DOM list item could not be resolved:', normalizedStationId);
-                return;
-            }
-
-            this.setTrack(stationPosition);
+            await this.setTrack(normalizedStationId);
         }
 
         updateUI() {
-            const stationElements = document.querySelectorAll(`#${this.playlistId} .oui-image-cover`);
-            if (stationElements.length > this.trackPos) {
-                const currentStationElement = stationElements[this.trackPos];
-                const stationTitle = currentStationElement.title;
-                const stationImage = currentStationElement.src;
-                const stationId = Number(currentStationElement.closest('a')?.dataset?.id || 0);
-                const station = stationLookup.get(stationId) || allStations.find(s => s.id === stationId);
-
-                document.title = stationTitle;
-                document.getElementById("artist").innerHTML = stationTitle;
-                coverimg.src = stationImage;
-
-                if (station) {
-                    this.currentStation = station;
-                    this.currentStationId = station.id;
-                    this.syncActiveStationWithUi(station);
-                } else if (stationImage) {
-                    this.syncActiveStationWithUi({
-                        title: stationTitle,
-                        imageUrl: stationImage,
-                        category: 'iRadio'
-                    });
-                }
+            const currentTrack = document.querySelector(`#${this.playlistId} li.current-video`);
+            if (!currentTrack) {
+                togglePlayPause();
+                return;
             }
+
+            const currentAnchor = currentTrack.querySelector('a[data-id]');
+            const currentImage = currentTrack.querySelector('.oui-image-cover');
+            if (!currentAnchor || !currentImage) {
+                togglePlayPause();
+                return;
+            }
+
+            const stationId = Number(currentAnchor.dataset.id);
+            const station = stationLookup.get(stationId) || allStations.find(s => s.id === stationId);
+            const stationTitle = currentImage.title || currentAnchor.textContent.trim();
+            const stationImage = currentImage.src;
+
+            document.title = stationTitle;
+            document.getElementById("artist").innerHTML = stationTitle;
+            coverimg.src = stationImage;
+
+            if (station) {
+                this.currentStation = station;
+                this.currentStationId = station.id;
+                this.syncActiveStationWithUi(station);
+            } else {
+                this.syncActiveStationWithUi({
+                    title: stationTitle,
+                    imageUrl: stationImage,
+                    category: 'iRadio'
+                });
+            }
+
             togglePlayPause();
         }
     }
