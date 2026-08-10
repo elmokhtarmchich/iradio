@@ -1,0 +1,24 @@
+{
+  "name": "iradio",
+  "version": "1.0.0",
+  "description": "Our community is welcoming to everyone, regardless of their characteristics.\r As such, we expect you to treat everyone with respect and contribute to an open and welcoming community.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmokhtarmchich/iradio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elmokhtarmchich/iradio/issues"
+  },
+  "homepage": "https://github.com/elmokhtarmchich/iradio#readme",
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

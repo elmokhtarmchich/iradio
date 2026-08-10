@@ -294,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.currentStation = null;
             this.lastStableTrackPos = 0;
             this.selectionGeneration = 0;
+            this.lastObjectUrl = null;
 
             this.attachEventListeners();
             this.length = document.querySelectorAll(`#${this.playlistId} li`).length;
@@ -413,6 +414,53 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        async diagnoseProxySource(station, streamUrl, generation) {
+            const endpointSummary = {
+                stationId: station?.id ?? null,
+                stationTitle: station?.title ?? 'Unknown station',
+                requestedUrl: streamUrl,
+                timestamp: new Date().toISOString(),
+                expectedProxyOrWorker: Boolean(
+                    streamUrl && (
+                        streamUrl.includes('proxy.iradio.ma') ||
+                        streamUrl.includes('.workers.dev')
+                    )
+                )
+            };
+
+            console.group(`[Station source diagnostics] ${station?.title ?? 'Unknown'} (${station?.id ?? 'n/a'})`);
+            console.info('[Source candidate]', endpointSummary);
+
+            try {
+                const res = await fetch(streamUrl, { method: 'GET' });
+                const contentType = res.headers.get('content-type') || 'unknown';
+                const body = await res.text();
+
+                endpointSummary.httpStatus = `${res.status} ${res.statusText}`;
+                endpointSummary.contentType = contentType;
+                endpointSummary.bodyLength = body.length;
+                endpointSummary.preview = body.slice(0, 80);
+
+                if (res.ok) {
+                    console.info('[Source reached]', `${station?.title ?? 'Station'} reached ${streamUrl} => ${res.status} ${res.statusText} (${contentType})`, endpointSummary);
+                } else {
+                    console.warn('[Source did not reach]', `${station?.title ?? 'Station'} failed ${streamUrl} => ${res.status} ${res.statusText} (${contentType})`, endpointSummary);
+                }
+
+                if (generation !== this.selectionGeneration) {
+                    console.warn('[Source diagnostics ignored] a newer station selection is already active; this response is stale.', { generation, activeGeneration: this.selectionGeneration });
+                }
+
+                console.groupEnd();
+                return { res, contentType, text: body };
+            } catch (error) {
+                endpointSummary.error = error?.message ?? String(error);
+                console.error('[Source diagnostics failed]', `${station?.title ?? 'Station'} source probe threw for ${streamUrl}`, endpointSummary);
+                console.groupEnd();
+                throw error;
+            }
+        }
+
         async setTrack(stationId) {
             const generation = ++this.selectionGeneration;
             const normalizedStationId = Number(stationId);
@@ -459,7 +507,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.hls = null;
             }
 
+            if (this.lastObjectUrl) {
+                try {
+                    URL.revokeObjectURL(this.lastObjectUrl);
+                } catch (error) {
+                    console.warn('Could not revoke a previous object URL.', error);
+                }
+                this.lastObjectUrl = null;
+            }
+
+            this.player.pause();
             this.player.src = '';
+            this.player.load();
 
             if (generation !== this.selectionGeneration) {
                 console.warn('Ignoring stale station selection because a newer station selection has already been requested.');
@@ -472,40 +531,74 @@ document.addEventListener('DOMContentLoaded', function () {
             this.updateUI();
 
             let streamUrl = trackHref.split('#')[0];
+            let proxyPlaylistDetected = false;
 
             if (streamUrl.includes('proxy.iradio.ma') || streamUrl.includes('.workers.dev')) {
-                try {
-                    const res = await fetch(streamUrl, { method: 'GET' });
+                const isProxyHlsPlaylistStation = streamUrl.includes('proxy.iradio.ma') && (streamUrl.includes('/live') || streamUrl.includes('/radio2m'));
 
-                    if (generation !== this.selectionGeneration) {
-                        console.warn('Ignoring stale proxy stream response for station selection.', generation, this.selectionGeneration);
+                if (isProxyHlsPlaylistStation) {
+                    proxyPlaylistDetected = true;
+                    console.info('[Proxy HLS direct handoff] keeping the radio proxy source as the HLS source contract.', {
+                        stationId: station.id,
+                        stationTitle: station.title,
+                        streamUrl,
+                        reason: 'HLS content type known from the station contract; browser can resolve that source directly'
+                    });
+                } else {
+                    try {
+                        const { res, contentType, text } = await this.diagnoseProxySource(station, streamUrl, generation);
+
+                        if (generation !== this.selectionGeneration) {
+                            console.warn('Ignoring stale proxy stream response for station selection.', generation, this.selectionGeneration);
+                            return;
+                        }
+
+                        if (!res.ok) {
+                            alert('Proxy/worker endpoint error: ' + res.status);
+                            return;
+                        }
+
+                        if (generation !== this.selectionGeneration) {
+                            console.warn('Ignoring stale proxy response body for station selection.', generation, this.selectionGeneration);
+                            return;
+                        }
+
+                        const normalizedContentType = (contentType || '').toLowerCase();
+                        const bodyLooksLikePlaylist = typeof text === 'string' && text.trim().startsWith('#EXTM3U');
+                        const contentTypeLooksLikePlaylist = normalizedContentType.includes('mpegurl') || normalizedContentType.includes('x-mpegurl') || normalizedContentType.includes('application/vnd.apple.mpegurl');
+
+                        if (text.startsWith('http')) {
+                            streamUrl = text.trim();
+                        } else if (bodyLooksLikePlaylist || contentTypeLooksLikePlaylist) {
+                            proxyPlaylistDetected = true;
+                            console.info('[HLS proxy playlist] preserving direct HLS source URL instead of wrapping proxy body as a blob source.', {
+                                stationId: station.id,
+                                stationTitle: station.title,
+                                proxyUrl: streamUrl,
+                                contentType,
+                                bodyLength: text.length,
+                                bodyPreview: text.slice(0, 80)
+                            });
+                            streamUrl = streamUrl;
+                        } else if (contentType && (normalizedContentType.includes('audio') || normalizedContentType.includes('video') || normalizedContentType.includes('application/octet-stream'))) {
+                            console.warn('[Direct media response] binary audio branch is safe to hand off as a direct source object only.', {
+                                stationId: station.id,
+                                stationTitle: station.title,
+                                contentType,
+                                bodyLength: text.length
+                            });
+                            const blob = new Blob([text], { type: contentType });
+                            const blobUrl = URL.createObjectURL(blob);
+                            this.lastObjectUrl = blobUrl;
+                            streamUrl = blobUrl;
+                        } else {
+                            alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
+                            return;
+                        }
+                    } catch (err) {
+                        console.error('Error fetching proxy/worker tokenized stream:', err);
                         return;
                     }
-
-                    if (!res.ok) {
-                        alert('Proxy/worker endpoint error: ' + res.status);
-                        return;
-                    }
-                    const contentType = res.headers.get('content-type');
-                    const text = await res.text();
-
-                    if (generation !== this.selectionGeneration) {
-                        console.warn('Ignoring stale proxy response body for station selection.', generation, this.selectionGeneration);
-                        return;
-                    }
-
-                    if (text.startsWith('http')) {
-                        streamUrl = text.trim();
-                    } else if (contentType && (contentType.toLowerCase().includes('mpegurl') || contentType.toLowerCase().includes('audio') || contentType.toLowerCase().includes('video') || contentType.toLowerCase().includes('application/octet-stream') || contentType.toLowerCase().includes('application/x-mpegurl'))) {
-                        const blob = new Blob([text], { type: contentType });
-                        streamUrl = URL.createObjectURL(blob);
-                    } else {
-                        alert('This proxy/worker endpoint did not return a playable audio stream or a tokenized URL. Content-Type: ' + contentType);
-                        return;
-                    }
-                } catch (err) {
-                    console.error('Error fetching proxy/worker tokenized stream:', err);
-                    return;
                 }
             }
 
@@ -514,17 +607,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            let isHls = streamUrl.match(/\.m3u8(\?|$)/i) || streamUrl.match(/\.m3u(\?|$)/i) || (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) || streamUrl.includes('playlist?id=');
+            let isHls = streamUrl.match(/\.m3u8(\?|$)/i) || streamUrl.match(/\.m3u(\?|$)/i) || (streamUrl.startsWith('blob:') && (ext === 'm3u8' || ext === 'm3u')) || streamUrl.includes('playlist?id=') || proxyPlaylistDetected || streamUrl.includes('proxy.iradio.ma/radio2m/live');
+            console.info('[HLS source branch decision]', {
+                station: station.title,
+                stationId: station.id,
+                streamUrl,
+                isHls,
+                hlsSupported: Boolean(Hls && Hls.isSupported && Hls.isSupported()),
+                canPlayMpegUrl: Boolean(this.player.canPlayType('application/vnd.apple.mpegurl')),
+                canPlayXMime: Boolean(this.player.canPlayType('application/x-mpegurl'))
+            });
 
             if (Hls.isSupported() && isHls) {
+                console.info('[HLS branch selected] handing stream through Hls.js', { station: station.title, streamUrl });
                 this.hls = new Hls();
+                this.hls.on(Hls.Events.ERROR, (event, data) => {
+                    console.error('[HLS.js error]', {
+                        station: station.title,
+                        stationId: station.id,
+                        type: data?.type,
+                        details: data?.details,
+                        fatal: data?.fatal,
+                        url: data?.url,
+                        response: data?.response,
+                        err: data?.err?.message || data?.err || null
+                    });
+                });
                 this.hls.loadSource(streamUrl);
                 this.hls.attachMedia(this.player);
                 this.hls.on(Hls.Events.MANIFEST_PARSED, () => { this.player.play(); });
             } else if ((this.player.canPlayType('application/vnd.apple.mpegurl') || this.player.canPlayType('application/x-mpegurl')) && isHls) {
+                console.info('[Native HLS branch selected]', { station: station.title, streamUrl });
                 this.player.src = streamUrl;
                 this.player.addEventListener('loadedmetadata', () => { this.player.play(); }, { once: true });
             } else {
+                console.warn('[Direct source branch selected] Video element receives a direct source fallback.', {
+                    station: station.title,
+                    streamUrl,
+                    isHls,
+                    hlsSupported: Boolean(Hls && Hls.isSupported && Hls.isSupported())
+                });
                 this.player.src = streamUrl;
                 this.player.play().catch(err => { console.error('Playback failed:', err); });
             }
