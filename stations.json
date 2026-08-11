@@ -42,14 +42,14 @@
   {
     "id": 79,
     "title": "Barlamane Radio",
-    "streamUrl": "",
+    "streamUrl": "https://fastaudio.backboneplatforms.com/barlamane/live.mp3",
     "imageUrl": "./image/barlamaneradio.png",
     "category": "News & Talk",
     "website": "https://barlamaneradio.com/",
     "country": "Morocco",
     "language": "Arabic",
     "description": "Barlamane Radio is a Moroccan radio station that broadcasts in Arabic and French.",
-    "status": "coming soon"
+    "status": "online"
   },
   {
     "id": 15,
