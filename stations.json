@@ -34,7 +34,7 @@
   {
     "id": 14,
     "title": "Rim Radio",
-    "streamUrl": "https://streaming.rimradio.ma/live#aud",
+    "streamUrl": "https://streaming.rimradio.ma/live",
     "imageUrl": "./image/rimradio.png",
     "category": "News & Talk",
     "website": "https://rimradio.ma"
