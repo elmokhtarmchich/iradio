@@ -381,6 +381,15 @@
     "website": "https://hitradio.ma",
     "bundle": 40
   },
+    {
+    "id": 49,
+    "title": "Urban",
+    "streamUrl": "https://urban.ice.infomaniak.ch/urban-128.aac",
+    "imageUrl": "./image/urban.png",
+    "category": "Music",
+    "website": "https://uradio.ma/",
+    "bundle": "main"
+  },
   {
     "id": 47,
     "title": "Urban 80's",
@@ -398,15 +407,6 @@
     "category": "Music",
     "website": "https://uradio.ma/",
     "bundle": 49
-  },
-  {
-    "id": 49,
-    "title": "Urban",
-    "streamUrl": "https://urban.ice.infomaniak.ch/urban-128.aac",
-    "imageUrl": "./image/urban.png",
-    "category": "Music",
-    "website": "https://uradio.ma/",
-    "bundle": "main"
   },
   {
     "id": 50,
