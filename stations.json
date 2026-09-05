@@ -382,13 +382,22 @@
     "bundle": 40
   },
     {
+    "id": 50,
+    "title": "Urban Radio",
+    "streamUrl": "https://uradio-aac.ice.infomaniak.ch/uradio.aac",
+    "imageUrl": "./image/uradio.png",
+    "category": "Music",
+    "website": "https://uradio.ma/",
+    "bundle": "main"
+  },
+    {
     "id": 49,
     "title": "Urban",
     "streamUrl": "https://urban.ice.infomaniak.ch/urban-128.aac",
     "imageUrl": "./image/urban.png",
     "category": "Music",
     "website": "https://uradio.ma/",
-    "bundle": "main"
+    "bundle": 49
   },
   {
     "id": 47,
@@ -404,15 +413,6 @@
     "title": "Urban Dance",
     "streamUrl": "https://udance.ice.infomaniak.ch/udance-128.aac",
     "imageUrl": "./image/udance.png",
-    "category": "Music",
-    "website": "https://uradio.ma/",
-    "bundle": 49
-  },
-  {
-    "id": 50,
-    "title": "Urban Radio",
-    "streamUrl": "https://uradio-aac.ice.infomaniak.ch/uradio.aac",
-    "imageUrl": "./image/uradio.png",
     "category": "Music",
     "website": "https://uradio.ma/",
     "bundle": 49
