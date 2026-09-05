@@ -200,11 +200,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             </a>
                         </li>
                     `;
+                    renderedMainStations.add(subStation.id);
                 });
                 
                 renderedMainStations.add(station.id);
-            } else if (typeof station.bundle !== 'number') {
-                // Render regular station (not a sub-station)
+            } else {
+                // Render regular stations and bundled children whose parent is filtered out.
                 const liClass = isFirstOverall ? 'current-video' : '';
                 const isComingSoon = station.status === 'coming soon';
                 const containerClass = isComingSoon ? 'radio-container coming-soon' : 'radio-container';
