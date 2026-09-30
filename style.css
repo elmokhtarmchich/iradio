@@ -287,6 +287,7 @@ box-sizing: border-box;
 }
 
 footer {
+    position: relative; /* required for ::after to align inside */
     background-color: #161b22; /* Dark gray */
     color: #eee; /* Light gray text */
     text-align: center;
