@@ -297,6 +297,16 @@ footer {
     direction: rtl;
     font-family: 'Amiri', 'Roboto', sans-serif;
 }
+footer::after {
+  content: "";
+  position: absolute;
+  top: 0; /* instead of bottom: 0 */
+  left: 5%;
+  width: 90%;
+  height: 3px;
+  background-color: rgb(16 62 10 / 82%);
+}
+
 
 .footer-container {
     max-width: 1200px;
