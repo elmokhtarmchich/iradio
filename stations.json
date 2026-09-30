@@ -26,7 +26,7 @@
   {
     "id": 13,
     "title": "Chada FM",
-    "streamUrl": "https://stream.bodkas.com/playlist?id=chadafmradio",
+    "streamUrl": "https://chadafm.ice.infomaniak.ch/chadafm-128.aac",
     "imageUrl": "./image/chada.png",
     "category": "News & Talk",
     "website": "https://chadafm.ma"
