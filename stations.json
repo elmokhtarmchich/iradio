@@ -69,5 +69,5 @@
   {"id":71,"title":"Oxygene Radio","streamUrl":"https://radiocampus.ice.infomaniak.ch/radiocampus-128.mp3","imageUrl":"./image/oxygene.png","category":["College","أطفال"],"website":"https://oxygene.ma/"},
   {"id":77,"title":"Marrakech Plus","streamUrl":"https://cast5.my-control-panel.com/proxy/marrakec/stream","imageUrl":"./image/marrakechplus.png","category":"Public","website":"https://www.marrakechplus.ma/"},
   {"id":78,"title":"Alpha Radio","streamUrl":"https://manager11.streamradio.fr:3115/stream","imageUrl":"./image/alpharadio.jpg","category":"Public","website":"https://alpharadio.ma"},
-  {"id":80,"title":"Dahab Kids","streamUrl":"https://dahab.ice.infomaniak.ch/dahab-192.mp3","imageUrl":"./image/defaultplayerimg.webp","category":"أطفال","website":"https://thekidsfm.com/"}
+  {"id":80,"title":"Dahab Kids","streamUrl":"https://dahab.ice.infomaniak.ch/dahab-192.mp3","imageUrl":"https://thekidsfm.com/images/assets/footer-logo.svg","category":"أطفال","website":"https://thekidsfm.com/"}
 ]
